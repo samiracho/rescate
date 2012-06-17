@@ -1,0 +1,32 @@
+http://www.thomas-lauria.de/extamples/image_crop.html
+
+http://www.eekboom.de/ClearButton.html
+
+http://www.developerextensions.com/index.php/extjs-grid-query-builder
+
+https://github.com/VinylFox/ExtJS.ux.GMapPanel
+
+https://github.com/carlosgoias/Ext.form.field.ComboChain
+
+importante
+http://www.sencha.com/forum/showthread.php?135377-beforedrop-not-working-as-expected
+
+
+número de items por página en la barra de paginación de los grids
+https://github.com/loiane/extjs4-ux-paging-toolbar-resizer
+
+
+jquery
+
+input mask
+https://github.com/RobinHerbots/jquery.inputmask/downloads
+
+autocomplete
+http://www.pengoworks.com/workshop/jquery/autocomplete.htm
+
+para generar los sprites
+http://es.spritegen.website-performance.org/
+
+
+para poner barras de herramientas en tabpanels
+http://www.sencha.com/forum/showthread.php?176963-Its.tab.plugin.Tool

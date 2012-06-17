@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link href="css/lista_noticias.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<h2>Noticias: <br></h2>
+			{foreach item=noticia from=$noticias}
+				<h6>{$noticia.noticia_fechapub}</h1>
+				<h2><a href="">{$noticia.noticia_titulo}</a></h2>
+				<div class="noticiaCuerpo">{$noticia.noticia_cuerpo}</div>
+				<br />
+			{/foreach}
+		{$paginador}
+	</body>
+</html>

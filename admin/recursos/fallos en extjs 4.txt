@@ -1,0 +1,59 @@
+Drop asincrono:
+http://www.sencha.com/forum/showthread.php?135377-beforedrop-not-working-as-expected
+
+// Solucionado en 4.1rc1
+Store update. En aplicacion.js he hecho un override para solucionar el problema
+
+// Solucionado en 4.1rc1
+Problema al hacer resize de un grid. Cuando lo solucionen no hará falta forzar el redibujado
+barraherramientas.js
+funcion onrefreshclick "this.forceComponentLayout()"
+
+
+Si en un formulario metemos los botones de aceptar y cancelar dentro de la propiedad buttons, formbind no funciona, por lo que el botón aceptar no se desactiva si hay campos mal rellenados
+
+
+La máscara de loading puede dar un error al utilizar grids dentro de formularios, por ahora lo he solucionado desactivándola "viewConfig:{loadMask:false}"
+
+
+Los textos de los messagebox no se traducen, los he sobreescrito con esto para poder traducirlos (en aplicacion.js):
+
+if(Ext.MessageBox){
+     Ext.MessageBox.msgButtons['ok'].text = t('Ok');
+     Ext.MessageBox.msgButtons['cancel'].text = t('Cancel');
+     Ext.MessageBox.msgButtons['yes'].text = t('Yes');
+     Ext.MessageBox.msgButtons['no'].text = t('No');
+}
+
+Component query no busca componentes por xtype si el nombre del xtype contiene puntos ".", por ejemplo "grid.Bibliografia" no lo encuentra, así que siempre hago búsquedas por itemid.
+
+
+Los tabs solo muestran iconos de 13 píxeles y no de 16.
+
+// Solucionado en 4.1rc1
+A veces no funciona el scroll horizontal en los grids, lo he solucionado agregando el siguiente listener al grid. (En 4.06 sigue pasando)
+1aplicacion.js linea 804
+
+/* Para solucionar un bug por el cual la barra horizontal del grid deja de funcionar*/
+		scrollershow: function(scroller) {
+			if (scroller && scroller.scrollEl) {
+				scroller.clearManagedListeners(); 
+				scroller.mon(scroller.scrollEl, 'scroll', scroller.onElScroll, scroller); 
+			}
+		}
+		
+
+
+4.1rc Cuando se dispara el evento activate de un tabpanel no se dispara el evento activate de la pestaña activa, por lo que tengo que agregar un listener al tabpanel.
+Esto pasa por ejemplo en la opción de Usuario que tiene dos pestañas, Usuarios y Roles. Al no lanzarse el evento activate no carga la lista de usuarios, 
+por eso tengo que agregar esto al panel:
+
+    
+    listeners: {
+		activate: function (component)
+		{
+			
+			gridUsuario = component.down('#gridUsuario');
+			gridUsuario.fireEvent('activate', gridUsuario);
+		}
+     }

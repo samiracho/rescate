@@ -1,0 +1,112 @@
+table{
+	width:100%;
+	border:1px solid white;
+}
+
+table td, table th{
+	text-align:left;
+	vertical-align:text-top;
+	padding:4px;
+}
+
+table tr{
+	border-top:1px dotted #FFF;
+
+}
+
+table th{
+	background-color:#CCC;
+	color:#000;
+	border:1px solid #FFF;
+	
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+h1{
+	padding-left:0;
+	font-size:28px;
+}
+
+/*Enlace para expandir y contraer todas las tablas*/
+.expContraer{
+	float:right
+}
+
+/*Índice de contenido*/
+.indiceContenido{
+	margin-left:10px;
+}
+
+.indiceContenido a{
+	color:white;
+}
+
+.indiceContenido a:hover{
+	color:#F90
+}
+/*Fin Índice de contenido*/
+
+
+.acordeon>a{
+	margin-left:0px;
+	background-image:url('../img/flecha.png');
+	background-repeat:no-repeat;
+	background-position: 0px -19px;
+	padding-left:16px;
+	cursor:pointer;
+	display:block;
+	font-size:20px;
+	padding:16px 16px 0 16px;
+	margin:12px 0px;
+	border-bottom:1px dotted white;
+}
+
+.acordeon>a.expanded{
+	background-position: 0px 20px;
+}
+
+
+#contenido_plantilla{
+	padding:20px
+}
+
+/*Pestañas*/
+.usual {
+  background:#181818;
+  color:#111;
+  padding:15px 20px;
+  border:1px solid #222;
+  margin:8px;
+}
+.usual li { list-style:none; float:left; }
+.usual ul a {
+  display:block;
+  padding:6px 10px;
+  text-decoration:none!important;
+  margin:1px;
+  margin-left:0;
+  font:10px Verdana;
+  color:#FFF;
+  background:#444;
+}
+.usual ul a:hover {
+  color:#FFF;
+  background:#111;
+  }
+.usual ul a.selected {
+  margin-bottom:0;
+  color:#FFF;
+  background:#000;
+  border-bottom:1px solid #000;
+  cursor:default;
+  }
+.usual div {
+  padding:10px 10px 8px 10px;
+  *padding-top:3px;
+  *margin-top:-15px;
+  clear:left;
+  background:#000;
+  font:10pt Georgia;
+}
+.usual div a { color:#000; font-weight:bold; }
+				

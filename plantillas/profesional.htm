@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/media/images/favicon.ico" />
+		<title>Base de Datos</title>
+		<link href="css/b_stylerescate.css" rel="stylesheet" type="text/css" />
+		<link href="css/plantilla.css" rel="stylesheet" type="text/css" />
+		<link href="css/backgroundrest.css" rel="stylesheet" type="text/css" />	
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="js/desplegable.js"></script>
+	</head>
+
+<body>
+<!--Principio de wrp-->
+<div id="wrp">
+<!--Principio de head1-->
+<div id="head1">
+
+<!--Fin de head1-->
+</div>
+<!--Principio de navIn-->
+<div id="navin">
+	<ul>
+		<li><a href="index.html">Inicio</a></li>
+		<li><a href="objetivos.html">Objetivos</a></li>
+		<li><a href="equipo.html">Sobre el equipo</a></li>
+		<li><a href="contacto.html">Contacto</a></li>                    
+		<li><a href="dbs_c.html" class="current">Base de datos</a></li>
+		<li><a href="pb.html" >Publicaciones</a></li> 
+		<li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+	</ul>
+    
+    
+<!--Fin de navIn-->
+</div>
+<!--Principio del cont-->
+<div id="cont">
+<div id="contin_g">
+<div id="contenido_plantilla">
+
+
+
+<br />
+<h6><a href="datos.php?accion=profesional_lista"><< Volver al índice </a></h6>
+
+<h1>
+		{$profesional.profesional_nombre} {$profesional.profesional_apellido1} {$profesional.profesional_apellido2}
+</h1>
+<!--
+<ul class="indiceContenido">
+	<li><a href="#datosPersonales">Datos Personales</a></li>
+	<li><a href="#obras">Obras Intervenidas</a></li>
+	<li><a href="#documentos">Documentos Relacionados</a></li>
+	<li><a href="#colaboradores">Colaboradores</a></li>
+	<li><a href="#formacion">Formación Recibida</a></li>
+	<li><a href="#cargos">Cargos</a></li>
+	<li><a href="#reconocimientos">Reconocimientos</a></li>
+	<li><a href="#especialidades">Especialidades</a></li>
+	<li><a href="#tecnicas">Técnicas Utilizadas</a></li>
+	<li><a href="#asociaciones">Asociaciones a las que pertenece</a></li>
+</ul>
+-->
+	<a class="expContraer" href="#">Expandir/Contraer Todo</a>
+	
+	<div class="acordeon">
+		<a name="datosPersonales">Datos Personales</a>
+		<table class="exp">
+		  <tr>
+			<th>Nombre</th>
+			<td>{$profesional.profesional_nombre} {$profesional.profesional_apellido1} {$profesional.profesional_apellido2}</td>
+		  </tr>
+		  <tr>
+			<th>Sexo</th>
+			<td>{$profesional.profesional_sexo}</td>
+		  </tr>
+		  <tr>
+			<th>Nacimiento</th>
+			<td>
+				{if $profesional.profesional_fechanacimiento ne $fecha_vacia}{$profesional.profesional_fechanacimiento}<br />{/if}
+				{if $profesional.profesional_direccionn ne ''}{$profesional.profesional_direccionn}<br />{/if}
+				{$profesional.profesional_poblacionn} 
+				{if $profesional.profesional_provincian ne ''}, {$profesional.profesional_provincian}{/if} 
+				{if $profesional.profesional_paisn ne ''}, {$profesional.profesional_paisn}{/if} 
+			</td>
+		  </tr>
+		  <tr>
+			<th>Defunción</th>
+			<td>
+				{if $profesional.profesional_fechadefuncion ne $fecha_vacia}{$profesional.profesional_fechadefuncion}<br />{/if}
+				{if $profesional.profesional_direcciond ne ''}{$profesional.profesional_direcciond}<br />{/if}
+				{$profesional.profesional_poblaciond} 
+				{if $profesional.profesional_provinciad ne ''}, {$profesional.profesional_provinciad}{/if} 
+				{if $profesional.profesional_paisd ne ''}, {$profesional.profesional_paisd}{/if}
+			</td>
+		  </tr>
+		  <tr>
+			<th>Observaciones</th>
+			<td >{$profesional.profesional_observaciones}</td>
+		  </tr>
+		</table>
+	</div>
+	
+	<div class="acordeon">
+		<a name="obras">Obras Intervenidas</a>
+			<table>
+			  <thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Autor</th>
+				<th>Ficha Completa</th>
+			  </thead>
+			  <tbody>
+			  {foreach item=obra from=$obras}
+				<tr>
+					<td>
+						{$obra.obra_nombre}
+					</td>
+					<td>
+						{$obra.profesional_nombre} {$obra.profesional_apellido1} {$obra.profesional_apellido2}
+					</td>
+					<td>
+						<a href="datos.php?accion=obra&id={$obra.obra_id}" target="blank">Ficha...</a>
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="documentos">Documentos Relacionados</a>
+			<table>
+			  <thead>
+			  <tr>
+				<th>Miniatura</th>
+				<th>Nombre</th>
+				<th>Autor</th>
+				<th>Observaciones</th>
+				<th>Ficha Completa</th>
+			  </thead>
+			  <tbody>
+			  {foreach item=documento from=$documentos}
+				<tr>
+					<td>
+						<img width="64" src="{$url_archivos}/{$documento.documento_directorio}/miniaturas/{$documento.documento_miniatura}" alt="Vista previa" />
+					</td>
+					<td>
+						{$documento.documento_titulo}
+					</td>
+					<td>
+						 {$documento.profesional_nombre} {$documento.profesional_apellido1} {$documento.profesional_apellido2}
+					</td>
+					<td>
+						{$documento.documentoprofesional_detalles}
+					</td>
+					<td>
+						<a href="datos.php?accion=documento&id={$documento.documento_id}" target="blank">Ficha...</a>
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="colaboradores">Colaboradores</a>
+		<table>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Tipo</th>
+					<th>Detalles</th>
+					<th>Ficha Completa</th>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach item=colaborador from=$colaboradores}
+				<tr>
+					<td>
+						{if $colaborador.profesional_apellido1 ne ''} {$colaborador.profesional_apellido1}, {/if} 
+						{if $colaborador.profesional_apellido2 ne ''} {$colaborador.profesional_apellido2}, {/if}
+						{if $colaborador.profesional_nombre ne ''} {$colaborador.profesional_nombre} {/if}
+					</td>
+					<td>
+						{$colaborador.colaborador_tipo}
+					</td>
+					<td>
+						{$colaborador.colaborador_detalles}
+					</td>
+					<td>
+						<a href="datos.php?accion=profesional&id={$colaborador.profesional_id}" target="blank">Ficha...</a>
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="formacion">Formación Recibida</a>
+		<table>
+			<thead>
+			  <tr>
+				<th>Título</th>
+				<th>Fecha Inicio</th>
+				<th>Fecha Fin</th>
+				<th>Nombre del Centro</th>
+				<th>Código del Centro</th>
+				<th>Tipo de Centro</th>
+				<th>Detalles</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {foreach item=formacion from=$formaciones}
+				<tr>
+					<td>
+						{$formacion.formacion_titulo}
+					</td>
+					<td>
+						{if $formacion.formacion_fechainicio ne $fecha_vacia}{$formacion.formacion_fechainicio}{/if}
+					</td>
+					<td>
+						{if $formacion.formacion_fechafin ne $fecha_vacia}{$formacion.formacion_fechafin}{/if}
+					</td>
+					<td>
+						{$formacion.centro_nombre}
+					</td>
+					<td>
+						{$formacion.centro_codigo}
+					</td>
+					<td>
+						{$formacion.centro_tipo}
+					</td>
+					<td>
+						{$formacion.formacion_detalles}
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="cargos">Cargos</a>
+		<table>
+			<thead> 
+			 <tr>
+				<th>Nombre</th>
+				<th>Departamento</th>
+				<th>Fecha Inicio</th>
+				<th>Fecha Fin</th>
+				<th>Nombre del Centro</th>
+				<th>Código del Centro</th>
+				<th>Tipo de Centro</th>
+				<th>Detalles</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {foreach item=cargo from=$cargos}
+				<tr>
+					<td>
+						{$cargo.cargo_nombre}
+					</td>
+					<td>
+						{$cargo.cargo_departamento}
+					</td>
+					<td>
+						{if $cargo.cargo_fechainicio ne $fecha_vacia}{$cargo.cargo_fechainicio}{/if}
+					</td>
+					<td>
+						{if $cargo.cargo_fechafin ne $fecha_vacia}{$cargo.cargo_fechafin}{/if}
+					</td>
+					<td>
+						{$cargo.centro_nombre}
+					</td>
+					<td>
+						{$cargo.centro_codigo}
+					</td>
+					<td>
+						{$cargo.centro_tipo}
+					</td>
+					<td>
+						{$cargo.cargo_detalles}
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="reconocimientos">Reconocimientos</a>
+		<table>
+			<thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Detalles</th>
+				<th>Fecha</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {foreach item=reconocimiento from=$reconocimientos}
+				<tr>
+					<td>
+						{$reconocimiento.reconocimiento_nombre}
+					</td>
+					<td>
+						{$reconocimiento.reconocimiento_detalles}
+					</td>
+					<td>
+						{if $reconocimiento.reconocimiento_fecha ne $fecha_vacia}{$reconocimiento.reconocimiento_fecha}{/if}
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="especialidades">Especialidades</a>
+		<table>
+			<thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Detalles</th>
+				<th>Observaciones</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {foreach item=especialidad from=$especialidades}
+				<tr>
+					<td>
+						{$especialidad.especialidad_nombre}
+					</td>
+					<td>
+						{$especialidad.especialidad_detalles}
+					</td>
+					<td>
+						{$especialidad.especialidadprofesional_detalles}
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="tecnicas">Técnicas Utilizadas</a>
+		<table>
+			<thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Detalles</th>
+				<th>Observaciones</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {foreach item=tecnica from=$tecnicas}
+				<tr>
+					<td>
+						{$tecnica.tecnica_nombre}
+					</td>
+					<td>
+						{$tecnica.tecnica_detalles}
+					</td>
+					<td>
+						{$tecnica.tecnicaprofesional_detalles}
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="asociaciones">Asociaciones a las que pertenece</a>
+		<table>
+			<thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Detalles</th>
+				<th>Observaciones</th>
+				<th>Fecha Entrada</th>
+				<th>Fecha Salida</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {foreach item=asociacion from=$asociaciones}
+				<tr>
+					<td>
+						{$asociacion.asociacion_nombre}
+					</td>
+					<td>
+						{$asociacion.asociacion_detalles}
+					</td>
+					<td>
+						{$asociacion.asociacionprofesional_detalles}
+					</td>
+					<td>
+						{if $asociacion.asociacionprofesional_fechaentrada ne $fecha_vacia}{$asociacion.asociacionprofesional_fechaentrada}{/if}
+					</td>
+					<td>
+						{if $asociacion.asociacionprofesional_fechasalida ne $fecha_vacia}{$asociacion.asociacionprofesional_fechasalida}{/if}
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+
+</div>
+</div>
+
+<!--Fin del cont-->
+</div>
+<!--Principio del navlogo-->
+<div id="navlogo">
+
+<div id="navlogoinleft">
+
+<h3>Entidades</h3>
+          <ul>
+
+				<li><a class="bbaa" href="http://www.upv.es/entidades/BBAA/" ></a></li>
+				<li><a class="upv" href="http://www.upv.es/index-es.html" ></a></li>
+				<li><a class="cr" href="http://www.upv.es/entidades/DCRBC/index-es.html" ></a></li>
+				<li><a class="irp" href="http://www.upv.es/irp/seccions/irp.htm" ></a></li>
+
+
+		  </ul>       
+</div>
+
+<!--Fin del navlogo-->
+</div>
+<!--Principio del pie-->
+<div id="pie">
+
+<p class="pie">Copyright © 2011 | Designed by <a title="Laboratorio de Rayos X" href="http://jmadrid.webs.upv.es" target="J.A. Madrid">J. A. Madrid García</a> <br />
+  Departamento de Conservación y Restauración de Bienes Culturales | Universidad Politécnica de Valencia.</p>
+<!--Fin del pie-->
+</div>
+</div>
+
+</body>
+</html>

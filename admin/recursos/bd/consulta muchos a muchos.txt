@@ -1,0 +1,11 @@
+			//SELECT * FROM bibliografia LEFT JOIN bibliografiaprofesionales on bibliografia.idBibliografia =  bibliografiaprofesionales.bibliografia_idBibliografia AND bibliografiaprofesionales.profesionales_idProfesional = 1 where bibliografiaprofesionales.profesionales_idProfesional IS NULL
+			
+			/*
+						$consulta =
+			"SELECT profesionales.idProfesional, bibliografia.idBibliografia, bibliografia.titulo,bibliografia.autor1,bibliografia.autor2,bibliografia.autor3,bibliografia.autor4,bibliografia.autor5,bibliografia.autor6,bibliografia.isbn,bibliografia.editorial,bibliografia.detalles,bibliografia.categorias,
+			CASE WHEN rolesPermisos.permisos_idPermiso IS NULL THEN '0' ELSE '1' END AS activo 
+			FROM profesionales 
+			CROSS JOIN bibliografia 
+			LEFT JOIN bibliografiaProfesionales ON (bibliografiaProfesionales.profesionales_idProfesional = profesional.idProfesional AND bibliografiaProfesionales.bibliografia_idBibliografia = bibliografia.idBibliografia) 
+			WHERE (profesionales.idProfesional = '".intval($idProfesional)."')";
+			*/

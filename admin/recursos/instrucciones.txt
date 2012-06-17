@@ -1,0 +1,12 @@
+Si da un error 500 es que apache no tiene activo el módulo mod_headers. Se puede activar desde el httpd.conf o tambien se puede borrar el archivo .htaccess
+pero en ese caso no se pondrá fecha de expiración de la caché a los archivos.
+
+exportar.ps1 es un script en powershell que exporta el proyecto realizando las siguientes funciones:
+
+Comprime y une en un solo fichero todos los javascript
+Copia las librerías necesarias
+Elimina los archivos de debug y pone los de modo producción.
+Excluye los archivos innecesarios.
+
+Si hay problemas de permisos hay que ejecutar en una consola de powershell 
+Set-ExecutionPolicy RemoteSigned

@@ -1,0 +1,23 @@
+SELECT * FROM profesional
+LEFT JOIN asociacionprofesional ON asociacionprofesional_profesional_id = profesional_id
+LEFT JOIN asociacion ON asociacion_id = asociacionprofesional_asociacion_id
+LEFT JOIN formacion ON formacion_profesional_id = profesional_id
+LEFT JOIN centro ON centro_id = formacion_centro_id
+
+
+
+
+SELECT * FROM profesional
+LEFT JOIN formacion ON formacion_profesional_id = profesional_id
+LEFT JOIN centro ON centro_id = formacion_centro_id
+LEFT JOIN asociacionprofesional ON asociacionprofesional_profesional_id = profesional_id
+LEFT JOIN asociacion ON asociacion_id = asociacionprofesional_asociacion_id
+
+
+SELECT * FROM profesional LEFT JOIN reconocimiento ON reconocimiento_profesional_id = profesional_id WHERE reconocimiento_nombre LIKE '%M%' GROUP BY profesional_id
+
+SELECT * FROM profesional 
+CROSS JOIN especialidad
+INNER JOIN especialidadprofesional ON ( especialidadprofesional_profesional_id = profesional_id AND especialidadprofesional_especialidad_id = especialidad_id)
+
+

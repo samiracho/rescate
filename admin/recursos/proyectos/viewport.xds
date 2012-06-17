@@ -1,0 +1,161 @@
+{
+    "name": "viewport.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": "4",
+        "codeGenFormat": "Class",
+        "exportPath": ".",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "CRLF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "RESCATE"
+    },
+    "xdsVersion": "1.2.0-Beta2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1771",
+            "type": "viewport",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "layout": "border",
+                "designer|userClassName": "ViewportMain"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen4291",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "width": 200,
+                        "collapseDirection": "right",
+                        "collapsible": true,
+                        "title": null,
+                        "designer|userClassName": "MyPanel3",
+                        "layout|region": "west",
+                        "layout|split": true
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen2410",
+                            "type": "treepanel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 200,
+                                "title": "Opciones",
+                                "store": "JsonTreeStoreMenu",
+                                "designer|userClassName": "MyTreePanel2"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen2421",
+                                    "type": "treeview",
+                                    "reference": {
+                                        "name": "viewConfig",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "rootVisible": false,
+                                        "designer|userClassName": "MyTreeView1"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen2701",
+                            "type": "panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "title": "Ayuda",
+                                "designer|userClassName": "MyPanel1"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen3882",
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "activeItem": 0,
+                        "layout": "card",
+                        "title": "PANEL DE CONTROL RESCATE",
+                        "designer|userClassName": "MyPanel2",
+                        "layout|region": "center"
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [
+        {
+            "id": "ExtBox1-ext-gen3820",
+            "type": "treestore",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "storeId": "JsonTreeStoreMenu",
+                "defaultRootId": "src",
+                "designer|userClassName": "JsonTreeStoreMenu"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen3824",
+                    "type": "ajaxproxy",
+                    "reference": {
+                        "name": "proxy",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "batchActions": false,
+                        "url": "data/json.menu.php",
+                        "designer|userClassName": "Ajax Proxy"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen3830",
+                            "type": "jsonreader",
+                            "reference": {
+                                "name": "reader",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "root": null,
+                                "designer|userClassName": "Json Reader"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "framework": "ext40"
+}

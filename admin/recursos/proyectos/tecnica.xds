@@ -1,0 +1,148 @@
+{
+    "name": "tecnica.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": 4,
+        "codeGenFormat": "Class",
+        "exportPath": ".",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEnding": "CRLF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "MyApp",
+        "lineEndings": "CRLF"
+    },
+    "xdsVersion": "1.2.0-Beta2",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1806",
+            "type": "window",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": null,
+                "width": 600,
+                "layout": "fit",
+                "title": "Técnica",
+                "designer|userClassName": "MyWindow1"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen1946",
+                    "type": "form",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyPadding": 10,
+                        "title": "",
+                        "designer|userClassName": "MyForm1"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen2509",
+                            "type": "hiddenfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "name": "profesionales_idProfesional",
+                                "fieldLabel": "Label",
+                                "designer|userClassName": "MyHiddenField1",
+                                "layout|anchor": "100%"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen2769",
+                            "type": "hiddenfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "name": "idTecnica",
+                                "fieldLabel": "Label",
+                                "designer|userClassName": "MyHiddenField2",
+                                "layout|anchor": "100%"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen4012",
+                            "type": "textfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "name": "nombre",
+                                "fieldLabel": "Nombre",
+                                "designer|userClassName": "MyTextField1",
+                                "layout|anchor": "100%"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen7340",
+                            "type": "htmleditor",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "height": 150,
+                                "style": "background-color: white;",
+                                "width": null,
+                                "name": "detalles",
+                                "fieldLabel": "Detalles",
+                                "labelAlign": "top",
+                                "designer|userClassName": "MyHTMLEditor1"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen8554",
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "botonFormulario",
+                                "iconCls": "",
+                                "text": "Cancelar",
+                                "designer|userClassName": "MyButton"
+                            }
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen8869",
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "botonFormulario",
+                                "text": "Aceptar",
+                                "designer|userClassName": "MyButton1"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

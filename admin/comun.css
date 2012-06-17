@@ -1,0 +1,347 @@
+/*Iconos*/
+/*He agrupado todos los iconos en un único sprite para acelerar la carga de los archivos*/
+.cabecera{ background: transparent url(imagenes/sprite.png) repeat-x !important; background-position: 0 0 !important } 
+.iconoAgregar{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -55px !important } 
+.iconoAsociacion{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -72px !important } 
+.iconoBibliografia{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -89px !important } 
+.iconoBiencultural{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -106px !important } 
+.iconoBloqueado{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -123px !important;height:16px; } 
+.iconoBloqueado2{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -140px !important;height:16px; } 
+.iconoBorrar{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -154px !important } 
+.iconoBuscar{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -171px !important } 
+.iconoCargo{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -188px !important } 
+.iconoColaborador{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -205px !important } 
+.iconoConfig{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -222px !important } 
+.iconoDescargar{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -239px !important;padding-left:14px;width:8px;height:9px;float:left;margin-top:6px} 
+.iconoDocumento{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -248px !important } 
+.iconoEditar{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -265px !important } 
+.iconoEspecialidad{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -282px !important } 
+.iconoEspecialista{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -299px !important } 
+.iconoFormacion{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -316px !important } 
+.iconoGalardon{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -333px !important } 
+.iconoGuardar{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -350px !important } 
+.iconoInicio{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -367px !important } 
+.iconoIntervencion{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -384px !important } 
+.iconoMarcar{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -401px !important } 
+.iconoMaterial{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -418px !important } 
+.iconoNoBloqueado{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -435px !important;height:16px; } 
+.iconoNoSupervisado{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -452px !important;height:16px; } 
+.iconoNoticia{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -469px !important } 
+.iconoOK{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -485px !important } 
+.iconoObra{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -519px !important } 
+.iconoOpciones{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -536px !important } 
+.iconoProcedimiento{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -553px !important } 
+.iconoReset{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -570px !important } 
+.iconoRestaurador{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -587px !important } 
+.iconoSalir{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -604px !important } 
+.iconoSupervisado{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -621px !important;height:16px; } 
+.iconoTecnica{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -638px !important } 
+.iconoUsuario{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -655px !important } 
+.iconoWebcam{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -672px !important }
+.iconoPin{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -689px !important }
+
+/*Página de inicio*/
+.dashBoard{
+
+}
+
+.contenedorDashBoard{
+	float:left;
+	width:100%;
+	padding:4px;
+	min-width:274px;
+	min-height:170px;
+}
+
+.dashBoardConsejos{
+}
+
+.dashBoardBackup{
+}
+
+.dashBoardTareas{
+}
+
+.contenedorDashBoard blockquote{
+	font-style: italic;
+	font-family:Arial, Helvetica, sans-serif;
+	padding-left:8px;
+}
+.contenedorDashBoard blockquote:before { content: open-quote; font-weight: bold; }
+.contenedorDashBoard blockquote:after { content: close-quote; font-weight: bold; }
+
+.contenedorDashBoard h1{
+	font-size:14px;
+	display:block;
+	color:#383838;
+	height:32px;
+	background-image: url(imagenes/chruch.png) !important;
+	padding:8px;
+	border-bottom:1px solid #ccc;
+	margin-bottom:8px;
+}
+
+.contenedorDashBoard li{
+	display:block;
+	margin-bottom:8px;
+	padding-left:4px;
+}
+
+.contenedorDashBoard a{
+	text-decoration:none;
+	font-weight:bold;
+	color:#8B0000;
+	font-size:11px;
+	padding-left: 18px;
+	padding-bottom:4px;
+	background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -452px !important;height:16px;
+}
+
+.contenedorDashBoard a:hover{
+	text-decoration:underline;
+}
+
+.contenedorDashBoard a.normal{
+	color:#00008B;
+	background:none !important;
+	padding-left: 0px;
+}
+
+.contenedorDashBoard a.supervised{
+	color:#006400;
+	background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -621px !important;height:16px; } 
+}
+
+.contenedorDashBoard li{
+	padding:4px 8px;
+	font-size:12px;
+}
+/*Fin Página de inicio*/
+
+/*Linea de separación entre dos paneles drag&Drop*/
+.gridDrag{
+	border-left:1px solid #99BCE8;
+}
+
+/*Plugin insertar imagen*/
+.x-htmleditor-imageupload {background: url(imagenes/image_upload.png) 0 0 no-repeat !important}
+.x-htmleditor-imageupload-thumbcontainer{width:64px;height:64px;overflow:hidden;line-height:64px;text-align:center;margin:auto}
+.x-htmleditor-imageupload-thumbcontainer img{vertical-align:middle;width: expression(this.width > 64 ? 64: this.width);height: expression(this.height > 64 ? 64: this.height);max-width:64px;max-height:64px;}
+.x-htmleditor-imageupload-cropdialog {background: url(imagenes/editor_background.gif) !important}
+.x-htmleditor-imageupload-editbutton {background: url(imagenes/image_upload.png) 0 0 no-repeat !important}
+.x-htmleditor-imageupload-deletebutton {background: url(imagenes/trash.gif) 0 0 no-repeat !important}
+.x-htmleditor-imageupload-cropbutton{background: url(imagenes/image_crop.gif) 0 0 no-repeat !important}
+.x-htmleditor-imageupload-rotatebutton{background: url(imagenes/image_rotate.png) 0 0 no-repeat !important}
+.x-htmleditor-imageupload-resizebutton{background: url(imagenes/image_resize.gif) 0 0 no-repeat !important}
+.x-htmleditor-imageupload-delete{display:block;background: url(imagenes/delete.gif) 0 0 no-repeat !important;width:12px;height:12px;margin:4px}
+.x-htmleditor-imageupload-delete:hover{background: url(imagenes/delete.gif) 0 -13px no-repeat !important;}
+.x-htmleditor-imageupload-constrain{background: url(imagenes/constrain.gif) 0 0 no-repeat !important}
+.x-htmleditor-imageupload-unconstrain{background: url(imagenes/constrain.gif) 0 -48px no-repeat !important}
+.x-htmleditor-imageupload-name{float:right;padding:20px 10px 0 0;}
+.x-htmleditor-imageupload-thumb{width:56px;height:56px;float:right}
+
+/*Menu Principal*/
+.menuPrincial a{
+	display:block;
+	text-decoration:none;
+	color:#000;
+	height:17px;
+	padding:0px 0px  0px 18px;
+	margin-left:4px;
+	margin-bottom:4px;
+	font-size:13px
+}
+
+.menuPrincial div{
+	font-weight: bold;
+	margin:12px 4px 8px 4px;
+	border-bottom:1px solid #CCC
+}
+
+.menuPrincial a:hover{
+	font-weight: bold;
+}
+
+.menuPrincial a.selected{
+	font-weight: bold;
+	color:#04408C;
+	text-decoration: underline
+}
+
+.menuPrincial a:active{
+	font-weight: bold;
+}
+
+/*Color de una fila del grid resaltada*/
+.red-row td{ background-color: #F5C0C0 !important} 
+
+/*Color de fondo de las grids de tipo lista*/
+.gridLista .x-grid-view{
+  background-color: #ccffcc !important;
+}
+
+/*Ocultar el ckeckbox de la cabecera de los grids*/
+.x-column-header-checkbox {
+display: none;
+}
+
+/* para que los fondos de todas las grids sean blancos */
+.x-grid-view{
+	background-color: #fff !important;
+}
+
+/* Celda de un grid con una lista */
+.gridCeldaLista{
+	padding-left:10px;
+}
+
+.gridCeldaLista li{
+	list-style-type: square !important;
+	line-height:16px
+}
+
+.vistaPreviadDoc{
+	width:300px !important;
+	height:300px !important;
+}
+
+.cabecera h1 {
+    font-size: 16px;
+    color: #fff;
+    font-weight: normal;
+	display:inline;
+}
+
+/*Color de fondo de la pestaña lugar de defunción*/
+.panelDefuncion{
+	background-color:#d0dde9 !important
+}
+
+/* Color de fondo de las ventanas*/
+.x-window .x-panel-body {
+ background-color:#ecf0f4 !important
+}
+
+/*Tamaño de letra del menú*/
+.x-grid-row .x-grid-cell{
+	font-size:13px !important;
+}
+
+/*Tamaño de letra de los títulos de los paneles*/
+.x-panel-header-text  {
+font-size:13px !important;
+}
+
+/*Botones de los formularios*/
+.botonFormulario{
+	float:right;
+	margin-left:6px;
+}
+
+/*Icono de carga en las hojas de un árbol*/
+.cargandoOpcionArbol{
+    background: transparent url(imagenes/anim_ajax-loader.gif) no-repeat !important;
+}
+
+/*Icono de carga en los campos de los formularios*/
+.cargandoCampo input{
+    background: transparent url(imagenes/anim_ajax-loader.gif) no-repeat !important;
+	background-position: center right !important;
+}
+
+
+
+/*Para hacer que los tabs admitan iconos de 16px, sino solo caben de 13px*/
+/*.x-tab button {
+	height: 16px !important;
+	line-height: 16px !important;
+}
+.x-tab button .x-tab-icon {
+	top: auto !important;
+}*/
+
+
+/*Ventana de carga*/
+#loading-mask{
+        background-color:white;
+        height:100%;
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        z-index:30000;
+    }
+    #loading{
+        height:auto;
+        position:absolute;
+        left:45%;
+        top:40%;
+        padding:2px;
+        z-index:30001;
+    }
+    #loading a {
+        color:#225588;
+    }
+    #loading .loading-indicator{
+        background:white;
+        color:#444;
+        font:bold 13px Helvetica, Arial, sans-serif;
+        height:auto;
+        margin:0;
+        padding:10px;
+    }
+    #loading-msg {
+        font-size: 10px;
+        font-weight: normal;
+    }
+/*Fin Ventana de carga*/
+
+
+/*Estilos para el minibotón de borrado de los campos de formulario*/
+.ext-ux-clearbutton {
+    width: 12px;
+    height: 12px;
+    background-image: url(imagenes/clear-text-icon.gif);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    -moz-user-focus: ignore; /* https://developer.mozilla.org/en/CSS/-moz-user-focus */
+    cursor: pointer;
+    position: absolute;
+    overflow:  hidden; /* IE 6 :-( */
+    margin-top: 4px;
+    background-color: white;
+}
+
+.ext-ux-clearbutton-mouse-over-input {
+    background-position: 0 -12px;
+}
+
+.ext-ux-clearbutton-mouse-over-button {
+    background-position: 0 -24px;
+}
+
+.ext-ux-clearbutton-mouse-down {
+    background-position: 0 -36px;
+}
+
+.ext-ux-clearbutton-on {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .35s linear;
+    -webkit-transition: opacity .35s linear;
+    -moz-transition: opacity .35s linear;
+    -o-transition: opacity .35s linear;
+    -ms-transition: opacity .35s linear;
+    -khtml-transition: opacity .35s linear;
+}
+
+.ext-ux-clearbutton-off {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s linear, visibility .0s linear .35s;
+    -webkit-transition: opacity .35s linear, visibility .0s linear .35s;
+    -moz-transition: opacity .35s linear, visibility .0s linear .35s;
+    -o-transition: opacity .35s linear, visibility .0s linear .35s;
+    -ms-transition: opacity .35s linear, visibility .0s linear .35s;
+    -khtml-transition: opacity .35s linear, visibility .0s linear .35s;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>Base de Datos</title>
+		<link href="css/b_stylerescate.css" rel="stylesheet" type="text/css" />
+		<link href="css/backgroundrest.css" rel="stylesheet" type="text/css" />		
+	</head>
+
+<body>
+<!--Principio de wrp-->
+<div id="wrp">
+<!--Principio de head1-->
+<div id="head1">
+
+<!--Fin de head1-->
+</div>
+<!--Principio de navIn-->
+<div id="navin">
+ <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="objetivos.html">Objetivos</a></li>
+      <li><a href="equipo.html">Sobre el equipo</a></li>
+      <li><a href="contacto.html">Contacto</a></li>                    
+      <li><a href="dbs_c.html" class="current">Base de datos</a></li>
+      <li><a href="pb.html" >Publicaciones</a></li> 
+	  <li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+    </ul>
+    
+    
+<!--Fin de navIn-->
+</div>
+<!--Principio del cont-->
+<div id="cont">
+<div id="contin_g">
+<div id="contin_g_ele">
+
+<br />
+<h6><a href="dbs_c.html"><< Atrás </a></h6>
+
+<h2>Lista de Ubicaciones de Obras</h2>
+
+
+
+<table class="abecedario">
+<tr>
+<td><a href="datos.php?accion=ubicacion_lista&letra=todas">*</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=A">A</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=B">B</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=C">C</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=D">D</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=E">E</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=F">F</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=G">G</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=H">H</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=I">I</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=J">J</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=K">K</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=L">L</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=M">M</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=N">N</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=Ñ">Ñ</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=O">O</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=P">P</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=Q">Q</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=R">R</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=S">S</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=T">T</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=U">U</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=V">V</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=W">W</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=X">X</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=Y">Y</a></td>
+<td><a href="datos.php?accion=ubicacion_lista&letra=Z">Z</a></td>
+</tr>
+</table>
+
+
+
+{if !empty($ubicaciones)}
+<!--Numero de columnas que queremos mostrar-->
+{assign var="columnas" value="4"} 
+
+{math equation="ceil(count / columnas)" 
+   count=$ubicaciones|@count 
+   columnas=$columnas 
+   assign="columnHeight"} 
+
+{section name=tr loop=$columnHeight} 
+
+	{if $smarty.section.tr.first == true} 
+	<table class="lista"> 
+	{/if} 
+
+	<tr> 
+		{section name=td start=$smarty.section.tr.index step=$columnHeight loop=$columnHeight*$columnas} 
+		<td> 
+		{if isset($ubicaciones[td])} 
+			<a href="datos.php?accion=ubicacion&id={$ubicaciones[td].ubicacion_id}">
+				{$ubicaciones[td].ubicacion_nombre}
+			</a> 
+		{/if} 
+		</td> 
+		{/section} 
+	</tr> 
+	
+	{if $smarty.section.tr.last == true} 
+	</table> 
+	{/if} 
+  
+{/section} 
+
+{else}
+	<div style="text-align:center; width:100%;padding-bottom:60px">No se encontraron resultados con la letra {$letra}</div>
+{/if}
+
+</div>
+</div>
+
+<!--Fin del cont-->
+</div>
+<!--Principio del navlogo-->
+<div id="navlogo">
+
+<div id="navlogoinleft">
+
+<h3>Entidades</h3>
+          <ul>
+
+				<li><a class="bbaa" href="http://www.upv.es/entidades/BBAA/" ></a></li>
+				<li><a class="upv" href="http://www.upv.es/index-es.html" ></a></li>
+				<li><a class="cr" href="http://www.upv.es/entidades/DCRBC/index-es.html" ></a></li>
+				<li><a class="irp" href="http://www.upv.es/irp/seccions/irp.htm" ></a></li>
+
+
+		  </ul>       
+</div>
+
+<!--Fin del navlogo-->
+</div>
+<!--Principio del pie-->
+<div id="pie">
+
+<p class="pie">Copyright © 2011 | Designed by <a title="Laboratorio de Rayos X" href="http://jmadrid.webs.upv.es" target="J.A. Madrid">J. A. Madrid García</a> <br />
+  Departamento de Conservación y Restauración de Bienes Culturales | Universidad Politécnica de Valencia.</p>
+<!--Fin del pie-->
+</div>
+</div>
+
+</body>
+</html>

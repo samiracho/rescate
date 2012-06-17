@@ -1,0 +1,428 @@
+{
+    "name": "documento.xds",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "directAPI": "",
+        "spacesToIndent": 4,
+        "codeGenFormat": "Class",
+        "exportPath": ".",
+        "extPath": "http://extjs.cachefly.net/ext-4.0.2a/",
+        "lineEndings": "CRLF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true,
+        "appName": "MyApp"
+    },
+    "xdsVersion": "1.2.0 Beta1",
+    "components": [
+        {
+            "id": "ExtBox1-ext-gen1806",
+            "type": "window",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 376,
+                "width": 657,
+                "layout": "fit",
+                "title": "My Window",
+                "designer|userClassName": "MyWindow1"
+            },
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen2050",
+                    "type": "form",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout": "fit",
+                        "bodyPadding": 10,
+                        "title": null,
+                        "designer|userClassName": "MyForm1"
+                    },
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen2449",
+                            "type": "tabpanel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "activeTab": 1,
+                                "designer|userClassName": "MyTabPanel1"
+                            },
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen2461",
+                                    "type": "panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "title": "General",
+                                        "designer|userClassName": "MyPanel1"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen3198",
+                                            "type": "container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "layout": "column",
+                                                "designer|userClassName": "MyContainer1"
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen3397",
+                                                    "type": "container",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "layout": "anchor",
+                                                        "designer|userClassName": "MyContainer2",
+                                                        "layout|columnWidth": 0.5
+                                                    },
+                                                    "cn": [
+                                                        {
+                                                            "id": "ExtBox1-ext-gen2414",
+                                                            "type": "hiddenfield",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "name": "documento_id",
+                                                                "fieldLabel": null,
+                                                                "designer|userClassName": "MyHiddenField1",
+                                                                "layout|anchor": "100%"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen2780",
+                                                            "type": "textfield",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "name": "documento_titulo",
+                                                                "fieldLabel": "Titulo",
+                                                                "designer|userClassName": "MyTextField1",
+                                                                "layout|anchor": "100%"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen3169",
+                                                            "type": "datefield",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "name": "documento_fechainicial",
+                                                                "fieldLabel": "Fecha Inicial",
+                                                                "designer|userClassName": "MyDateField1",
+                                                                "layout|anchor": "100%"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen3488",
+                                                            "type": "datefield",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "name": "documento_fechafinal",
+                                                                "fieldLabel": "Fecha Final",
+                                                                "designer|userClassName": "MyDateField1",
+                                                                "layout|anchor": "100%"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "ExtBox1-ext-gen3603",
+                                                    "type": "container",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "layout": "anchor",
+                                                        "designer|userClassName": "MyContainer2",
+                                                        "layout|columnWidth": 0.5
+                                                    },
+                                                    "cn": [
+                                                        {
+                                                            "id": "ExtBox1-ext-gen3692",
+                                                            "type": "textfield",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "name": "documento_autornombre",
+                                                                "fieldLabel": "Nombre Autor",
+                                                                "designer|userClassName": "MyTextField2",
+                                                                "layout|anchor": "100%"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen4049",
+                                                            "type": "textfield",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "name": "documento_autorapellido1",
+                                                                "fieldLabel": "Apellido 1 Autor",
+                                                                "designer|userClassName": "MyTextField2",
+                                                                "layout|anchor": "100%"
+                                                            }
+                                                        },
+                                                        {
+                                                            "id": "ExtBox1-ext-gen4296",
+                                                            "type": "textfield",
+                                                            "reference": {
+                                                                "name": "items",
+                                                                "type": "array"
+                                                            },
+                                                            "codeClass": null,
+                                                            "userConfig": {
+                                                                "name": "documento_autorapellido2",
+                                                                "fieldLabel": "Apellido 2 Autor",
+                                                                "designer|userClassName": "MyTextField2",
+                                                                "layout|anchor": "100%"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen2099",
+                                            "type": "container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|userClassName": "MyContainer4"
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen2230",
+                                                    "type": "htmleditor",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "height": 150,
+                                                        "style": "background-color: white;",
+                                                        "name": "documento_descripcion",
+                                                        "fieldLabel": "Label",
+                                                        "designer|userClassName": "MyHTMLEditor1"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen2470",
+                                    "type": "panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout": "column",
+                                        "bodyPadding": 10,
+                                        "title": "Adjuntar",
+                                        "designer|userClassName": "MyPanel2"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen2913",
+                                            "type": "fieldset",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "height": null,
+                                                "padding": 4,
+                                                "width": null,
+                                                "layout": "auto",
+                                                "title": "Vista Previa",
+                                                "designer|userClassName": "MyFieldSet1",
+                                                "layout|columnWidth": null
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen2392",
+                                                    "type": "image",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "height": 128,
+                                                        "width": 128,
+                                                        "src": "http://www.sencha.com/img/sencha-large.png",
+                                                        "designer|userClassName": "MyImg1"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen3493",
+                                            "type": "container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "width": 150,
+                                                "layout": "anchor",
+                                                "designer|userClassName": "MyContainer5",
+                                                "layout|columnWidth": null
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen3645",
+                                                    "type": "radiofield",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "padding": 4,
+                                                        "fieldLabel": null,
+                                                        "boxLabel": "Adjuntar Archivo",
+                                                        "designer|userClassName": "MyRadio"
+                                                    }
+                                                },
+                                                {
+                                                    "id": "ExtBox1-ext-gen4741",
+                                                    "type": "radiofield",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "padding": 4,
+                                                        "fieldLabel": null,
+                                                        "boxLabel": "Indicar URL",
+                                                        "designer|userClassName": "MyRadio"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "ExtBox1-ext-gen3815",
+                                            "type": "container",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "layout": "anchor",
+                                                "designer|userClassName": "MyContainer6",
+                                                "layout|flex": null,
+                                                "layout|columnWidth": 1
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "ExtBox1-ext-gen3962",
+                                                    "type": "button",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "padding": 4,
+                                                        "width": 100,
+                                                        "text": "Adjuntar...",
+                                                        "designer|userClassName": "MyButton1",
+                                                        "layout|anchor": "100%"
+                                                    }
+                                                },
+                                                {
+                                                    "id": "ExtBox1-ext-gen5250",
+                                                    "type": "textfield",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "padding": "8 0",
+                                                        "fieldLabel": null,
+                                                        "designer|userClassName": "MyTextField5",
+                                                        "layout|anchor": "100%"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen2479",
+                                    "type": "panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "title": "Localización",
+                                        "designer|userClassName": "MyPanel3"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": [],
+    "framework": "ext40"
+}

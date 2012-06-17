@@ -1,0 +1,106 @@
+/*
+CSS Credit: J.A. Madrid jmadrid@crbc.upv.es
+Fondos principal
+*/
+
+#head1{
+	width:auto;
+	height:145px;
+	background-image:url(../img/rescate_01.gif)
+	}
+
+#navin{
+	width:960px;
+	height:59px;
+	background-image:url(../img/rescate_02.png)
+	}
+#cont{
+	clear:both;
+	width:960px;
+	margin:0;
+	background-image:url(../img/rescate_03.png);
+	background-repeat:no-repeat;
+	background-position:top;	
+	overflow:hidden;
+	}	
+	
+#navlogo{
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
+	height:225px;
+	background-image:url(../img/rescate_b_04.gif);
+	background-repeat:no-repeat;
+	background-position:bottom;
+	}
+
+
+/*
+CSS Credit: J.A. Madrid jmadrid@crbc.upv.es
+Logos
+*/
+
+
+#navlogoinleft   a.bbaa  {
+	display:block;
+	background-image:url(../img/logos_01.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	width:128px;
+	height:98px;
+	outline: 0;
+	}
+#navlogoinleft a.bbaa:hover{
+	background-image:url(../img/logosrojo_01.png));
+	}
+	
+#navlogoinleft a.upv {
+	display:block;
+	background-image:url(../img/logos_02.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	width:203px;
+	height:98px;
+	outline: 0;
+	}
+
+#navlogoinleft a.upv:hover{
+	background-image:url(../img/logosrojo_02.png);
+	}
+
+#navlogoinleft a.cr {
+	display:block;
+	background-image:url(../img/logos_03.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	width:150px;
+	height:98px;
+	outline: 0;
+	}
+#navlogoinleft a.cr:hover{
+	background-image:url(../img/logosrojo_03.png);
+	}
+	
+#navlogoinleft a.irp {
+	display:block;
+	background-image:url(../img/logos_04.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	width:119px;
+	height:98px;
+	outline: 0;
+	}
+#navlogoinleft a.irp:hover{
+	background-image:url(../img/logosrojo_04.png);
+	}
+
+#pie{
+	width:auto;
+	height:61px;
+	background-image:url(../img/rescate_b_05.png);
+	background-repeat:no-repeat;
+	background-position:bottom;
+	margin:0;
+	padding:0;
+	}
+

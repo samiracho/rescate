@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/media/images/favicon.ico" />
+		<title>Base de Datos</title>
+		<link href="css/b_stylerescate.css" rel="stylesheet" type="text/css" />
+		<link href="css/plantilla.css" rel="stylesheet" type="text/css" />
+		<link href="css/backgroundrest.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="js/desplegable.js"></script>
+		<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+	</head>
+
+<body>
+<!--Principio de wrp-->
+<div id="wrp">
+<!--Principio de head1-->
+<div id="head1">
+
+<!--Fin de head1-->
+</div>
+<!--Principio de navIn-->
+<div id="navin">
+ <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="objetivos.html">Objetivos</a></li>
+      <li><a href="equipo.html">Sobre el equipo</a></li>
+      <li><a href="contacto.html">Contacto</a></li>                    
+      <li><a href="dbs_c.html" class="current">Base de datos</a></li>
+      <li><a href="pb.html" >Publicaciones</a></li> 
+	  <li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+    </ul>
+    
+    
+<!--Fin de navIn-->
+</div>
+<!--Principio del cont-->
+<div id="cont">
+<div id="contin_g">
+<div id="contin_g_ele">
+
+
+
+<br />
+<h6><a href="datos.php?accion=ubicacion_lista"><< Volver al índice </a></h6>
+
+<h1>
+	{$ubicacion.ubicacion_nombre}
+</h1>
+
+	<a class="expContraer" href="#">Expandir/Contraer Todo</a>
+	
+	<div class="acordeon">
+		<a name="datosPersonales">Ficha Técnica</a>
+		<table class="exp" >
+		  <tr>
+			<th>Nombre Edificio</th>
+			<td>{$ubicacion.ubicacion_nombre}</td>
+		  </tr>
+		  <tr>
+			<th>Direccion</th>
+			<td>
+				{$ubicacion.ubicacion_direccion} {$ubicacion.ubicacion_poblacion}
+				<br />{$ubicacion.ubicacion_provincia}, {$ubicacion.ubicacion_pais}
+			
+			</td>
+		  </tr>
+		  <tr>
+			<th>Observaciones</th>
+			<td >{$ubicacion.ubicacion_detalles}</td>
+		  </tr>
+		</table>
+	</div>
+
+	<div class="acordeon">
+		<a name="datosPersonales">Obras</a>
+			<table>
+				  <thead>
+				  <tr>
+					<th>Nombre</th>
+					<th>Autor</th>
+					<th>Ficha Completa</th>
+				  </thead>
+				  <tbody>
+				  {foreach item=obra from=$obras}
+					<tr>
+						<td>
+							{$obra.obra_nombre}
+						</td>
+						<td>
+							{if $obra.obra_autorapellido1 ne ''} {$obra.obra_autorapellido1}{/if} 
+							{if $obra.obra_autorapellido2 ne ''}, {$obra.obra_autorapellido2}{/if}
+							{if $obra.obra_autornombre ne ''}, {$obra.obra_autornombre} {/if}
+						</td>
+						<td>
+							<a href="datos.php?accion=obra&id={$obra.obra_id}" target="blank">Ficha...</a>
+						</td>
+					</tr>
+				{/foreach}
+				</tbody>
+			</table>
+	</div>
+
+
+</div>
+</div>
+
+<!--Fin del cont-->
+</div>
+<!--Principio del navlogo-->
+<div id="navlogo">
+
+<div id="navlogoinleft">
+
+<h3>Entidades</h3>
+          <ul>
+
+				<li><a class="bbaa" href="http://www.upv.es/entidades/BBAA/" ></a></li>
+				<li><a class="upv" href="http://www.upv.es/index-es.html" ></a></li>
+				<li><a class="cr" href="http://www.upv.es/entidades/DCRBC/index-es.html" ></a></li>
+				<li><a class="irp" href="http://www.upv.es/irp/seccions/irp.htm" ></a></li>
+
+
+		  </ul>       
+</div>
+
+<!--Fin del navlogo-->
+</div>
+<!--Principio del pie-->
+<div id="pie">
+
+<p class="pie">Copyright © 2011 | Designed by <a title="Laboratorio de Rayos X" href="http://jmadrid.webs.upv.es" target="J.A. Madrid">J. A. Madrid García</a> <br />
+  Departamento de Conservación y Restauración de Bienes Culturales | Universidad Politécnica de Valencia.</p>
+<!--Fin del pie-->
+</div>
+</div>
+
+</body>
+</html>
