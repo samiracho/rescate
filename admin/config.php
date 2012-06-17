@@ -23,7 +23,7 @@ define("BD_NOMBRE","rescate");		// nombre bd
 // CONFIGURACIÓN INTERNA
 define("RESCATE_CLAVE","clave_secreta_rescate011"); // texto para crear hashes md5
 define("SELECT_LIMIT",50); // numero por defecto de registros mostrados por página
-define("EXT_PATH","../../extjs-4.1.0"); // ruta de extjs
+define("EXT_PATH","../../extjs-4.1.1-rc2"); // ruta de extjs
 define("FORZAR_SSL",false); // para forzar su uso via https
 define("TTL_SESION",18000); //tiempo en segundos que una sesión de usuario puede estar inactiva antes de cerrarla automáticamente
 define("USAR_COMPRESION",true); // para servir los archivos javascript y css comprimidos
