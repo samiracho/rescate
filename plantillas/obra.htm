@@ -54,6 +54,16 @@
 		<a name="datosPersonales">Datos Personales</a>
 		<table class="exp">
 		  <tr>
+			<th>Imagen</th>
+			<td >
+				{if $portada.documento_miniatura ne ''}
+					<a target="_blank" href="{$url_archivos}/{$portada.documento_directorio}/{$portada.documento_archivo}">
+						<img src="{$url_archivos}/{$portada.documento_directorio}/miniaturas/{$portada.documento_miniatura}" />
+					</a>
+				{/if}
+			</td>
+		  </tr>
+		  <tr>
 			<th>Nombre</th>
 			<td>{$obra.obra_nombre}</td>
 		  </tr>
@@ -74,16 +84,20 @@
 			<td>{$obra.obra_direccion}, {$obra.obra_poblacion} {$obra.obra_provincia} {$obra.obra_pais}</td>
 		  </tr>
 		  <tr>
-			<th>Dimensión altura</th>
+			<th>Dimensión altura (cm)</th>
 			<td>{$obra.obra_dimension_altura}</td>
 		  </tr>
 		  <tr>
-			<th>Dimensión anchura</th>
+			<th>Dimensión anchura (cm)</th>
 			<td>{$obra.obra_dimension_anchura}</td>
 		  </tr>
 		  <tr>
-			<th>Dimensión profundidad</th>
+			<th>Dimensión profundidad (cm)</th>
 			<td>{$obra.obra_dimension_profundidad}</td>
+		  </tr>
+		  <tr>
+			<th>Dimensión Superficie (m2)</th>
+			<td>{$obra.obra_dimension_m2}</td>
 		  </tr>
 		  <tr>
 			<th>Observaciones</th>
@@ -93,11 +107,35 @@
 	</div>
 	
 	<div class="acordeon">
+		<a>Técnicas utilizadas en la Obra</a>
+			<table>
+			  <thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Detalles</th>
+			  </thead>
+			  <tbody>
+			  {foreach item=tecnica from=$tecnicas}
+				<tr>
+					<td>
+						{$tecnica.metodo_nombre}
+					</td>
+					<td>
+						{$tecnica.metodoobra_detalles}
+					</td>	
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="acordeon">
 		<a>Intervenciones realizadas en la Obra</a>
 			<table>
 			  <thead>
 			  <tr>
 				<th>Nombre</th>
+				<th>Fecha</th>
 				<th>Restaurador(es)</th>
 				<th>Ficha Completa</th>
 			  </thead>
@@ -106,6 +144,10 @@
 				<tr>
 					<td>
 						{$intervencion.intervencion_nombre}
+					</td>
+					<td>
+					{if $intervencion.intervencion_fechainicio ne $fecha_vacia}{$intervencion.intervencion_fechainicio}{/if}<br />
+					{if $intervencion.intervencion_fechafin ne $fecha_vacia}{$intervencion.intervencion_fechafin}{/if}
 					</td>
 					<td>
 					

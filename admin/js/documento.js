@@ -927,11 +927,11 @@ Ext.define('RESCATE.form.editarDocumentoObra', {
     layout: {
         type: 'fit'
     },
-    title: t('Professional-Intervention'),
+    title: t('Detalles Documento'),
     maximizable: true,
     initComponent: function ()
     {
-        var me = this;
+		var me = this;
         me.items = [
         {
             xtype: 'form',
@@ -941,24 +941,29 @@ Ext.define('RESCATE.form.editarDocumentoObra', {
                 anchor: '100%'
             },
             bodyPadding: 10,
-            title:t( 'Documents'),
             items: [
             {
-                xtype: 'textfield',
+                xtype: 'hidden',
                 name: 'documentoobra_documento_id',
                 allowBlank: false,
                 hidden: true
             }, {
-                xtype: 'textfield',
+                xtype: 'hidden',
                 name: 'documentoobra_obra_id',
                 allowBlank: false,
                 hidden: true
             }, {
                 xtype: CONFIG.textArea,
                 fieldLabel: t('Details'),
-                anchor: '100% 100%',
+                anchor: '100% -30',
                 name: 'documentoobra_detalles'
-            }],
+            }, {
+				xtype: 'checkboxfield',
+				name: 'documentoobra_portada',
+				boxLabel: t('Show as front Image'),
+				labelAlign: 'left',
+				uncheckedValue: 0
+			}],
             dockedItems: me.barraBotones()
         }];
         me.callParent(arguments);

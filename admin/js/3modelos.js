@@ -119,6 +119,9 @@ Ext.define('RESCATE.model.Obra', {
         name: 'obra_dimension_profundidad',
         defaultValue: ''
     }, {
+        name: 'obra_dimension_m2',
+        defaultValue: ''
+    }, {
         name: 'obra_pais',
         defaultValue: 'España'
     }, {
@@ -1183,6 +1186,9 @@ Ext.define('RESCATE.model.DocumentoObra', {
         defaultValue: ''
     }, {
         name: 'documentoobra_detalles',
+        defaultValue: ''
+    }, {
+        name: 'documentoobra_portada',
         defaultValue: ''
     }, {
         name: 'documento_titulo',

@@ -18,7 +18,7 @@ table th{
 	background-color:#CCC;
 	color:#000;
 	border:1px solid #FFF;
-	
+	vertical-align:text-top;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 

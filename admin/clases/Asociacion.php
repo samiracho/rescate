@@ -47,7 +47,7 @@
 			$consulta       = "SELECT asociacion_nombre,asociacion_detalles, asociacionprofesional_detalles,DATE_FORMAT(asociacion_fecha, '".FORMATO_FECHA_MYSQL_ANYO."') AS asociacion_fecha,DATE_FORMAT(asociacionprofesional_fechaentrada, '".FORMATO_FECHA_MYSQL_ANYO."') AS asociacionprofesional_fechaentrada, DATE_FORMAT(asociacionprofesional_fechasalida, '".FORMATO_FECHA_MYSQL_ANYO."') AS asociacionprofesional_fechasalida 
 							   FROM asociacionprofesional 
 							   INNER JOIN asociacion ON asociacion_id = asociacionprofesional_asociacion_id
-							   WHERE asociacionprofesional_profesional_id ='".intval($id)."' ORDER BY asociacion_nombre";
+							   WHERE asociacionprofesional_profesional_id ='".intval($id)."' ORDER BY asociacion_fecha ASC";
 			
 			return $bd->ObtenerResultados($consulta);	
 		}

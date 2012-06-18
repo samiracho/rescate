@@ -54,7 +54,7 @@
 			$bd           = BD::Instancia();			
 			$consulta     = "SELECT *, DATE_FORMAT(cargo_fechainicio, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechainicio, DATE_FORMAT(cargo_fechafin, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechafin
 							 FROM cargo INNER JOIN centro ON cargo_centro_id = centro_id 
-							 WHERE cargo_profesional_id ='".intval($id)."' ORDER BY cargo_nombre";	
+							 WHERE cargo_profesional_id ='".intval($id)."' ORDER BY cargo_fechainicio ASC";	
 			return $bd->ObtenerResultados($consulta);	
 		}
 		

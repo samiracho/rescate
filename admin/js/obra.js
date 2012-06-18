@@ -34,6 +34,12 @@ Ext.define('RESCATE.panel.Obra', {
         dataIndex: 'obra_dimension_profundidad',
         sortable: true,
         hidden: true
+    },{
+        text: t('m2'),
+        flex: 1,
+        dataIndex: 'obra_dimension_m2',
+        sortable: true,
+        hidden: true
     }, {
         text: t('Country'),
         flex: 1,
@@ -224,6 +230,12 @@ Ext.define('RESCATE.grid.ObraSeleccionar', {
         text: t('Deep (cm)'),
         flex: 1,
         dataIndex: 'obra_dimension_profundidad',
+        sortable: true,
+        hidden: true
+    }, {
+        text: t('m2'),
+        flex: 1,
+        dataIndex: 'obra_dimension_m2',
         sortable: true,
         hidden: true
     }, {
@@ -424,6 +436,13 @@ Ext.define('RESCATE.form.editarObra', {
                                 name: 'obra_id',
                                 itemId: 'campoIdObra',
                                 value: ''
+                            }, {
+                                xtype: 'numberfield',
+                                name: 'obra_dimension_m2',
+                                fieldLabel: t('Superficie (m2)'),
+                                minValue: 0,
+                                maxValue: 10000,
+                                maxlength: 5
                             }]
                         }, {
                             xtype: 'container',

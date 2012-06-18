@@ -33,7 +33,7 @@
 			$bd                = BD::Instancia();			
 			$consulta          = "SELECT formacion_id, formacion_titulo, DATE_FORMAT(formacion_fechainicio, '".FORMATO_FECHA_MYSQL_ANYO."') AS formacion_fechainicio, DATE_FORMAT(formacion_fechafin, '".FORMATO_FECHA_MYSQL_ANYO."') AS formacion_fechafin, formacion_detalles, centro_nombre, centro_codigo, centro_tipo 
 								  FROM formacion INNER JOIN centro ON formacion_centro_id = centro_id 
-								  WHERE formacion_profesional_id ='".intval($id)."' ORDER BY formacion_titulo";
+								  WHERE formacion_profesional_id ='".intval($id)."' ORDER BY formacion_fechainicio ASC";
 	
 			return $bd->ObtenerResultados($consulta);	
 		}

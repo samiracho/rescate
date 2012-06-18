@@ -19,9 +19,10 @@
 			// aquí definimos los tipos de campos
 			$this->campos = array(
 				'obra_id'                    => array('tipo'=>'id','nulo'=>true,'msg'=>t('Invalid award ID'),'valor'=>'','lectura'=>false),
-				'obra_dimension_altura'      => array('tipo'=>'int','nulo'=>true,'msg'=>t('Invalid idCentro'),'valor'=>'','lectura'=>false),
-				'obra_dimension_anchura'     => array('tipo'=>'int','nulo'=>true,'msg'=>t('Invalid idCentro'),'valor'=>'','lectura'=>false),
-				'obra_dimension_profundidad' => array('tipo'=>'int','nulo'=>true,'msg'=>t('Invalid idCentro'),'valor'=>'','lectura'=>false),
+				'obra_dimension_altura'      => array('tipo'=>'int','nulo'=>true,'msg'=>t('Invalid alt'),'valor'=>'','lectura'=>false),
+				'obra_dimension_anchura'     => array('tipo'=>'int','nulo'=>true,'msg'=>t('Invalid anch'),'valor'=>'','lectura'=>false),
+				'obra_dimension_profundidad' => array('tipo'=>'int','nulo'=>true,'msg'=>t('Invalid prof'),'valor'=>'','lectura'=>false),
+				'obra_dimension_m2' 		 => array('tipo'=>'int','nulo'=>true,'msg'=>t('Invalid m2'),'valor'=>'','lectura'=>false),
 				'obra_pais'                  => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid name'),'valor'=>'','lectura'=>false),
 				'obra_nombre'                => array('tipo'=>'string','nulo'=>false,'msg'=>t('Invalid name'),'valor'=>'','lectura'=>false),
 				'obra_provincia'             => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid name'),'valor'=>'','lectura'=>false),
@@ -306,7 +307,7 @@
 
 			
 			
-			$consulta = "SELECT * FROM intervencion 
+			$consulta = "SELECT *, DATE_FORMAT(intervencion_fechainicio, '".FORMATO_FECHA_MYSQL."') AS intervencion_fechainicio,DATE_FORMAT(intervencion_fechafin, '".FORMATO_FECHA_MYSQL."') AS intervencion_fechafin FROM intervencion 
 						 WHERE intervencion_obra_id='".$id."'";			 
 			
 			$datos = $bd->Ejecutar($consulta);
@@ -331,12 +332,30 @@
 				}		
 			}
 
+			$consulta = "SELECT documento_miniatura, documento_archivo, documento_directorio 
+			 FROM documentoobra LEFT JOIN documento ON documento_id = documentoobra_documento_id WHERE documentoobra_portada = 1 AND documentoobra_obra_id ='".$id."' LIMIT 0,1";
+			
+			$datos    = $bd->Ejecutar($consulta);
+			$portada  = $bd->ObtenerFila($datos);
+			
+			$consulta = "SELECT *
+			 FROM metodoobra LEFT JOIN metodo ON metodo_id = metodoobra_metodo_id WHERE metodoobra_obra_id ='".$id."' ";
+			
+			$datos    = $bd->Ejecutar($consulta);
+			$tecnicas = array();
+			while($filaTecnicas = $bd->ObtenerFila($datos))
+			{
+				$tecnicas[] = $filaTecnicas;
+			}	
+			
 			// si no está en caché asignamos los valores
 			if(!$template->isCached(Obra::$plantilla,$id)) {
 				
 				// datos de la obra
 				$template->assign('obra', $fila);
+				$template->assign('portada', $portada);
 				$template->assign('intervenciones', $intervenciones);
+				$template->assign('tecnicas', $tecnicas);
 			}
 			
 			$template->display(Obra::$plantilla,$id);	

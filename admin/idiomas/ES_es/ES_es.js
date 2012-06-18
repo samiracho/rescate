@@ -258,5 +258,6 @@ var LOCALE = {
   'Warning': 'Atención',
   'This list can contain only one value': 'Esta lista solo puede contener un valor',
   'Duplicated value not allowed' : 'No se permiten valores duplicados',
-  'News Board': 'Tablón de Anuncios'
+  'News Board': 'Tablón de Anuncios',
+  'Show as front Image' : 'Mostrar como imagen de portada'
 };

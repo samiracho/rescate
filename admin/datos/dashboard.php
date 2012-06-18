@@ -55,7 +55,7 @@ else if(isset($_REQUEST['action']))
 					<ul>
 						<li><a class="normal" href="datos/backup.php?action=backup"><?= t('Backup Database') ?></a></li>
 						<li><a class="normal" target="_blank" href="datos/backup.php?action=optimize"><?= t('Optimize tables') ?></a></li>
-						<li><a class="normal" target="_blank" href="https://www.webs.upv.es:8443/login_up.php3"><?= t('RESCATE CPanel') ?></a></li>
+						<li><a class="normal" target="_blank" href="https://rescate.webs.upv.es:8443/login_up.php3"><?= t('RESCATE CPanel') ?></a></li>
 					</ul>
 				</div>
 			<?php

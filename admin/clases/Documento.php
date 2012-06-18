@@ -102,9 +102,10 @@
 					'claveAjena1' => 'documentoobra_documento_id',
 					'claveAjena2' => 'documentoobra_obra_id',
 					'campos'      => array(
-						'documentoobra_documento_id'     => array('tipo'=>'id','nulo'=>false,'msg'=>t('Invalid idProfessional'),'valor'=>'','lectura'=>false),
-						'documentoobra_obra_id' => array('tipo'=>'id','nulo'=>false,'msg'=>t('Invalid idProfessional'),'valor'=>'','lectura'=>false),
-						'documentoobra_detalles'       => array('tipo'=>'html','nulo'=>true,'msg'=>t('Invalid details'),'valor'=>'','lectura'=>false)
+						'documentoobra_documento_id' => array('tipo'=>'id','nulo'=>false,'msg'=>t('Invalid idProfessional'),'valor'=>'','lectura'=>false),
+						'documentoobra_obra_id'      => array('tipo'=>'id','nulo'=>false,'msg'=>t('Invalid idProfessional'),'valor'=>'','lectura'=>false),
+						'documentoobra_detalles'     => array('tipo'=>'html','nulo'=>true,'msg'=>t('Invalid details'),'valor'=>'','lectura'=>false),
+						'documentoobra_portada'      => array('tipo'=>'checkbox','nulo'=>true,'msg'=>t('Invalid front'),'valor'=>null,'lectura'=>false),
 					)
 				)
 			);	
@@ -157,7 +158,6 @@
 			
 			// itentamos guardar
 			$res = parent::Guardar(true,false);
-			
 			
 			return $res;
 		}
@@ -449,11 +449,11 @@
 			
 			if(!$norelacionadas)
 			{				
-				$consulta      =  "SELECT documento_titulo,
+				$consulta      =  "SELECT REL.*, documento_titulo,
 				                  CASE WHEN documento_miniatura!='' THEN CONCAT( '".URL_ARCHIVOS."/',documento_directorio,'/miniaturas/',documento_miniatura) 
 				                  ELSE '".URL_ARCHIVOS."/desconocido.png' END AS documento_miniatura,
-				                  documento_archivo, documento_autorapellido1, documento_cordenadas, documento_autorapellido2, ".$this->relaciones[$nombreRelacion]['claveAjena1'].", ".$this->relaciones[$nombreRelacion]['claveAjena2'].", ".$this->relaciones[$nombreRelacion]['tabla']."_detalles 
-								  FROM ".$this->relaciones[$nombreRelacion]['tabla']." LEFT JOIN documento ON documento_id=".$this->relaciones[$nombreRelacion]['claveAjena1']." WHERE ".$this->relaciones[$nombreRelacion]['claveAjena2']."='".intval($id)."' ".$filtroBusqueda." ".$sortBusqueda." LIMIT ".$start.",".$limit;	
+				                  documento_archivo, documento_autorapellido1, documento_cordenadas, documento_autorapellido2 
+								  FROM ".$this->relaciones[$nombreRelacion]['tabla']." REL LEFT JOIN documento ON documento_id=".$this->relaciones[$nombreRelacion]['claveAjena1']." WHERE ".$this->relaciones[$nombreRelacion]['claveAjena2']."='".intval($id)."' ".$filtroBusqueda." ".$sortBusqueda." LIMIT ".$start.",".$limit;	
 			}
 			else
 			{

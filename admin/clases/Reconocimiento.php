@@ -29,7 +29,7 @@
 			$bd           = BD::Instancia();			
 			$consulta     = "SELECT reconocimiento_nombre, reconocimiento_detalles, DATE_FORMAT(reconocimiento_fecha, '".FORMATO_FECHA_MYSQL_ANYO."') AS reconocimiento_fecha
 							 FROM reconocimiento
-							 WHERE reconocimiento_profesional_id ='".intval($id)."' ORDER BY reconocimiento_nombre";
+							 WHERE reconocimiento_profesional_id ='".intval($id)."' ORDER BY reconocimiento_fecha ASC";
 			
 			$datos = $bd->Ejecutar($consulta);
 			if( $bd->ObtenerErrores() == '' )
