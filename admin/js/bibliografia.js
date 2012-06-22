@@ -169,6 +169,7 @@ Ext.define('RESCATE.form.editarBibliografia', {
         var me = this;
         var creadorStore = Ext.create('widget.store.Creador', {
         });
+		var anyoStore = Ext.create('widget.store.Anyo', {});
         me.items = [
         {
             xtype: 'form',
@@ -236,21 +237,15 @@ Ext.define('RESCATE.form.editarBibliografia', {
 										me.comprobarISBNUnico(field, options)
 									} /*Usamos onblur en lugar de un vtype para comprobar solo cuando pierda el foco*/
 								}
-                            }
-/*, {
-                                xtype: 'form.DateField',
-                                name: 'bibliografia_fechaedicion',
-                                fieldLabel: t('Edition Date')
-                            }*/
-                            , {
-                                xtype: 'numberfield',
-                                name: 'bibliografia_fechaedicion',
-                                fieldLabel: t('Date (Year)'),
-                                minValue: 0,
-                                allowDecimals: false,
-                                maxValue: 10000,
-                                maxlength: 5
-                            }]
+                            }, {
+								xtype: 'form.ComboBox',
+								displayField: 'anyo',
+								valueField: 'anyo',
+								name: 'bibliografia_fechaedicion',
+								store: anyoStore,
+								anchor:'100%',
+								fieldLabel: t('Date (Year)')
+							}]
                         }, {
                             xtype: 'container',
                             layout: {

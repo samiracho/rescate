@@ -410,6 +410,10 @@
 			// borramos las relaciones entre el profesional y las técnicas
 			$consulta = "DELETE FROM tecnicaprofesional WHERE tecnicaprofesional_profesional_id= '". $idProfesional ."' ";
 			$bd->Ejecutar($consulta);
+			
+			// borramos las relaciones entre el profesional y los equipamientos
+			$consulta = "DELETE FROM equipamientoprofesional WHERE equipamientoprofesional_profesional_id= '". $idProfesional ."' ";
+			$bd->Ejecutar($consulta);
 
 			// borramos las relaciones entre el profesional y las especialidades
 			$consulta = "DELETE FROM especialidadprofesional WHERE especialidadprofesional_profesional_id= '". $idProfesional ."' ";
@@ -533,6 +537,9 @@
 				
 				//tecnicas
 				$template->assign('tecnicas',Tecnica::ListarTecnicasProfesional($id));
+				
+				//equipamientos
+				$template->assign('equipamientos',Equipamiento::ListarEquipamientosProfesional($id));
 				
 			}
 			

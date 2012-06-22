@@ -212,6 +212,13 @@ Ext.define('RESCATE.Menu.Profesional', {
                 enableToggle: true,
                 scope: me
             }, {
+                text: t('Equipping'),
+                panelId: 'widget.panel.Equipamiento',
+                iconCls: 'iconoEquipamiento',
+                handler: me.onItemClick,
+                enableToggle: true,
+                scope: me
+            }, {
                 text: t('Jobs'),
                 panelId: 'widget.grid.Cargo',
                 iconCls: 'iconoCargo',

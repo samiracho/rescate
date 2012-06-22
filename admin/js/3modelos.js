@@ -143,6 +143,12 @@ Ext.define('RESCATE.model.Obra', {
         name: 'obra_fecha1',
         defaultValue: ''
     }, {
+        name: 'obra_siglo',
+        defaultValue: ''
+    }, {
+        name: 'obra_acdc',
+        defaultValue: ''
+    }, {
         name: 'obra_detalles',
         defaultValue: ''
     }, {
@@ -692,6 +698,31 @@ Ext.define('RESCATE.model.Tecnica', {
         defaultValue: ''
     }, {
         name: 'tecnicaprofesional_detalles',
+        defaultValue: ''
+    }]
+});
+// model de Equipamiento
+Ext.define('RESCATE.model.Equipamiento', {
+    extend: 'Ext.data.Model',
+    idProperty: 'equipamiento_id',
+    fields: [
+    {
+        name: 'equipamiento_id',
+        defaultValue: ''
+    }, {
+        name: 'equipamientoprofesional_profesional_id',
+        defaultValue: ''
+    }, {
+        name: 'equipamiento_nombre',
+        defaultValue: ''
+    }, {
+        name: 'equipamiento_detalles',
+        defaultValue: ''
+    }, {
+        name: 'equipamiento_fecha',
+        defaultValue: ''
+    }, {
+        name: 'equipamientoprofesional_detalles',
         defaultValue: ''
     }]
 });

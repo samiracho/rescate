@@ -73,7 +73,11 @@
 		  </tr>
 		  <tr>
 			<th>Fecha</th>
-			<td>{if $obra.obra_fecha1 ne $fecha_vacia}{$obra.obra_fecha1}{/if}</td>
+			<td>
+				{if $obra.obra_fecha1 ne $fecha_vacia}{$obra.obra_fecha1}{/if}
+				{if $obra.obra_siglo ne ''}<br />{$obra.obra_siglo} {$obra.obra_acdc}{/if}
+			
+			</td>
 		  </tr>
 		  <tr>
 		  <tr>
@@ -146,8 +150,11 @@
 						{$intervencion.intervencion_nombre}
 					</td>
 					<td>
-					{if $intervencion.intervencion_fechainicio ne $fecha_vacia}{$intervencion.intervencion_fechainicio}{/if}<br />
-					{if $intervencion.intervencion_fechafin ne $fecha_vacia}{$intervencion.intervencion_fechafin}{/if}
+					{if $intervencion.intervencion_fechainicio ne $fecha_vacia}{$intervencion.intervencion_fechainicio}{/if}<br />			
+					{if  $intervencion.intervencion_fechafin eq $fecha_vacia && $intervencion.intervencion_fechainicio ne $fecha_vacia }Actualmente
+					{else if $intervencion.intervencion_fechafin eq $fecha_vacia}{else}{$intervencion.intervencion_fechafin}{/if}
+					
+					
 					</td>
 					<td>
 					

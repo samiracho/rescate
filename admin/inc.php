@@ -22,6 +22,7 @@ require 'clases/Bibliografia.php';
 require 'clases/Asociacion.php';
 require 'clases/Ubicacion.php';
 require 'clases/Tecnica.php';
+require 'clases/Equipamiento.php';
 require 'clases/Especialidad.php';
 require 'clases/Profesional.php';
 require 'clases/Reconocimiento.php';

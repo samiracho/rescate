@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.5, created on 2012-06-18 13:51:21
+<?php /* Smarty version Smarty-3.1.5, created on 2012-06-20 16:22:25
          compiled from "C:\wamp\www\rescate\admin\..\plantillas\profesional.htm" */ ?>
 <?php /*%%SmartyHeaderCode:204514fdf325989f845-76564493%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '99aceeebc80636679f5339c383fc72716cee6179' => 
     array (
       0 => 'C:\\wamp\\www\\rescate\\admin\\..\\plantillas\\profesional.htm',
-      1 => 1340027419,
+      1 => 1340209323,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.5',
+  'unifunc' => 'content_4fdf3259e0290',
   'variables' => 
   array (
     'profesional' => 0,
+    'url_archivos' => 0,
     'fecha_vacia' => 0,
     'obras' => 0,
     'obra' => 0,
     'documentos' => 0,
-    'url_archivos' => 0,
     'documento' => 0,
     'colaboradores' => 0,
     'colaborador' => 0,
@@ -40,8 +42,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'asociacion' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.5',
-  'unifunc' => 'content_4fdf3259e0290',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4fdf3259e0290')) {function content_4fdf3259e0290($_smarty_tpl) {?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -114,6 +114,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<div class="acordeon">
 		<a name="datosPersonales">Datos Personales</a>
 		<table class="exp">
+		  <tr>
+			<th>Foto</th>
+			<td>
+				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_miniatura']!=''){?>
+					<a target="_blank" href="<?php echo $_smarty_tpl->tpl_vars['url_archivos']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_directorio'];?>
+/<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_archivo'];?>
+">
+						<img src="<?php echo $_smarty_tpl->tpl_vars['url_archivos']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_directorio'];?>
+/miniaturas/<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_miniatura'];?>
+" />
+					</a>
+				<?php }?>		
+			</td>
+		  </tr>
 		  <tr>
 			<th>Nombre</th>
 			<td><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_nombre'];?>
@@ -323,11 +339,11 @@ $_smarty_tpl->tpl_vars['formacion']->_loop = true;
 
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['formacion']->value['formacion_fechainicio']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['formacion']->value['formacion_fechainicio'];?>
+						<?php if ($_smarty_tpl->tpl_vars['formacion']->value['formacion_fechainicio']!='0000'){?><?php echo $_smarty_tpl->tpl_vars['formacion']->value['formacion_fechainicio'];?>
 <?php }?>
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['formacion']->value['formacion_fechafin']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['formacion']->value['formacion_fechafin'];?>
+						<?php if ($_smarty_tpl->tpl_vars['formacion']->value['formacion_fechafin']=='0000'&&$_smarty_tpl->tpl_vars['formacion']->value['formacion_fechainicio']!='0000'){?>Actualmente<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['formacion']->value['formacion_fechafin'];?>
 <?php }?>
 					</td>
 					<td>
@@ -383,11 +399,11 @@ $_smarty_tpl->tpl_vars['cargo']->_loop = true;
 
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['cargo']->value['cargo_fechainicio']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['cargo']->value['cargo_fechainicio'];?>
+						<?php if ($_smarty_tpl->tpl_vars['cargo']->value['cargo_fechainicio']!='0000'){?><?php echo $_smarty_tpl->tpl_vars['cargo']->value['cargo_fechainicio'];?>
 <?php }?>
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['cargo']->value['cargo_fechafin']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['cargo']->value['cargo_fechafin'];?>
+					<?php if ($_smarty_tpl->tpl_vars['cargo']->value['cargo_fechafin']=='0000'&&$_smarty_tpl->tpl_vars['cargo']->value['cargo_fechainicio']!='0000'){?>Actualmente<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['cargo']->value['cargo_fechafin'];?>
 <?php }?>
 					</td>
 					<td>
@@ -438,7 +454,7 @@ $_smarty_tpl->tpl_vars['reconocimiento']->_loop = true;
 
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['reconocimiento']->value['reconocimiento_fecha']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['reconocimiento']->value['reconocimiento_fecha'];?>
+						<?php if ($_smarty_tpl->tpl_vars['reconocimiento']->value['reconocimiento_fecha']!='0000'){?><?php echo $_smarty_tpl->tpl_vars['reconocimiento']->value['reconocimiento_fecha'];?>
 <?php }?>
 					</td>
 				</tr>
@@ -549,11 +565,11 @@ $_smarty_tpl->tpl_vars['asociacion']->_loop = true;
 
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechaentrada']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechaentrada'];?>
+						<?php if ($_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechaentrada']!='0000'){?><?php echo $_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechaentrada'];?>
 <?php }?>
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechasalida']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechasalida'];?>
+						<?php if ($_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechasalida']=='0000'&&$_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechaentrada']!='0000'){?>Actualmente<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechasalida'];?>
 <?php }?>
 					</td>
 				</tr>

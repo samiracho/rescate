@@ -781,6 +781,42 @@ Ext.define('RESCATE.store.TecnicaProfesional', {
         }
     }
 });
+// store de tipo equipamiento
+Ext.define('RESCATE.store.Equipamiento', {
+    alias: 'widget.store.Equipamiento',
+    extend: 'RESCATE.store.store',
+    model: 'RESCATE.model.Equipamiento',
+    constructor: function (config)
+    {
+        this.callParent([config]);
+        this.param = config.param;
+        config.proxy.api =
+        {
+            read: 'datos/equipamiento.php?action=read',
+            update: 'datos/equipamiento.php?action=add',
+            create: 'datos/equipamiento.php?action=add',
+            destroy: 'datos/equipamiento.php?action=destroy'
+        }
+    }
+});
+// store de tipo equipamiento-profesional
+Ext.define('RESCATE.store.EquipamientoProfesional', {
+    alias: 'widget.store.EquipamientoProfesional',
+    extend: 'RESCATE.store.store',
+    model: 'RESCATE.model.Equipamiento',
+    constructor: function (config)
+    {
+        this.callParent([config]);
+        this.param = config.param;
+        config.proxy.api =
+        {
+            read: 'datos/equipamiento.php?action=read',
+            update: 'datos/equipamiento.php?action=addEquipamientoPro',
+            create: 'datos/equipamiento.php?action=addEquipamientoPro',
+            destroy: 'datos/equipamiento.php?action=destroyEquipamientoPro'
+        }
+    }
+});
 // store de tipo especialidad
 Ext.define('RESCATE.store.Especialidad', {
     alias: 'widget.store.Especialidad',

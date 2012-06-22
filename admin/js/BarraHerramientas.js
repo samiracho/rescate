@@ -63,14 +63,15 @@ Ext.define('Ext.ux.BarraHerramientasPanel', {
 			// le quitamos los filtros de búsqueda
             this.store.getProxy().extraParams.filtros = '';
             // recargamos el store
-            var lstOptions = this.store.lastOptions ? this.store.lastOptions.push(
+            var lstOptions = this.store.lastOptions ? this.store.lastOptions =
             {
                 'refrescar': true
-            }) : {
+            } : {
                 params: {
                     refrescar: true
                 }
             };
+			
             this.store.load(lstOptions);
             // algunas veces al cambiar el tamaño del grid aparace una fila vacía, esto obliga a redibujar el control para hacerla desaparecer. Se supone que se solucionará en la 4.1
             //if (this instanceof Ext.grid.Panel) this.forceComponentLayout();

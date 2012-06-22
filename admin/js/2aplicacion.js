@@ -728,6 +728,13 @@ Ext.define('RESCATE.grid.grid', {
         {
             this.onEditClick();
         },
+		afterrender: function (component){
+			var storeGrid = component.getStore();
+			storeGrid.on('load', function ()
+			{
+				component.getEl().unmask()
+			});
+		},
         activate: function (component, options)
         {
 			var storeGrid = component.getStore();
@@ -742,10 +749,6 @@ Ext.define('RESCATE.grid.grid', {
                 // vamos a forzar la máscara
                 if (component.getEl()) component.getEl().mask(t('Loading...'));
                 storeGrid.load(storeGrid.lastOptions);
-                storeGrid.on('load', function ()
-                {
-                    component.getEl().unmask()
-                });
             }
         },
         /* Para solucionar un bug por el cual la barra horizontal del grid deja de funcionar*/
@@ -1478,6 +1481,7 @@ Ext.define('RESCATE.form.ComboBox', {
     triggerAction: 'all',
     autoScroll: true,
     editable: false,
+	plugins: ['clearbutton'],
     listConfig: {
         loadMask: false
     },

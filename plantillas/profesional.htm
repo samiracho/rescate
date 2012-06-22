@@ -230,10 +230,11 @@
 						{$formacion.formacion_titulo}
 					</td>
 					<td>
-						{if $formacion.formacion_fechainicio ne $fecha_vacia}{$formacion.formacion_fechainicio}{/if}
+						{if $formacion.formacion_fechainicio ne '0000'}{$formacion.formacion_fechainicio}{/if}
 					</td>
 					<td>
-						{if $formacion.formacion_fechafin ne $fecha_vacia}{$formacion.formacion_fechafin}{/if}
+						{if $formacion.formacion_fechafin == '0000' && $formacion.formacion_fechainicio ne '0000' }Actualmente
+						{else if $formacion.formacion_fechafin == '0000'}{else}{$formacion.formacion_fechafin}{/if}
 					</td>
 					<td>
 						{$formacion.centro_nombre}
@@ -278,10 +279,12 @@
 						{$cargo.cargo_departamento}
 					</td>
 					<td>
-						{if $cargo.cargo_fechainicio ne $fecha_vacia}{$cargo.cargo_fechainicio}{/if}
+						{if $cargo.cargo_fechainicio ne '0000'}{$cargo.cargo_fechainicio}{/if}
 					</td>
 					<td>
-						{if $cargo.cargo_fechafin ne $fecha_vacia}{$cargo.cargo_fechafin}{/if}
+						{if $cargo.cargo_fechafin == '0000' && $cargo.cargo_fechainicio ne '0000' }Actualmente
+						{else if $cargo.cargo_fechafin == '0000'}{else}{$cargo.cargo_fechafin}{/if}
+					
 					</td>
 					<td>
 						{$cargo.centro_nombre}
@@ -321,7 +324,7 @@
 						{$reconocimiento.reconocimiento_detalles}
 					</td>
 					<td>
-						{if $reconocimiento.reconocimiento_fecha ne $fecha_vacia}{$reconocimiento.reconocimiento_fecha}{/if}
+						{if $reconocimiento.reconocimiento_fecha ne '0000'}{$reconocimiento.reconocimiento_fecha}{/if}
 					</td>
 				</tr>
 			{/foreach}
@@ -384,6 +387,34 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<div class="acordeon">
+		<a name="tecnicas">Equipamiento científico y Grandes equipos</a>
+		<table>
+			<thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Detalles</th>
+				<th>Observaciones</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {foreach item=equipamiento from=$equipamientos}
+				<tr>
+					<td>
+						{$equipamiento.equipamiento_nombre}
+					</td>
+					<td>
+						{$equipamiento.equipamiento_detalles}
+					</td>
+					<td>
+						{$equipamiento.equipamientoprofesional_detalles}
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
 
 	<div class="acordeon">
 		<a name="asociaciones">Asociaciones a las que pertenece</a>
@@ -410,10 +441,11 @@
 						{$asociacion.asociacionprofesional_detalles}
 					</td>
 					<td>
-						{if $asociacion.asociacionprofesional_fechaentrada ne $fecha_vacia}{$asociacion.asociacionprofesional_fechaentrada}{/if}
+						{if $asociacion.asociacionprofesional_fechaentrada ne '0000'}{$asociacion.asociacionprofesional_fechaentrada}{/if}
 					</td>
 					<td>
-						{if $asociacion.asociacionprofesional_fechasalida ne $fecha_vacia}{$asociacion.asociacionprofesional_fechasalida}{/if}
+						{if $asociacion.asociacionprofesional_fechasalida == '0000' && $asociacion.asociacionprofesional_fechaentrada ne '0000' }Actualmente
+						{else if $asociacion.asociacionprofesional_fechasalida == '0000'}{else}{$asociacion.asociacionprofesional_fechasalida}{/if}
 					</td>
 				</tr>
 			{/foreach}

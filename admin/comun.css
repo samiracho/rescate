@@ -39,6 +39,7 @@
 .iconoUsuario{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -655px !important } 
 .iconoWebcam{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -672px !important }
 .iconoPin{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -689px !important }
+.iconoEquipamiento{ background: transparent url(imagenes/sprite.png) no-repeat !important; background-position: 0 -706px !important }
 
 /*Página de inicio*/
 .dashBoard{

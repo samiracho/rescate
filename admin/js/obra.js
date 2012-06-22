@@ -424,13 +424,18 @@ Ext.define('RESCATE.form.editarObra', {
                                 name: 'obra_nombre',
                                 fieldLabel: t('Title') + '*',
                                 allowBlank: false
-                            }, {
-								xtype: 'form.ComboBox',
-								displayField: 'anyo',
-								valueField: 'anyo',
-								name: 'obra_fecha1',
-								store: anyoStore,
-								fieldLabel: t('Date (Year)')
+                            },{
+								xtype: 'fieldcontainer',
+								layout:'hbox',
+								msgTarget: 'under',
+								defaults: {
+									labelAlign: 'top'
+								},
+								items: [
+									{fieldLabel:t('Date (Year)'), xtype: 'form.ComboBox',displayField: 'anyo',valueField: 'anyo',name: 'obra_fecha1',flex:1,store: anyoStore, margins: '0 5 0 0'},
+									{fieldLabel:'Siglo', xtype: 'textfield', name: 'obra_siglo', width: 100, margins: '0 5 0 0'},
+									{fieldLabel:'a. C - d .C',xtype: 'form.ComboBox', displayField: 'acdc',valueField: 'acdc',name: 'obra_acdc', width: 100,store:new Ext.data.ArrayStore({fields: ['acdc'],data : [['a. C.'],['d. C.']]})}
+								]
 							}, {
                                 xtype: 'hiddenfield',
                                 name: 'obra_id',

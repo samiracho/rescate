@@ -160,7 +160,7 @@
 			if($limit != 0) $limites = "LIMIT ".$start.",".$limit;
 			
 			$consulta = " SELECT b.*, usuario_nombre, usuario_apellido1, usuario_login,usuario_apellido2, 
-					    ".$filtroRegistros.", DATE_FORMAT(bibliografia_fechaedicion, '".FORMATO_FECHA_MYSQL."') AS bibliografia_fechaedicion FROM bibliografia b 
+					    ".$filtroRegistros.", DATE_FORMAT(bibliografia_fechaedicion, '".FORMATO_FECHA_MYSQL_ANYO."') AS bibliografia_fechaedicion FROM bibliografia b 
 						  LEFT JOIN usuario ON usuario_id=bibliografia_usuario_id 
 						  LEFT JOIN profesionalbibliografia ON bibliografia_id = profesionalbibliografia_bibliografia_id
 						  LEFT JOIN profesional P ON profesionalbibliografia_profesional_id = profesional_id WHERE 1 ".$filtroBusqueda;	

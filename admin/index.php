@@ -51,6 +51,7 @@ if( isset($_GET["logout"]) ){session_start();session_destroy();header( 'Location
 			  <script type="text/javascript" src="js/reconocimiento.js"></script>
 			  <script type="text/javascript" src="js/asociacion.js"></script>
 			  <script type="text/javascript" src="js/tecnica.js"></script>
+			  <script type="text/javascript" src="js/equipamiento.js"></script>
 			  <script type="text/javascript" src="js/especialidad.js"></script>
 			  <script type="text/javascript" src="js/bibliografia.js"></script>
 			  <script type="text/javascript" src="js/centro.js"></script>
