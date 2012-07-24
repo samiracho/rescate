@@ -365,6 +365,7 @@ Ext.define('RESCATE.store.Anyo', {
 	alias: 'widget.store.Anyo',
     extend: 'Ext.data.Store',
 	inicio:1000,
+	actualmente: false,
 	fields : [
 		{name : 'anyo', type : 'string'}
 	],
@@ -375,6 +376,8 @@ Ext.define('RESCATE.store.Anyo', {
 		var year = currentTime.getFullYear();
 		var years = [];
 		var y = config.inicio >-1 ? config.inicio : this.inicio;
+		
+		if (config.actualmente) years.push({'anyo':t('Nowadays')});
 
 		while (year>=y){
 		   years.push({'anyo':year});

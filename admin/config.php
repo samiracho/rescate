@@ -3,7 +3,7 @@
 // EN ESTE ARCHIVO DEFINIREMOS TODOS LOS DATOS DE CONFIGURACIÓN
  
 // VERSION DE RESCATE
-define("REVISION_RESCATE","309");
+define("REVISION_RESCATE","310");
  
 // DIRECTORIOS DE LA APLICACION
 define("CARPETA_APLICACION","rescate/admin"); // nombre de la carpeta donde se alojará la aplicación

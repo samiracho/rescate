@@ -96,7 +96,7 @@ Ext.define('RESCATE.form.editarCargo', {
     initComponent: function ()
     {
         var me = this;
-		var anyoStore = Ext.create('widget.store.Anyo', {});
+		var anyoStore = Ext.create('widget.store.Anyo', {actualmente:true});
         me.items = [
         {
             xtype: 'form',
@@ -176,14 +176,22 @@ Ext.define('RESCATE.form.editarCargo', {
 									displayField: 'anyo',
 									valueField: 'anyo',
 									name: 'cargo_fechafin',
+									itemId:'cargoFechaFin',
 									store: anyoStore,
 									fieldLabel: t('End Date (Year)')
 								}, {
-                                xtype: 'checkboxfield',
-                                name: 'cargo_principal',
-                                boxLabel: t('Main Job'),
-                                labelAlign: 'left',
-                                uncheckedValue: 0
+									xtype: 'checkboxfield',
+									name: 'cargo_actualmente',
+									boxLabel: t('Nowadays'),
+									labelAlign: 'left',
+									uncheckedValue: 0,
+									hidden:true
+								}, {
+									xtype: 'checkboxfield',
+									name: 'cargo_principal',
+									boxLabel: t('Main Job'),
+									labelAlign: 'left',
+									uncheckedValue: 0
                             }]
                         }]
                     }, {
@@ -205,6 +213,7 @@ Ext.define('RESCATE.form.editarCargo', {
         me.addListener('datoscargados', function (component)
         {
 			anyoStore.load();
+			if( me.down('checkboxfield[name=cargo_actualmente]').getValue())me.down('#cargoFechaFin').setValue(t('Nowadays'));		
         });
 		
         me.callParent(arguments);

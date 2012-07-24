@@ -261,5 +261,6 @@ var LOCALE = {
   'News Board': 'Tablón de Anuncios',
   'Show as front Image' : 'Mostrar como imagen de portada',
   'Equipping' : 'Equipamiento',
-  'Equipping Details' : 'Detalles Equipamiento'
+  'Equipping Details' : 'Detalles Equipamiento',
+  'Nowadays' : 'Actualmente'
 };

@@ -94,16 +94,20 @@
 				{if $profesional.profesional_paisn ne ''}, {$profesional.profesional_paisn}{/if} 
 			</td>
 		  </tr>
-		  <tr>
-			<th>Defunción</th>
-			<td>
-				{if $profesional.profesional_fechadefuncion ne $fecha_vacia}{$profesional.profesional_fechadefuncion}<br />{/if}
-				{if $profesional.profesional_direcciond ne ''}{$profesional.profesional_direcciond}<br />{/if}
-				{$profesional.profesional_poblaciond} 
-				{if $profesional.profesional_provinciad ne ''}, {$profesional.profesional_provinciad}{/if} 
-				{if $profesional.profesional_paisd ne ''}, {$profesional.profesional_paisd}{/if}
-			</td>
-		  </tr>
+		  
+		  {if $profesional.profesional_fechadefuncion ne $fecha_vacia}
+			  <tr>
+				<th>Defunción</th>
+				<td>
+					{$profesional.profesional_fechadefuncion}<br />
+					{if $profesional.profesional_direcciond ne ''}{$profesional.profesional_direcciond}<br />{/if}
+					{$profesional.profesional_poblaciond} 
+					{if $profesional.profesional_provinciad ne ''}, {$profesional.profesional_provinciad}{/if} 
+					{if $profesional.profesional_paisd ne ''}, {$profesional.profesional_paisd}{/if}
+				</td>
+			  </tr>
+		  {/if}
+		  
 		  <tr>
 			<th>Observaciones</th>
 			<td >{$profesional.profesional_observaciones}</td>
@@ -111,6 +115,7 @@
 		</table>
 	</div>
 	
+	{if $obras}
 	<div class="acordeon">
 		<a name="obras">Obras Intervenidas</a>
 			<table>
@@ -137,7 +142,9 @@
 			</tbody>
 		</table>
 	</div>
+	{/if}
 
+	{if $documentos}
 	<div class="acordeon">
 		<a name="documentos">Documentos Relacionados</a>
 			<table>
@@ -174,7 +181,9 @@
 			</tbody>
 		</table>
 	</div>
-
+	{/if}
+	
+	{if $colaboradores}
 	<div class="acordeon">
 		<a name="colaboradores">Colaboradores</a>
 		<table>
@@ -208,7 +217,9 @@
 			</tbody>
 		</table>
 	</div>
-
+	{/if}
+	
+	{if $formaciones}
 	<div class="acordeon">
 		<a name="formacion">Formación Recibida</a>
 		<table>
@@ -233,8 +244,9 @@
 						{if $formacion.formacion_fechainicio ne '0000'}{$formacion.formacion_fechainicio}{/if}
 					</td>
 					<td>
-						{if $formacion.formacion_fechafin == '0000' && $formacion.formacion_fechainicio ne '0000' }Actualmente
-						{else if $formacion.formacion_fechafin == '0000'}{else}{$formacion.formacion_fechafin}{/if}
+						{if $formacion.formacion_actualmente}Actualmente
+							{else if $formacion.formacion_fechafin ne '0000'}{$formacion.formacion_fechafin}
+						{/if}
 					</td>
 					<td>
 						{$formacion.centro_nombre}
@@ -253,7 +265,9 @@
 			</tbody>
 		</table>
 	</div>
-
+	{/if}
+	
+	{if $cargos}
 	<div class="acordeon">
 		<a name="cargos">Cargos</a>
 		<table>
@@ -282,8 +296,9 @@
 						{if $cargo.cargo_fechainicio ne '0000'}{$cargo.cargo_fechainicio}{/if}
 					</td>
 					<td>
-						{if $cargo.cargo_fechafin == '0000' && $cargo.cargo_fechainicio ne '0000' }Actualmente
-						{else if $cargo.cargo_fechafin == '0000'}{else}{$cargo.cargo_fechafin}{/if}
+						{if $cargo.cargo_actualmente}Actualmente
+							{else if $cargo.cargo_fechafin ne '0000'}{$cargo.cargo_fechafin}
+						{/if}
 					
 					</td>
 					<td>
@@ -303,7 +318,9 @@
 			</tbody>
 		</table>
 	</div>
-
+	{/if}
+	
+	{if $reconocimientos}
 	<div class="acordeon">
 		<a name="reconocimientos">Reconocimientos</a>
 		<table>
@@ -331,7 +348,9 @@
 			</tbody>
 		</table>
 	</div>
-
+	{/if}
+	
+	{if $especialidades}
 	<div class="acordeon">
 		<a name="especialidades">Especialidades</a>
 		<table>
@@ -359,7 +378,9 @@
 			</tbody>
 		</table>
 	</div>
-
+	{/if}
+	
+	{if $tecnicas}
 	<div class="acordeon">
 		<a name="tecnicas">Técnicas Utilizadas</a>
 		<table>
@@ -387,7 +408,9 @@
 			</tbody>
 		</table>
 	</div>
+	{/if}
 	
+	{if $equipamientos}
 	<div class="acordeon">
 		<a name="tecnicas">Equipamiento científico y Grandes equipos</a>
 		<table>
@@ -415,7 +438,9 @@
 			</tbody>
 		</table>
 	</div>
-
+	{/if}
+	
+	{if $asociaciones}
 	<div class="acordeon">
 		<a name="asociaciones">Asociaciones a las que pertenece</a>
 		<table>
@@ -444,14 +469,14 @@
 						{if $asociacion.asociacionprofesional_fechaentrada ne '0000'}{$asociacion.asociacionprofesional_fechaentrada}{/if}
 					</td>
 					<td>
-						{if $asociacion.asociacionprofesional_fechasalida == '0000' && $asociacion.asociacionprofesional_fechaentrada ne '0000' }Actualmente
-						{else if $asociacion.asociacionprofesional_fechasalida == '0000'}{else}{$asociacion.asociacionprofesional_fechasalida}{/if}
+						{if $asociacion.asociacionprofesional_fechasalida ne '0000' }{$asociacion.asociacionprofesional_fechasalida}{/if}
 					</td>
 				</tr>
 			{/foreach}
 			</tbody>
 		</table>
 	</div>
+	{/if}
 
 </div>
 </div>

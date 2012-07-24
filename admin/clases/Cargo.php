@@ -24,6 +24,7 @@
 				'cargo_fechafin'       => array('tipo'=>'date','nulo'=>true,'msg'=>t('Invalid date'),'valor'=>'','lectura'=>false),
 				'cargo_detalles'       => array('tipo'=>'html','nulo'=>true,'msg'=>t('Invalid details'),'valor'=>'','lectura'=>false),
 				'cargo_principal'      => array('tipo'=>'checkbox','nulo'=>true,'msg'=>t('Invalid details'),'valor'=>'','lectura'=>false),
+				'cargo_actualmente'    => array('tipo'=>'checkbox','nulo'=>true,'msg'=>t('Invalid details'),'valor'=>'','lectura'=>false),
 				'centro_nombre'        => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid centro_nombre'),'valor'=>'','lectura'=>true),
 				'centro_codigo'        => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid centro_codigo'),'valor'=>'','lectura'=>true),
 				'centro_detalles'      => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid centro_detalles'),'valor'=>'','lectura'=>true)
@@ -34,9 +35,23 @@
 		{		
 			$bd 		= BD::Instancia();
 			$consulta 	= "";
-						
+			
+			// leemos los datos json
+			parent::Leer();
+			
+			if ( !is_numeric($this->campos['cargo_fechafin']['valor']) && $this->campos['cargo_fechafin']['valor']!= "" )
+			{
+				$this->campos['cargo_actualmente']['valor'] = 1;
+				$this->campos['cargo_fechafin']['valor'] = null;
+			}
+			else
+			{
+				$this->campos['cargo_actualmente']['valor'] = 0;
+			}			
+
+			
 			// itentamos guardar
-			$res = parent::Guardar(true, true);
+			$res = parent::Guardar(true, false);
 			
 			// Como solo puede haber un cargo principal, Si el usuario ha marcado ese cargo como principal, ponemos todos los demás como no principales
 			if($res->exito && $this->campos['cargo_principal']['valor'] == 1)
@@ -52,7 +67,7 @@
 		{
 			$cargos       = array();
 			$bd           = BD::Instancia();			
-			$consulta     = "SELECT *, DATE_FORMAT(cargo_fechainicio, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechainicio, DATE_FORMAT(cargo_fechafin, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechafin
+			$consulta     = "SELECT *, DATE_FORMAT(cargo_fechainicio, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechainicio, DATE_FORMAT(cargo_fechafin, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechafin, cargo_actualmente 
 							 FROM cargo INNER JOIN centro ON cargo_centro_id = centro_id 
 							 WHERE cargo_profesional_id ='".intval($id)."' ORDER BY cargo_fechainicio ASC";	
 			return $bd->ObtenerResultados($consulta);	
@@ -62,7 +77,7 @@
 		{		
 			$res = new Comunicacion();
 			
-			$consulta ="SELECT *, DATE_FORMAT(cargo_fechainicio, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechainicio, DATE_FORMAT(cargo_fechafin, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechafin
+			$consulta ="SELECT *, DATE_FORMAT(cargo_fechainicio, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechainicio, DATE_FORMAT(cargo_fechafin, '".FORMATO_FECHA_MYSQL_ANYO."') AS cargo_fechafin, cargo_actualmente 
 			             FROM cargo LEFT JOIN centro ON cargo_centro_id = centro_id WHERE cargo_profesional_id='".intval($idProfesional)."'";
 			
 			if($idProfesional == "") 

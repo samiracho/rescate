@@ -394,6 +394,9 @@ Ext.define('RESCATE.model.Formacion', {
         name: 'formacion_fechafin',
         defaultValue: ''
     }, {
+        name: 'formacion_actualmente',
+        defaultValue: ''
+    }, {
         name: 'centro_nombre',
         defaultValue: ''
     }, {
@@ -423,6 +426,9 @@ Ext.define('RESCATE.model.Cargo', {
         defaultValue: ''
     }, {
         name: 'cargo_principal',
+        defaultValue: ''
+    }, {
+        name: 'cargo_actualmente',
         defaultValue: ''
     }, {
         name: 'cargo_departamento',

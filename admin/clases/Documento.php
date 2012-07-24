@@ -397,7 +397,7 @@
 			return parent::EliminarDato($idDocumento);
 		}
 		
-		public function Listar($idUsuario, $esAdmin=false, $editarRegistrosAjenos = false, $verRegistrosAjenos=false, $filtros=null,$start=null,$limit = null,$sort = null)
+		public function Listar($idUsuario, $esAdmin=false, $editarRegistrosAjenos = false, $filtros=null,$start=null,$limit = null,$sort = null)
 		{		
 			$res = new Comunicacion();
 			$filtroBusqueda = "";
@@ -409,7 +409,11 @@
 				$filtroBusqueda.= " AND documento_usuario_id = '".$idUsuario."'";
 			}
 			
-			$filtroRegistros = ($verRegistrosAjenos && (!$esAdmin && !$editarRegistrosAjenos) ) ? "CASE WHEN documento_usuario_id!='".$idUsuario."' THEN '1' ELSE documento_bloqueado END AS documento_bloqueado" : "documento_bloqueado";
+			//$filtroRegistros = ($verRegistrosAjenos && (!$esAdmin && !$editarRegistrosAjenos) ) ? "CASE WHEN documento_usuario_id!='".$idUsuario."' THEN '1' ELSE documento_bloqueado END AS documento_bloqueado" : "documento_bloqueado";
+			
+			
+			// si no es administrador y puede ver los registros de otros, todos los que no sean suyos los marcamos como bloqueados para que no pueda editarlos
+			$filtroRegistros = (!$esAdmin && !$editarRegistrosAjenos) ? "CASE WHEN documento_usuario_id!='".$idUsuario."' THEN '1' ELSE documento_bloqueado END AS documento_bloqueado" : "documento_bloqueado";
 			
 			$consulta =" SELECT P.profesional_nombre, P.profesional_apellido1, P.profesional_apellido2, usuario_login, usuario_nombre, usuario_apellido1, usuario_apellido2, documento_supervisado, ".$filtroRegistros.",documento_cordenadas, documento_id, documento_titulo,documento_enlace, documento_ref,
 			             DATE_FORMAT(documento_fechainicial, '".FORMATO_FECHA_MYSQL_ANYO."') AS documento_fechainicial, DATE_FORMAT(documento_fechafinal, '".FORMATO_FECHA_MYSQL_ANYO."') AS documento_fechafinal, documento_descripcion, 

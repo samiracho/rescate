@@ -81,7 +81,7 @@ Ext.define('RESCATE.form.editarFormacion', {
     initComponent: function ()
     {
         var me = this;
-		var anyoStore = Ext.create('widget.store.Anyo', {});
+		var anyoStore = Ext.create('widget.store.Anyo', {actualmente:'true'});
         me.items = [
         {
             xtype: 'form',
@@ -156,8 +156,15 @@ Ext.define('RESCATE.form.editarFormacion', {
 									displayField: 'anyo',
 									valueField: 'anyo',
 									name: 'formacion_fechafin',
+									itemId:'formacionFechaFin',
 									store: anyoStore,
 									fieldLabel: t('End Date (Year)')
+								}, {
+									xtype: 'checkboxfield',
+									name: 'formacion_actualmente',
+									labelAlign: 'left',
+									uncheckedValue: 0,
+									hidden:true
 								}
                       
                             ]
@@ -181,6 +188,7 @@ Ext.define('RESCATE.form.editarFormacion', {
         me.addListener('datoscargados', function (component)
         {
 			anyoStore.load();
+			if( me.down('checkboxfield[name=formacion_actualmente]').getValue())me.down('#formacionFechaFin').setValue(t('Nowadays'));		
         });
 		
         me.callParent(arguments);
