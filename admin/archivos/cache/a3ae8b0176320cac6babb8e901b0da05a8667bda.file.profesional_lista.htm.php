@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.5, created on 2012-06-18 13:50:49
+<?php /* Smarty version Smarty-3.1.5, created on 2012-09-09 23:21:08
          compiled from "C:\wamp\www\rescate\admin\..\plantillas\profesional_lista.htm" */ ?>
 <?php /*%%SmartyHeaderCode:183324fdf323993f902-14251837%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a3ae8b0176320cac6babb8e901b0da05a8667bda' => 
     array (
       0 => 'C:\\wamp\\www\\rescate\\admin\\..\\plantillas\\profesional_lista.htm',
-      1 => 1339974602,
+      1 => 1347232863,
       2 => 'file',
     ),
   ),
@@ -15,16 +15,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.5',
+  'unifunc' => 'content_4fdf3239aea61',
   'variables' => 
   array (
+    'tipo' => 0,
     'profesionales' => 0,
     'columnas' => 0,
     'columnHeight' => 0,
     'letra' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.5',
-  'unifunc' => 'content_4fdf3239aea61',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4fdf3239aea61')) {function content_4fdf3239aea61($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'C:\\wamp\\www\\rescate\\admin\\lib\\smarty\\plugins\\function.math.php';
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -53,7 +54,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       <li><a href="contacto.html">Contacto</a></li>                    
       <li><a href="dbs_c.html" class="current">Base de datos</a></li>
       <li><a href="pb.html" >Publicaciones</a></li> 
-	  <li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+	  <li><a href="admin/index.php"  >Investigadores</a></li> 
     </ul>
     
     
@@ -67,40 +68,68 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <br />
 <h6><a href="dbs_c.html"><< Atrás </a></h6>
 
-<h2>Lista de Restauradores</h2>
+<h2>Lista</h2>
 
 
 
 <table class="abecedario">
 <tr>
-<td><a href="datos.php?accion=profesional_lista&letra=todas">*</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=A">A</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=B">B</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=C">C</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=D">D</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=E">E</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=F">F</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=G">G</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=H">H</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=I">I</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=J">J</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=K">K</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=L">L</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=M">M</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=N">N</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=Ñ">Ñ</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=O">O</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=P">P</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=Q">Q</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=R">R</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=S">S</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=T">T</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=U">U</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=V">V</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=W">W</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=X">X</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=Y">Y</a></td>
-<td><a href="datos.php?accion=profesional_lista&letra=Z">Z</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=todas&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">*</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=A&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">A</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=B&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">B</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=C&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">C</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=D&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">D</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=E&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">E</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=F&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">F</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=G&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">G</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=H&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">H</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=I&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">I</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=J&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">J</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=K&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">K</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=L&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">L</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=M&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">M</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=N&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">N</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=Ñ&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">Ñ</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=O&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">O</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=P&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">P</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=Q&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">Q</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=R&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">R</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=S&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">S</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=T&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">T</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=U&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">U</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=V&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">V</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=W&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">W</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=X&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">X</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=Y&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">Y</a></td>
+<td><a href="datos.php?accion=profesional_lista&letra=Z&tipo=<?php echo $_smarty_tpl->tpl_vars['tipo']->value;?>
+">Z</a></td>
 </tr>
 </table>
 

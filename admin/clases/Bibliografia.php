@@ -34,7 +34,7 @@
 			
 				'profesional' => array (
 					'tabla'       => 'profesionalbibliografia',
-					'relacion'	  => 'MaM',
+					'relacion'	  => 'MaN',
 					'claveAjena1' => 'profesionalbibliografia_id',
 					'claveBorrado'=> 'profesionalbibliografia_bibliografia_id',
 					'soloLectura' => false,

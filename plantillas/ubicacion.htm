@@ -29,7 +29,7 @@
       <li><a href="contacto.html">Contacto</a></li>                    
       <li><a href="dbs_c.html" class="current">Base de datos</a></li>
       <li><a href="pb.html" >Publicaciones</a></li> 
-	  <li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+	  <li><a href="admin/index.php"  >Investigadores</a></li> 
     </ul>
     
     
@@ -43,7 +43,7 @@
 
 
 <br />
-<h6><a href="datos.php?accion=ubicacion_lista"><< Volver al índice </a></h6>
+<h6><a href="javascript:history.back(1)"><< Atrás </a></h6>
 
 <h1>
 	{$ubicacion.ubicacion_nombre}
@@ -89,12 +89,10 @@
 							{$obra.obra_nombre}
 						</td>
 						<td>
-							{if $obra.obra_autorapellido1 ne ''} {$obra.obra_autorapellido1}{/if} 
-							{if $obra.obra_autorapellido2 ne ''}, {$obra.obra_autorapellido2}{/if}
-							{if $obra.obra_autornombre ne ''}, {$obra.obra_autornombre} {/if}
+							{$obra.profesional_nombre} {$obra.profesional_apellido1} {$obra.profesional_apellido2}
 						</td>
 						<td>
-							<a href="datos.php?accion=obra&id={$obra.obra_id}" target="blank">Ficha...</a>
+							<a href="datos.php?accion=obra&id={$obra.obra_id}"  >Ficha...</a>
 						</td>
 					</tr>
 				{/foreach}

@@ -476,15 +476,19 @@
 				
 				if($letra == "todas")
 				{
-					$consulta = "SELECT * FROM profesional WHERE profesional_tipo='".$tipo."' AND profesional_supervisado='1' order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";
+					if($tipo == 'Autor') $consulta = "SELECT * FROM profesional INNER JOIN profesionalobra ON profesionalobra_profesional_id = profesional_id WHERE profesional_supervisado='1'  GROUP BY profesional_id order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";			
+					else $consulta = "SELECT * FROM profesional WHERE profesional_tipo='".$tipo."' AND profesional_supervisado='1' order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";
 				}
-				else $consulta = "SELECT * FROM profesional WHERE profesional_tipo='".$tipo."' AND profesional_supervisado='1' AND profesional_apellido1 REGEXP '^[".$letra."]' order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";
-				
+				else {
+					if($tipo == 'Autor') $consulta = "SELECT * FROM profesional INNER JOIN profesionalobra ON profesionalobra_profesional_id = profesional_id WHERE profesional_supervisado='1' AND profesional_apellido1 REGEXP '^[".$letra."]' GROUP BY profesional_id order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC "; 
+					else $consulta = "SELECT * FROM profesional WHERE profesional_tipo='".$tipo."' AND profesional_supervisado='1' AND profesional_apellido1 REGEXP '^[".$letra."]' order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";
+				}
 				$profesionales = $bd->ObtenerResultados($consulta);
 				
 				
 				$template->assign('profesionales', $profesionales);
 				$template->assign('letra', $letra);
+				$template->assign('tipo', $tipo);
 				$template->assign('columnas', 4);
 			}
 			$template->display(Profesional::$plantillaLista,$letra.$tipo);
@@ -502,20 +506,31 @@
 				$bd = BD::Instancia();
 				$resultado = "";
 				
-				$consulta = "SELECT *, DATE_FORMAT(profesional_fechan, '".FORMATO_FECHA_MYSQL."') AS profesional_fechanacimiento, DATE_FORMAT(profesional_fechad, '".FORMATO_FECHA_MYSQL."') AS profesional_fechadefuncion
-				FROM profesional WHERE profesional_supervisado='1' AND profesional_id = '".$id."' LIMIT 1";			
+
+				$consulta = "SELECT *, DATE_FORMAT(profesional_fechan, '".FORMATO_FECHA_MYSQL."') AS profesional_fechanacimiento,
+				DATE_FORMAT(profesional_fechan, '%d') AS profesional_fechanacimiento_dia,
+				DATE_FORMAT(profesional_fechan, '%m') AS profesional_fechanacimiento_mes,
+				DATE_FORMAT(profesional_fechan, '%Y') AS profesional_fechanacimiento_anyo,
+				DATE_FORMAT(profesional_fechad, '".FORMATO_FECHA_MYSQL."') AS profesional_fechadefuncion,
+				DATE_FORMAT(profesional_fechad, '%d') AS profesional_fechadefuncion_dia,
+				DATE_FORMAT(profesional_fechad, '%m') AS profesional_fechadefuncion_mes,
+				DATE_FORMAT(profesional_fechad, '%Y') AS profesional_fechadefuncion_anyo
+				FROM profesional WHERE profesional_id = '".$id."' LIMIT 1";		
 				
 				$datos = $bd->Ejecutar($consulta);
 				$fila  = $bd->ObtenerFila($datos);
 				
 				// datos personales del profesional
 				$template->assign('profesional', $fila);
-				
+
 				//documentos
 				$template->assign('documentos',Documento::ListarDocumentosProfesional($id));
 				
 				//obras
 				$template->assign('obras', Obra::ListarObrasProfesional($id) );
+				
+				//autor de las siguientes obras
+				$template->assign('autoriaobras', Obra::ListarAutoriaObrasProfesional($id) );
 				
 				//colaboradores
 				$template->assign('colaboradores',Colaborador::ListarColaboradoresProfesional($id));

@@ -1281,7 +1281,9 @@ Ext.define('RESCATE.grid.Drop', {
 					dropZone = plugin.dropZone;
 				// reset this since these props were deleted by the 'return false'
 				dropZone.overRecord = model;
-				dropZone.currentPosition = pos;					
+				dropZone.currentPosition = pos;
+
+				console.log(data.records[0]);				
 				
 				// si acepto records repetidos tengo que clonarlos y generarles una id única para no tener problemas
 				if (me.registrosDuplicados)
@@ -1413,6 +1415,66 @@ Ext.define('RESCATE.form.Datefield', {
         {
             e.stopEvent();
         }
+    }
+});
+
+
+Ext.define('RESCATE.form.FieldContainerDate', {
+    alias: 'widget.fieldcontainerdate',
+    extend: 'Ext.form.FieldContainer',
+    editable: false,
+	combineErrors: true,
+	name:'date',
+	msgTarget: 'under',
+	defaults: {
+		hideLabel: false,
+		allowDecimals: false,
+		enforceMaxLength: true,
+		labelAlign: 'top',
+		hideTrigger: true,
+		keyNavEnabled: false,
+		mouseWheelEnabled: false,
+		hidelabel:true
+	},
+	layout: {
+		type: 'hbox',
+		defaultMargins: {top: 0, right: 5, bottom: 0, left: 0}
+	},
+	initComponent: function ()
+    {
+        var me = this;
+		me.items = [
+			
+			{xtype: 'displayfield', value: t('Day')},
+			{xtype: 'numberfield', itemId: 'day', width: 48, maxLength:2, minValue:0, maxValue: 31, listeners: { change: me.UpdateDate, scope: me} },
+			{xtype: 'displayfield', value: t('Month')},
+			{xtype: 'numberfield', itemId: 'month', width: 48, maxLength:2, minValue:0, maxValue: 12, listeners: { change: me.UpdateDate, scope: me} },
+			{xtype: 'displayfield', value: t('Year')},
+			{xtype: 'numberfield', itemId: 'year', width: 70,  minValue:0, maxLength:5, listeners: { change: me.UpdateDate, scope: me} },
+			{xtype: 'hiddenfield', name: me.name, listeners:{change:me.SetDate, scope:me} }
+		];	
+		me.callParent(arguments);
+    },
+	UpdateDate: function(){
+		var me = this;
+		var year = me.down('#year').getValue();
+		var month = me.down('#month').getValue();
+		var day = me.down('#day').getValue();
+		var dateField = me.down('[name='+me.name+']');
+		dateField.setRawValue( (day>0?day:'0')+'/'+(month>0?month:'00')+'/'+(year>0?year:'0000') );
+	},
+	SetDate: function(){
+        var me = this;
+		var date = me.down('[name='+me.name+']').getValue().split('/');
+		if(date.length == 3){
+			me.down('#year').setRawValue(date[2]>0?date[2]:'');
+			me.down('#month').setRawValue(date[1]>0?date[1]:'');
+			me.down('#day').setRawValue(date[0]>0?date[0]:'');
+		}else{
+			me.down('#year').setRawValue('');
+			me.down('#month').setRawValue('');
+			me.down('#day').setRawValue('');
+		}
     }
 });
 

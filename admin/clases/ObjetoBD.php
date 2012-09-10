@@ -689,6 +689,8 @@
 			// leemos los datos json
 			$this->Leer();
 			
+
+			
 			// le asignamos la id a la clave ajena
 			if($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor'] == "")
 			$this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor'] = $idRelacion =="" ? $this->campos[$this->id]['valor'] : intval($idRelacion);
@@ -708,11 +710,11 @@
 			
 			// si la relacion es de 1 a muchos y claveAjena1 es nula, mostramos error
 			// si la relacion es de muchos a muchos y claveAjena1 o claveAjena2 son nulas, mostramos error
-			if( ( $this->relaciones[$nombreRelacion]['relacion'] == 'MaN' && ( empty($this->relaciones[$nombreRelacion]['claveAjena1']['valor']) || empty($this->relaciones[$nombreRelacion]['claveAjena2']['valor']) ) ) || empty($this->relaciones[$nombreRelacion]['claveAjena1']['valor']) )
+			if( ( $this->relaciones[$nombreRelacion]['relacion'] == 'MaN' && ( empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor']) || empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena2']]['valor']) ) ) || empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor']) )
 			{
 				$res->exito = false;
 				$res->mensaje = t("Error saving changes");
-				$res->errores = 'Invalid ids';
+				$res->errores = 'Invalid idsss';
 				return $res;
 			}
 		

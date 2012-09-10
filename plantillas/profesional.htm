@@ -28,7 +28,7 @@
 		<li><a href="contacto.html">Contacto</a></li>                    
 		<li><a href="dbs_c.html" class="current">Base de datos</a></li>
 		<li><a href="pb.html" >Publicaciones</a></li> 
-		<li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+		<li><a href="admin/index.php"  >Investigadores</a></li> 
 	</ul>
     
     
@@ -42,7 +42,7 @@
 
 
 <br />
-<h6><a href="datos.php?accion=profesional_lista"><< Volver al índice </a></h6>
+<h6><a href="javascript:history.back(1)"><< Volver atrás </a></h6>
 
 <h1>
 		{$profesional.profesional_nombre} {$profesional.profesional_apellido1} {$profesional.profesional_apellido2}
@@ -70,7 +70,7 @@
 			<th>Foto</th>
 			<td>
 				{if $profesional.profesional_miniatura ne ''}
-					<a target="_blank" href="{$url_archivos}/{$profesional.profesional_directorio}/{$profesional.profesional_archivo}">
+					<a   href="{$url_archivos}/{$profesional.profesional_directorio}/{$profesional.profesional_archivo}">
 						<img src="{$url_archivos}/{$profesional.profesional_directorio}/miniaturas/{$profesional.profesional_miniatura}" />
 					</a>
 				{/if}		
@@ -87,11 +87,16 @@
 		  <tr>
 			<th>Nacimiento</th>
 			<td>
-				{if $profesional.profesional_fechanacimiento ne $fecha_vacia}{$profesional.profesional_fechanacimiento}<br />{/if}
+			{if $profesional.profesional_fechanacimiento ne $fecha_vacia}
+				{if $profesional.profesional_fechanacimiento_dia > 0}{$profesional.profesional_fechanacimiento_dia}{else}--{/if}/
+				{if $profesional.profesional_fechanacimiento_mes > 0}{$profesional.profesional_fechanacimiento_mes}{else}--{/if}/
+				{if $profesional.profesional_fechanacimiento_anyo > 0}{$profesional.profesional_fechanacimiento_anyo}{else}----{/if}
+				<br>
+			{/if}
 				{if $profesional.profesional_direccionn ne ''}{$profesional.profesional_direccionn}<br />{/if}
-				{$profesional.profesional_poblacionn} 
-				{if $profesional.profesional_provincian ne ''}, {$profesional.profesional_provincian}{/if} 
-				{if $profesional.profesional_paisn ne ''}, {$profesional.profesional_paisn}{/if} 
+				{if  $profesional.profesional_poblacionn  ne ''}{$profesional.profesional_poblacionn}, {/if}
+				{if $profesional.profesional_provincian ne ''}{$profesional.profesional_provincian}, {/if} 
+				{if $profesional.profesional_paisn ne ''}{$profesional.profesional_paisn}{/if} 
 			</td>
 		  </tr>
 		  
@@ -101,9 +106,10 @@
 				<td>
 					{$profesional.profesional_fechadefuncion}<br />
 					{if $profesional.profesional_direcciond ne ''}{$profesional.profesional_direcciond}<br />{/if}
-					{$profesional.profesional_poblaciond} 
-					{if $profesional.profesional_provinciad ne ''}, {$profesional.profesional_provinciad}{/if} 
-					{if $profesional.profesional_paisd ne ''}, {$profesional.profesional_paisd}{/if}
+					{if $profesional.profesional_direcciond ne ''}{$profesional.profesional_direccionn}<br />{/if}
+					{if  $profesional.profesional_poblaciond  ne ''}{$profesional.profesional_poblaciond}, {/if}
+					{if $profesional.profesional_provinciad ne ''}{$profesional.profesional_provinciad}, {/if} 
+					{if $profesional.profesional_paisd ne ''}{$profesional.profesional_paisd}{/if} 
 				</td>
 			  </tr>
 		  {/if}
@@ -135,7 +141,32 @@
 						{$obra.profesional_nombre} {$obra.profesional_apellido1} {$obra.profesional_apellido2}
 					</td>
 					<td>
-						<a href="datos.php?accion=obra&id={$obra.obra_id}" target="blank">Ficha...</a>
+						<a href="datos.php?accion=obra&id={$obra.obra_id}"  >Ficha...</a>
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	</div>
+	{/if}
+	
+	{if $autoriaobras}
+	<div class="acordeon">
+		<a name="obras">Autor de las siguientes Obras</a>
+			<table>
+			  <thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Ficha Completa</th>
+			  </thead>
+			  <tbody>
+			  {foreach item=autoriaobra from=$autoriaobras}
+				<tr>
+					<td>
+						{$autoriaobra.obra_nombre}
+					</td>
+					<td>
+						<a href="datos.php?accion=obra&id={$autoriaobra.obra_id}"  >Ficha...</a>
 					</td>
 				</tr>
 			{/foreach}
@@ -160,7 +191,7 @@
 			  {foreach item=documento from=$documentos}
 				<tr>
 					<td>
-						<a target="_blank" href="{$url_archivos}/{$documento.documento_directorio}/{$documento.documento_miniatura}">   
+						<a   href="{$url_archivos}/{$documento.documento_directorio}/{$documento.documento_miniatura}">   
 						<img width="64" src="{$url_archivos}/{$documento.documento_directorio}/miniaturas/{$documento.documento_miniatura}" alt="Vista previa" />
 						</a>
 					</td>
@@ -174,7 +205,7 @@
 						{$documento.documentoprofesional_detalles}
 					</td>
 					<td>
-						<a href="datos.php?accion=documento&id={$documento.documento_id}" target="blank">Ficha...</a>
+						<a href="datos.php?accion=documento&id={$documento.documento_id}"  >Ficha...</a>
 					</td>
 				</tr>
 			{/foreach}
@@ -210,7 +241,7 @@
 						{$colaborador.colaborador_detalles}
 					</td>
 					<td>
-						<a href="datos.php?accion=profesional&id={$colaborador.profesional_id}" target="blank">Ficha...</a>
+						<a href="datos.php?accion=profesional&id={$colaborador.profesional_id}"  >Ficha...</a>
 					</td>
 				</tr>
 			{/foreach}

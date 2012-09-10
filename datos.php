@@ -39,7 +39,7 @@ if(isset($_GET['accion']))
 			$tipo = 'Restaurador';
 			if( isset($_GET["tipo"])  )
 			{
-				if($_GET["tipo"] == 'Restaurador' || $_GET["tipo"] == 'Colaborador' || $_GET["tipo"] =='Especialista' ) $tipo = $_GET["tipo"];
+				if($_GET["tipo"] == 'Restaurador' || $_GET["tipo"] == 'Colaborador' || $_GET["tipo"] =='Especialista' || $_GET["tipo"] =='Autor' ) $tipo = $_GET["tipo"];
 			}
 			Profesional::GenerarPlantillaLista($letra,$tipo);
 		break;

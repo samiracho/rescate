@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 	var tablas = $('.acordeon > table');
-	tablas.not('.exp').hide();
+	//tablas.not('.exp').hide();
 	
 	// para expandir/contraer todas las tablas
 	$('.expContraer').click(function() {				

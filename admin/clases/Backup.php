@@ -69,7 +69,7 @@ class Backup
 			$datos    = $bd->Ejecutar('SELECT * FROM '.$tabla);
 			
 			$num_fields = $bd->NumFields($datos);    
-			$resultado .= 'DROP TABLE '.$tabla.';';		
+			$resultado .= 'DROP TABLE IF EXISTS '.$tabla.';';		
 			$resultado .= "\n\n".$fila2[1].";\n\n";
 			   
 		

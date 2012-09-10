@@ -1,4 +1,4 @@
-var LOCALE = {
+﻿var LOCALE = {
   'EN': 'ES_es',
   'Logout': 'Salir',
   'Do you want to exit and close the session?': '¿Desea salir y cerrar la sesión?',
@@ -92,6 +92,9 @@ var LOCALE = {
   'End Date' : 'Fecha Fin',
   'Start Date (Year)' : 'Fecha Inicio (Año)',
   'End Date (Year)' : 'Fecha Fin (Año)',
+  'Year': 'Año',
+  'Month' : 'Mes',
+  'Day' : 'Día',
   'Title' : 'Título',
   'Author' : 'Autor',
   'Author(s)': 'Autor(es)',

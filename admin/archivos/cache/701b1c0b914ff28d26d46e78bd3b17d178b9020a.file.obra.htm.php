@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.5, created on 2012-06-18 14:06:01
+<?php /* Smarty version Smarty-3.1.5, created on 2012-09-09 23:31:39
          compiled from "C:\wamp\www\rescate\admin\..\plantillas\obra.htm" */ ?>
 <?php /*%%SmartyHeaderCode:254174fdf25b0c8a4b2-60514723%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '701b1c0b914ff28d26d46e78bd3b17d178b9020a' => 
     array (
       0 => 'C:\\wamp\\www\\rescate\\admin\\..\\plantillas\\obra.htm',
-      1 => 1340028336,
+      1 => 1347233464,
       2 => 'file',
     ),
   ),
@@ -61,7 +61,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       <li><a href="contacto.html">Contacto</a></li>                    
       <li><a href="dbs_c.html" class="current">Base de datos</a></li>
       <li><a href="pb.html" >Publicaciones</a></li> 
-	  <li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+	  <li><a href="admin/index.php"  >Investigadores</a></li> 
     </ul>
     
     
@@ -75,7 +75,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 
 <br />
-<h6><a href="datos.php?accion=obra_lista"><< Volver al índice </a></h6>
+<h6><a href="javascript:history.back(1)"><< Atrás </a></h6>
 
 <h1>
 		<?php echo $_smarty_tpl->tpl_vars['obra']->value['obra_nombre'];?>
@@ -91,7 +91,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<th>Imagen</th>
 			<td >
 				<?php if ($_smarty_tpl->tpl_vars['portada']->value['documento_miniatura']!=''){?>
-					<a target="_blank" href="<?php echo $_smarty_tpl->tpl_vars['url_archivos']->value;?>
+					<a   href="<?php echo $_smarty_tpl->tpl_vars['url_archivos']->value;?>
 /<?php echo $_smarty_tpl->tpl_vars['portada']->value['documento_directorio'];?>
 /<?php echo $_smarty_tpl->tpl_vars['portada']->value['documento_archivo'];?>
 ">
@@ -111,15 +111,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		  <tr>
 			<th>Nombre Autor</th>
 			<td><a href="datos.php?accion=profesional&id=<?php echo $_smarty_tpl->tpl_vars['obra']->value['profesional_id'];?>
-" target="blank"><?php echo $_smarty_tpl->tpl_vars['obra']->value['profesional_nombre'];?>
+"  ><?php echo $_smarty_tpl->tpl_vars['obra']->value['profesional_nombre'];?>
  <?php echo $_smarty_tpl->tpl_vars['obra']->value['profesional_apellido1'];?>
  <?php echo $_smarty_tpl->tpl_vars['obra']->value['profesional_apellido2'];?>
 </a></td>
 		  </tr>
 		  <tr>
 			<th>Fecha</th>
-			<td><?php if ($_smarty_tpl->tpl_vars['obra']->value['obra_fecha1']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['obra']->value['obra_fecha1'];?>
-<?php }?></td>
+			<td>
+				<?php if ($_smarty_tpl->tpl_vars['obra']->value['obra_fecha1']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['obra']->value['obra_fecha1'];?>
+<?php }?>
+				<?php if ($_smarty_tpl->tpl_vars['obra']->value['obra_siglo']!=''){?><br /><?php echo $_smarty_tpl->tpl_vars['obra']->value['obra_siglo'];?>
+ <?php echo $_smarty_tpl->tpl_vars['obra']->value['obra_acdc'];?>
+<?php }?>
+			
+			</td>
 		  </tr>
 		  <tr>
 		  <tr>
@@ -185,8 +191,7 @@ $_smarty_tpl->tpl_vars['tecnica']->_loop = true;
 					<td>
 						<?php echo $_smarty_tpl->tpl_vars['tecnica']->value['metodoobra_detalles'];?>
 
-					</td>
-					
+					</td>	
 				</tr>
 			<?php } ?>
 			</tbody>
@@ -216,9 +221,12 @@ $_smarty_tpl->tpl_vars['intervencion']->_loop = true;
 					</td>
 					<td>
 					<?php if ($_smarty_tpl->tpl_vars['intervencion']->value['intervencion_fechainicio']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['intervencion']->value['intervencion_fechainicio'];?>
-<?php }?><br />
-					<?php if ($_smarty_tpl->tpl_vars['intervencion']->value['intervencion_fechafin']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['intervencion']->value['intervencion_fechafin'];?>
+<?php }?><br />			
+					<?php if ($_smarty_tpl->tpl_vars['intervencion']->value['intervencion_fechafin']==$_smarty_tpl->tpl_vars['fecha_vacia']->value&&$_smarty_tpl->tpl_vars['intervencion']->value['intervencion_fechainicio']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?>Actualmente
+					<?php }elseif($_smarty_tpl->tpl_vars['intervencion']->value['intervencion_fechafin']==$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['intervencion']->value['intervencion_fechafin'];?>
 <?php }?>
+					
+					
 					</td>
 					<td>
 					
@@ -229,7 +237,7 @@ $_smarty_tpl->tpl_vars['profesional']->_loop = true;
 ?>
 					
 						<a href="datos.php?accion=profesional&id=<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_id'];?>
-" target="blank"><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_nombre'];?>
+"  ><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_nombre'];?>
  <?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_apellido1'];?>
  <?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_apellido2'];?>
 </a><br />
@@ -239,7 +247,7 @@ $_smarty_tpl->tpl_vars['profesional']->_loop = true;
 					</td>
 					<td>
 						<a href="datos.php?accion=intervencion&id=<?php echo $_smarty_tpl->tpl_vars['intervencion']->value['intervencion_id'];?>
-" target="blank">Ficha...</a>
+"  >Ficha...</a>
 					</td>
 				</tr>
 			<?php } ?>

@@ -28,7 +28,7 @@
       <li><a href="contacto.html">Contacto</a></li>                    
       <li><a href="dbs_c.html" class="current">Base de datos</a></li>
       <li><a href="pb.html" >Publicaciones</a></li> 
-	  <li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+	  <li><a href="admin/index.php"  >Investigadores</a></li> 
     </ul>
     
     
@@ -42,7 +42,7 @@
 
 
 <br />
-<h6><a href="datos.php?accion=obra_lista"><< Volver al índice </a></h6>
+<h6><a href="javascript:history.back(1)"><< Atrás </a></h6>
 
 <h1>
 		{$obra.obra_nombre}
@@ -57,7 +57,7 @@
 			<th>Imagen</th>
 			<td >
 				{if $portada.documento_miniatura ne ''}
-					<a target="_blank" href="{$url_archivos}/{$portada.documento_directorio}/{$portada.documento_archivo}">
+					<a   href="{$url_archivos}/{$portada.documento_directorio}/{$portada.documento_archivo}">
 						<img src="{$url_archivos}/{$portada.documento_directorio}/miniaturas/{$portada.documento_miniatura}" />
 					</a>
 				{/if}
@@ -69,7 +69,7 @@
 		  </tr>
 		  <tr>
 			<th>Nombre Autor</th>
-			<td><a href="datos.php?accion=profesional&id={$obra.profesional_id}" target="blank">{$obra.profesional_nombre} {$obra.profesional_apellido1} {$obra.profesional_apellido2}</a></td>
+			<td><a href="datos.php?accion=profesional&id={$obra.profesional_id}"  >{$obra.profesional_nombre} {$obra.profesional_apellido1} {$obra.profesional_apellido2}</a></td>
 		  </tr>
 		  <tr>
 			<th>Fecha</th>
@@ -150,9 +150,9 @@
 						{$intervencion.intervencion_nombre}
 					</td>
 					<td>
-					{if $intervencion.intervencion_fechainicio ne $fecha_vacia}{$intervencion.intervencion_fechainicio}{/if}<br />			
-					{if  $intervencion.intervencion_fechafin eq $fecha_vacia && $intervencion.intervencion_fechainicio ne $fecha_vacia }Actualmente
-					{else if $intervencion.intervencion_fechafin eq $fecha_vacia}{else}{$intervencion.intervencion_fechafin}{/if}
+					{if $intervencion.intervencion_fechainicio > 0}{$intervencion.intervencion_fechainicio}{/if}<br />			
+					{if  $intervencion.intervencion_fechafin < 1 && $intervencion.intervencion_fechainicio >1 }Actualmente
+					{else if $intervencion.intervencion_fechafin < 1}{else}{$intervencion.intervencion_fechafin}{/if}
 					
 					
 					</td>
@@ -160,13 +160,13 @@
 					
 					{foreach item=profesional from=$intervencion.profesionales}
 					
-						<a href="datos.php?accion=profesional&id={$profesional.profesional_id}" target="blank">{$profesional.profesional_nombre} {$profesional.profesional_apellido1} {$profesional.profesional_apellido2}</a><br />
+						<a href="datos.php?accion=profesional&id={$profesional.profesional_id}"  >{$profesional.profesional_nombre} {$profesional.profesional_apellido1} {$profesional.profesional_apellido2}</a><br />
 					
 					{/foreach}
 					
 					</td>
 					<td>
-						<a href="datos.php?accion=intervencion&id={$intervencion.intervencion_id}" target="blank">Ficha...</a>
+						<a href="datos.php?accion=intervencion&id={$intervencion.intervencion_id}"  >Ficha...</a>
 					</td>
 				</tr>
 			{/foreach}

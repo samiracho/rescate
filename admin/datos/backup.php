@@ -1,6 +1,5 @@
 <?php
 require '../inc.php'; 
-//require('../clases/backup_restore.class.php');
 
 $adminBackups   = Usuario::TienePermiso('administrar_backups');
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.5, created on 2012-06-20 16:22:25
+<?php /* Smarty version Smarty-3.1.5, created on 2012-09-09 23:31:40
          compiled from "C:\wamp\www\rescate\admin\..\plantillas\profesional.htm" */ ?>
 <?php /*%%SmartyHeaderCode:204514fdf325989f845-76564493%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '99aceeebc80636679f5339c383fc72716cee6179' => 
     array (
       0 => 'C:\\wamp\\www\\rescate\\admin\\..\\plantillas\\profesional.htm',
-      1 => 1340209323,
+      1 => 1347233485,
       2 => 'file',
     ),
   ),
@@ -24,6 +24,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fecha_vacia' => 0,
     'obras' => 0,
     'obra' => 0,
+    'autoriaobras' => 0,
+    'autoriaobra' => 0,
     'documentos' => 0,
     'documento' => 0,
     'colaboradores' => 0,
@@ -38,6 +40,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'especialidad' => 0,
     'tecnicas' => 0,
     'tecnica' => 0,
+    'equipamientos' => 0,
+    'equipamiento' => 0,
     'asociaciones' => 0,
     'asociacion' => 0,
   ),
@@ -73,7 +77,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<li><a href="contacto.html">Contacto</a></li>                    
 		<li><a href="dbs_c.html" class="current">Base de datos</a></li>
 		<li><a href="pb.html" >Publicaciones</a></li> 
-		<li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+		<li><a href="admin/index.php"  >Investigadores</a></li> 
 	</ul>
     
     
@@ -87,7 +91,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 
 <br />
-<h6><a href="datos.php?accion=profesional_lista"><< Volver al índice </a></h6>
+<h6><a href="javascript:history.back(1)"><< Volver atrás </a></h6>
 
 <h1>
 		<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_nombre'];?>
@@ -118,7 +122,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<th>Foto</th>
 			<td>
 				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_miniatura']!=''){?>
-					<a target="_blank" href="<?php echo $_smarty_tpl->tpl_vars['url_archivos']->value;?>
+					<a   href="<?php echo $_smarty_tpl->tpl_vars['url_archivos']->value;?>
 /<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_directorio'];?>
 /<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_archivo'];?>
 ">
@@ -145,33 +149,44 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		  <tr>
 			<th>Nacimiento</th>
 			<td>
-				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_fechanacimiento']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_fechanacimiento'];?>
-<br /><?php }?>
+				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_fechanacimiento_dia']>0){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_fechanacimiento_dia'];?>
+<?php }else{ ?>--<?php }?>/
+				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_fechanacimiento_mes']>0){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_fechanacimiento_mes'];?>
+<?php }else{ ?>--<?php }?>/
+				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_fechanacimiento_anyo']>0){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_fechanacimiento_anyo'];?>
+<?php }else{ ?>----<?php }?>
+				<br>
 				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_direccionn']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_direccionn'];?>
 <br /><?php }?>
-				<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_poblacionn'];?>
- 
-				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_provincian']!=''){?>, <?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_provincian'];?>
-<?php }?> 
-				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_paisn']!=''){?>, <?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_paisn'];?>
+				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_poblacionn']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_poblacionn'];?>
+, <?php }?>
+				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_provincian']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_provincian'];?>
+, <?php }?> 
+				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_paisn']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_paisn'];?>
 <?php }?> 
 			</td>
 		  </tr>
-		  <tr>
-			<th>Defunción</th>
-			<td>
-				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_fechadefuncion']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_fechadefuncion'];?>
+		  
+		  <?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_fechadefuncion']!=$_smarty_tpl->tpl_vars['fecha_vacia']->value){?>
+			  <tr>
+				<th>Defunción</th>
+				<td>
+					<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_fechadefuncion'];?>
+<br />
+					<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_direcciond']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_direcciond'];?>
 <br /><?php }?>
-				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_direcciond']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_direcciond'];?>
+					<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_direcciond']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_direccionn'];?>
 <br /><?php }?>
-				<?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_poblaciond'];?>
- 
-				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_provinciad']!=''){?>, <?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_provinciad'];?>
+					<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_poblaciond']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_poblaciond'];?>
+, <?php }?>
+					<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_provinciad']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_provinciad'];?>
+, <?php }?> 
+					<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_paisd']!=''){?><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_paisd'];?>
 <?php }?> 
-				<?php if ($_smarty_tpl->tpl_vars['profesional']->value['profesional_paisd']!=''){?>, <?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_paisd'];?>
-<?php }?>
-			</td>
-		  </tr>
+				</td>
+			  </tr>
+		  <?php }?>
+		  
 		  <tr>
 			<th>Observaciones</th>
 			<td ><?php echo $_smarty_tpl->tpl_vars['profesional']->value['profesional_observaciones'];?>
@@ -180,6 +195,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</table>
 	</div>
 	
+	<?php if ($_smarty_tpl->tpl_vars['obras']->value){?>
 	<div class="acordeon">
 		<a name="obras">Obras Intervenidas</a>
 			<table>
@@ -208,14 +224,47 @@ $_smarty_tpl->tpl_vars['obra']->_loop = true;
 					</td>
 					<td>
 						<a href="datos.php?accion=obra&id=<?php echo $_smarty_tpl->tpl_vars['obra']->value['obra_id'];?>
-" target="blank">Ficha...</a>
+"  >Ficha...</a>
 					</td>
 				</tr>
 			<?php } ?>
 			</tbody>
 		</table>
 	</div>
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['autoriaobras']->value){?>
+	<div class="acordeon">
+		<a name="obras">Autor de las siguientes Obras</a>
+			<table>
+			  <thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Ficha Completa</th>
+			  </thead>
+			  <tbody>
+			  <?php  $_smarty_tpl->tpl_vars['autoriaobra'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['autoriaobra']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['autoriaobras']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['autoriaobra']->key => $_smarty_tpl->tpl_vars['autoriaobra']->value){
+$_smarty_tpl->tpl_vars['autoriaobra']->_loop = true;
+?>
+				<tr>
+					<td>
+						<?php echo $_smarty_tpl->tpl_vars['autoriaobra']->value['obra_nombre'];?>
 
+					</td>
+					<td>
+						<a href="datos.php?accion=obra&id=<?php echo $_smarty_tpl->tpl_vars['autoriaobra']->value['obra_id'];?>
+"  >Ficha...</a>
+					</td>
+				</tr>
+			<?php } ?>
+			</tbody>
+		</table>
+	</div>
+	<?php }?>
+
+	<?php if ($_smarty_tpl->tpl_vars['documentos']->value){?>
 	<div class="acordeon">
 		<a name="documentos">Documentos Relacionados</a>
 			<table>
@@ -235,7 +284,7 @@ $_smarty_tpl->tpl_vars['documento']->_loop = true;
 ?>
 				<tr>
 					<td>
-						<a target="_blank" href="<?php echo $_smarty_tpl->tpl_vars['url_archivos']->value;?>
+						<a   href="<?php echo $_smarty_tpl->tpl_vars['url_archivos']->value;?>
 /<?php echo $_smarty_tpl->tpl_vars['documento']->value['documento_directorio'];?>
 /<?php echo $_smarty_tpl->tpl_vars['documento']->value['documento_miniatura'];?>
 ">   
@@ -261,14 +310,16 @@ $_smarty_tpl->tpl_vars['documento']->_loop = true;
 					</td>
 					<td>
 						<a href="datos.php?accion=documento&id=<?php echo $_smarty_tpl->tpl_vars['documento']->value['documento_id'];?>
-" target="blank">Ficha...</a>
+"  >Ficha...</a>
 					</td>
 				</tr>
 			<?php } ?>
 			</tbody>
 		</table>
 	</div>
-
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['colaboradores']->value){?>
 	<div class="acordeon">
 		<a name="colaboradores">Colaboradores</a>
 		<table>
@@ -305,14 +356,16 @@ $_smarty_tpl->tpl_vars['colaborador']->_loop = true;
 					</td>
 					<td>
 						<a href="datos.php?accion=profesional&id=<?php echo $_smarty_tpl->tpl_vars['colaborador']->value['profesional_id'];?>
-" target="blank">Ficha...</a>
+"  >Ficha...</a>
 					</td>
 				</tr>
 			<?php } ?>
 			</tbody>
 		</table>
 	</div>
-
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['formaciones']->value){?>
 	<div class="acordeon">
 		<a name="formacion">Formación Recibida</a>
 		<table>
@@ -343,8 +396,10 @@ $_smarty_tpl->tpl_vars['formacion']->_loop = true;
 <?php }?>
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['formacion']->value['formacion_fechafin']=='0000'&&$_smarty_tpl->tpl_vars['formacion']->value['formacion_fechainicio']!='0000'){?>Actualmente<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['formacion']->value['formacion_fechafin'];?>
-<?php }?>
+						<?php if ($_smarty_tpl->tpl_vars['formacion']->value['formacion_actualmente']){?>Actualmente
+							<?php }elseif($_smarty_tpl->tpl_vars['formacion']->value['formacion_fechafin']!='0000'){?><?php echo $_smarty_tpl->tpl_vars['formacion']->value['formacion_fechafin'];?>
+
+						<?php }?>
 					</td>
 					<td>
 						<?php echo $_smarty_tpl->tpl_vars['formacion']->value['centro_nombre'];?>
@@ -367,7 +422,9 @@ $_smarty_tpl->tpl_vars['formacion']->_loop = true;
 			</tbody>
 		</table>
 	</div>
-
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['cargos']->value){?>
 	<div class="acordeon">
 		<a name="cargos">Cargos</a>
 		<table>
@@ -403,8 +460,11 @@ $_smarty_tpl->tpl_vars['cargo']->_loop = true;
 <?php }?>
 					</td>
 					<td>
-					<?php if ($_smarty_tpl->tpl_vars['cargo']->value['cargo_fechafin']=='0000'&&$_smarty_tpl->tpl_vars['cargo']->value['cargo_fechainicio']!='0000'){?>Actualmente<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['cargo']->value['cargo_fechafin'];?>
-<?php }?>
+						<?php if ($_smarty_tpl->tpl_vars['cargo']->value['cargo_actualmente']){?>Actualmente
+							<?php }elseif($_smarty_tpl->tpl_vars['cargo']->value['cargo_fechafin']!='0000'){?><?php echo $_smarty_tpl->tpl_vars['cargo']->value['cargo_fechafin'];?>
+
+						<?php }?>
+					
 					</td>
 					<td>
 						<?php echo $_smarty_tpl->tpl_vars['cargo']->value['centro_nombre'];?>
@@ -427,7 +487,9 @@ $_smarty_tpl->tpl_vars['cargo']->_loop = true;
 			</tbody>
 		</table>
 	</div>
-
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['reconocimientos']->value){?>
 	<div class="acordeon">
 		<a name="reconocimientos">Reconocimientos</a>
 		<table>
@@ -462,7 +524,9 @@ $_smarty_tpl->tpl_vars['reconocimiento']->_loop = true;
 			</tbody>
 		</table>
 	</div>
-
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['especialidades']->value){?>
 	<div class="acordeon">
 		<a name="especialidades">Especialidades</a>
 		<table>
@@ -497,7 +561,9 @@ $_smarty_tpl->tpl_vars['especialidad']->_loop = true;
 			</tbody>
 		</table>
 	</div>
-
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['tecnicas']->value){?>
 	<div class="acordeon">
 		<a name="tecnicas">Técnicas Utilizadas</a>
 		<table>
@@ -532,7 +598,46 @@ $_smarty_tpl->tpl_vars['tecnica']->_loop = true;
 			</tbody>
 		</table>
 	</div>
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['equipamientos']->value){?>
+	<div class="acordeon">
+		<a name="tecnicas">Equipamiento científico y Grandes equipos</a>
+		<table>
+			<thead>
+			  <tr>
+				<th>Nombre</th>
+				<th>Detalles</th>
+				<th>Observaciones</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <?php  $_smarty_tpl->tpl_vars['equipamiento'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['equipamiento']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['equipamientos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['equipamiento']->key => $_smarty_tpl->tpl_vars['equipamiento']->value){
+$_smarty_tpl->tpl_vars['equipamiento']->_loop = true;
+?>
+				<tr>
+					<td>
+						<?php echo $_smarty_tpl->tpl_vars['equipamiento']->value['equipamiento_nombre'];?>
 
+					</td>
+					<td>
+						<?php echo $_smarty_tpl->tpl_vars['equipamiento']->value['equipamiento_detalles'];?>
+
+					</td>
+					<td>
+						<?php echo $_smarty_tpl->tpl_vars['equipamiento']->value['equipamientoprofesional_detalles'];?>
+
+					</td>
+				</tr>
+			<?php } ?>
+			</tbody>
+		</table>
+	</div>
+	<?php }?>
+	
+	<?php if ($_smarty_tpl->tpl_vars['asociaciones']->value){?>
 	<div class="acordeon">
 		<a name="asociaciones">Asociaciones a las que pertenece</a>
 		<table>
@@ -569,7 +674,7 @@ $_smarty_tpl->tpl_vars['asociacion']->_loop = true;
 <?php }?>
 					</td>
 					<td>
-						<?php if ($_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechasalida']=='0000'&&$_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechaentrada']!='0000'){?>Actualmente<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechasalida'];?>
+						<?php if ($_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechasalida']!='0000'){?><?php echo $_smarty_tpl->tpl_vars['asociacion']->value['asociacionprofesional_fechasalida'];?>
 <?php }?>
 					</td>
 				</tr>
@@ -577,6 +682,7 @@ $_smarty_tpl->tpl_vars['asociacion']->_loop = true;
 			</tbody>
 		</table>
 	</div>
+	<?php }?>
 
 </div>
 </div>

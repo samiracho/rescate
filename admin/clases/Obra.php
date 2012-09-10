@@ -223,11 +223,33 @@
 			return $obras;
 		}
 		
+		public static function ListarAutoriaObrasProfesional($idProfesional=null)
+		{
+			$obras     = array();
+			$bd        = BD::Instancia();			
+			$consulta  = "SELECT * FROM obra  
+						  INNER JOIN profesionalobra ON profesionalobra_obra_id = obra_id AND profesionalobra_profesional_id = '".intval($idProfesional)."' 
+						  ORDER BY obra_nombre DESC";
+			
+			$datos = $bd->Ejecutar($consulta);
+			if( $bd->ObtenerErrores() == '' )
+			{	
+				// obtenemos una lista con todos los registros
+				while($fila = $bd->ObtenerFila($datos))
+				{
+					array_push($obras, $fila); 
+				}
+			}		
+			return $obras;
+		}
+		
 		public static function ListarObrasUbicacion($idUbicacion=null)
 		{
 			$obras     = array();
 			$bd        = BD::Instancia();			
 			$consulta  = "SELECT * FROM obra 
+						  LEFT JOIN profesionalobra ON profesionalobra_obra_id = obra_id
+						  LEFT JOIN profesional ON profesionalobra_profesional_id = profesional_id
 						  INNER JOIN ubicacionobra ON ubicacionobra_obra_id = obra_id
 						  INNER JOIN ubicacion ON ubicacionobra_ubicacion_id = '".intval($idUbicacion)."'
 						  GROUP BY obra_id ORDER BY obra_nombre DESC";
@@ -309,7 +331,7 @@
 
 			
 			
-			$consulta = "SELECT *, DATE_FORMAT(intervencion_fechainicio, '".FORMATO_FECHA_MYSQL."') AS intervencion_fechainicio,DATE_FORMAT(intervencion_fechafin, '".FORMATO_FECHA_MYSQL."') AS intervencion_fechafin FROM intervencion 
+			$consulta = "SELECT *, DATE_FORMAT(intervencion_fechainicio, '%Y') AS intervencion_fechainicio,DATE_FORMAT(intervencion_fechafin, '%Y') AS intervencion_fechafin FROM intervencion 
 						 WHERE intervencion_obra_id='".$id."'";			 
 			
 			$datos = $bd->Ejecutar($consulta);

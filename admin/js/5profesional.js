@@ -435,19 +435,13 @@ Ext.define('RESCATE.form.editarProfesional', {
                                 emptyText: t('Sex'),
                                 allowBlank: false
                             }, {
-                                xtype: 'form.DateField',
+                                xtype: 'fieldcontainerdate',
                                 name: 'profesional_fechan',
-                                fieldLabel: t('Birth Date'),
-                                itemId: 'startdt',
-                                vtype: 'daterange',
-                                endDateField: 'enddt'
-                            }, {
-                                xtype: 'form.DateField',
+                                fieldLabel: t('Birth Date')
+                            },{
+                                xtype: 'fieldcontainerdate',
                                 name: 'profesional_fechad',
-                                fieldLabel: t('Date of Death'),
-                                itemId: 'enddt',
-                                vtype: 'daterange',
-                                startDateField: 'startdt'
+                                fieldLabel: t('Date of Death')
                             }]
                         }]
                     }, {

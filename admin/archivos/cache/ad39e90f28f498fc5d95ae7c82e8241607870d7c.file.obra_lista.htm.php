@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.5, created on 2012-06-18 13:39:07
+<?php /* Smarty version Smarty-3.1.5, created on 2012-09-09 23:26:01
          compiled from "C:\wamp\www\rescate\admin\..\plantillas\obra_lista.htm" */ ?>
 <?php /*%%SmartyHeaderCode:323604fdf2f7b65baf4-02341496%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ad39e90f28f498fc5d95ae7c82e8241607870d7c' => 
     array (
       0 => 'C:\\wamp\\www\\rescate\\admin\\..\\plantillas\\obra_lista.htm',
-      1 => 1339974602,
+      1 => 1347232863,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.5',
+  'unifunc' => 'content_4fdf2f7b7d5f5',
   'variables' => 
   array (
     'obras' => 0,
@@ -23,8 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'letra' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.5',
-  'unifunc' => 'content_4fdf2f7b7d5f5',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_4fdf2f7b7d5f5')) {function content_4fdf2f7b7d5f5($_smarty_tpl) {?><?php if (!is_callable('smarty_function_math')) include 'C:\\wamp\\www\\rescate\\admin\\lib\\smarty\\plugins\\function.math.php';
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -53,7 +53,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       <li><a href="contacto.html">Contacto</a></li>                    
       <li><a href="dbs_c.html" class="current">Base de datos</a></li>
       <li><a href="pb.html" >Publicaciones</a></li> 
-	  <li><a href="admin/index.php" target="_blank">Investigadores</a></li> 
+	  <li><a href="admin/index.php"  >Investigadores</a></li> 
     </ul>
     
     

@@ -1,6 +1,6 @@
 #comprobar rutas antes de lanzar el script
 $pathExtjs = "c:\wamp\www\"
-$extjsFolder = "extjs-4.1.1-rc2"
+$extjsFolder = "extjs-4.1.1"
 $pathRescate = $pathExtjs+"rescate\admin"
 $pathRescate2 = $pathExtjs+"rescate"
 $pathExport  = "c:\wamp\www\"

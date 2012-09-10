@@ -21,16 +21,16 @@
 	{ 
 		$year  = "0000";
 		$month = "00";
-		$date  = "00";
+		$day  = "00";
 		
 		if(is_numeric($fecha))
 		{
-			$fecha =  $fecha . '-1-1';
+			$fecha =  $fecha . '-00-00';
 		}
-		else if(!empty($fecha) && $fecha!= 0 )
+		else if(!empty($fecha) && $fecha!== 0 )
 		{
-			list($date, $month, $year) = explode("/", $fecha);
-			$fecha =  $year . '-' . $month . '-' . $date; 
+			list($day, $month, $year) = explode("/", $fecha);
+			$fecha =  $year . '-' . $month . '-' . $day; 
 		}
 
 		return $fecha;
