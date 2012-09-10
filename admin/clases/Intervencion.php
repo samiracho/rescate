@@ -23,6 +23,7 @@
 				'intervencion_descprocedimiento' => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid intervencion name'),'valor'=>'','lectura'=>false),
 				'intervencion_principiosteoricos' => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid intervencion name'),'valor'=>'','lectura'=>false),
 				'intervencion_fechainicio' => array('tipo'=>'date','nulo'=>true,'msg'=>t('Invalid date'),'valor'=>'','lectura'=>false),
+				'intervencion_actualmente' => array('tipo'=>'checkbox','nulo'=>true,'msg'=>t('Invalid actualmente'),'valor'=>'','lectura'=>false),
 				'intervencion_fechafin'    => array('tipo'=>'date','nulo'=>true,'msg'=>t('Invalid date'),'valor'=>'','lectura'=>false),
 				'intervencion_detalles'    => array('tipo'=>'html','nulo'=>true,'msg'=>t('Invalid details'),'valor'=>'','lectura'=>false),
 				'intervencion_ultimamod'   => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid last modification'),'valor'=>'','lectura'=>true),
@@ -136,6 +137,16 @@
 			// leemos los datos json
 			parent::Leer();
 			
+			if ( !is_numeric($this->campos['intervencion_fechafin']['valor'])  && $this->campos['intervencion_fechafin']['valor']!= "" )
+			{
+				$this->campos['intervencion_actualmente']['valor'] = 1;
+				$this->campos['intervencion_fechafin']['valor'] = null;
+			}
+			else
+			{
+				$this->campos['intervencion_actualmente']['valor'] = 0;
+			}
+			
 			// si no es un registro nuevo comprobamos que el usuario tenga permiso para actualizarlo
 			if($this->campos['intervencion_id']['valor']!="")
 			{
@@ -185,7 +196,7 @@
 			if($limit != 0) $limites = "LIMIT ".$start.",".$limit;
 			
 			$consulta = " SELECT I.*, O.*, usuario_nombre, usuario_apellido1, usuario_login,usuario_apellido2, intervencion_usuario_id, 
-					    ".$filtroRegistros.", DATE_FORMAT(intervencion_fechainicio, '".FORMATO_FECHA_MYSQL_ANYO."') AS intervencion_fechainicio,DATE_FORMAT(intervencion_fechafin, '".FORMATO_FECHA_MYSQL_ANYO."') AS intervencion_fechafin, intervencion_fechafin AS sortintervencion_fechafin, intervencion_fechainicio AS sortintervencion_fechainicio  
+					    ".$filtroRegistros.", DATE_FORMAT(intervencion_fechainicio, '".FORMATO_FECHA_MYSQL_ANYO."') AS intervencion_fechainicio,DATE_FORMAT(intervencion_fechafin, '".FORMATO_FECHA_MYSQL_ANYO."') AS intervencion_fechafin, intervencion_fechafin AS sortintervencion_fechafin,intervencion_actualmente, intervencion_fechainicio AS sortintervencion_fechainicio  
 						  FROM intervencion I LEFT JOIN usuario ON usuario_id=intervencion_usuario_id  LEFT JOIN obra O ON obra_id = intervencion_obra_id WHERE 1 ".$filtroBusqueda;	
 				
 			return parent::Listar($consulta, false, $filtros, $start, $limit, $sort);

@@ -476,15 +476,14 @@
 				
 				if($letra == "todas")
 				{
-					if($tipo == 'Autor') $consulta = "SELECT * FROM profesional INNER JOIN profesionalobra ON profesionalobra_profesional_id = profesional_id WHERE profesional_supervisado='1'  GROUP BY profesional_id order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";			
-					else $consulta = "SELECT * FROM profesional WHERE profesional_tipo='".$tipo."' AND profesional_supervisado='1' order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";
+					if($tipo == 'Autor') $consulta = "SELECT * FROM profesional INNER JOIN profesionalobra ON profesionalobra_profesional_id = profesional_id GROUP BY profesional_id order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";			
+					else $consulta = "SELECT * FROM profesional LEFT OUTER JOIN profesionalobra ON profesional_id = profesionalobra_profesional_id WHERE profesional_tipo='".$tipo."' AND profesionalobra_profesional_id IS NULL order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";		
 				}
 				else {
-					if($tipo == 'Autor') $consulta = "SELECT * FROM profesional INNER JOIN profesionalobra ON profesionalobra_profesional_id = profesional_id WHERE profesional_supervisado='1' AND profesional_apellido1 REGEXP '^[".$letra."]' GROUP BY profesional_id order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC "; 
-					else $consulta = "SELECT * FROM profesional WHERE profesional_tipo='".$tipo."' AND profesional_supervisado='1' AND profesional_apellido1 REGEXP '^[".$letra."]' order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";
+					if($tipo == 'Autor') $consulta = "SELECT * FROM profesional INNER JOIN profesionalobra ON profesionalobra_profesional_id = profesional_id WHERE profesional_apellido1 REGEXP '^[".$letra."]' GROUP BY profesional_id order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC "; 
+					else $consulta = "SELECT * FROM profesional LEFT OUTER JOIN profesionalobra ON profesional_id = profesionalobra_profesional_id  WHERE profesional_tipo='".$tipo."' AND profesional_apellido1 REGEXP '^[".$letra."]'  AND profesionalobra_profesional_id IS NULL  order by profesional_apellido1, profesional_apellido2, profesional_nombre ASC";
 				}
 				$profesionales = $bd->ObtenerResultados($consulta);
-				
 				
 				$template->assign('profesionales', $profesionales);
 				$template->assign('letra', $letra);

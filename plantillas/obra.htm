@@ -74,7 +74,7 @@
 		  <tr>
 			<th>Fecha</th>
 			<td>
-				{if $obra.obra_fecha1 ne $fecha_vacia}{$obra.obra_fecha1}{/if}
+				{if $obra.obra_fecha1 ne $fecha_vacia && $obra.obra_fecha1 ne '01/01/0000' }{$obra.obra_fecha1}{/if}
 				{if $obra.obra_siglo ne ''}<br />{$obra.obra_siglo} {$obra.obra_acdc}{/if}
 			
 			</td>
@@ -151,7 +151,7 @@
 					</td>
 					<td>
 					{if $intervencion.intervencion_fechainicio > 0}{$intervencion.intervencion_fechainicio}{/if}<br />			
-					{if  $intervencion.intervencion_fechafin < 1 && $intervencion.intervencion_fechainicio >1 }Actualmente
+					{if $intervencion.intervencion_actualmente}Actualmente
 					{else if $intervencion.intervencion_fechafin < 1}{else}{$intervencion.intervencion_fechafin}{/if}
 					
 					

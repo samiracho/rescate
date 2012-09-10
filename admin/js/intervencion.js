@@ -196,7 +196,7 @@ Ext.define('RESCATE.form.editarIntervencion', {
     {
         var me = this;
 		
-		var anyoStore = Ext.create('widget.store.Anyo', {});
+		var anyoStore = Ext.create('widget.store.Anyo', {actualmente:'true'});
 		
         var creadorStore = Ext.create('widget.store.Creador', {});
 		

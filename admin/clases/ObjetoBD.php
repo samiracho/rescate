@@ -710,7 +710,7 @@
 			
 			// si la relacion es de 1 a muchos y claveAjena1 es nula, mostramos error
 			// si la relacion es de muchos a muchos y claveAjena1 o claveAjena2 son nulas, mostramos error
-			if( ( $this->relaciones[$nombreRelacion]['relacion'] == 'MaN' && ( empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor']) || empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena2']]['valor']) ) ) || empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor']) )
+			if( ( $this->relaciones[$nombreRelacion]['relacion'] == 'MaN' && ( empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor']) || empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena2']]['valor']) ) ) || ( $this->relaciones[$nombreRelacion]['relacion'] != 'MaM' && empty($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor']) ) )
 			{
 				$res->exito = false;
 				$res->mensaje = t("Error saving changes");

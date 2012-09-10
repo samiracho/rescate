@@ -1551,7 +1551,11 @@ Ext.define('RESCATE.form.ComboBox', {
 
 	
     setValue: function(value, doSelect) {
-        if(this.store.loading){
+        
+		// mostramos vacío el campo si es un año nulo
+		if (value == '0000') value = '';
+		
+		if(this.store.loading){
             this.store.on('load', Ext.bind(this.setValue, this, arguments));
             return;
         }

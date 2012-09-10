@@ -998,6 +998,9 @@ Ext.define('RESCATE.model.Intervencion', {
         name: 'intervencion_fechafin',
         defaultValue: ''
     }, {
+        name: 'intervencion_actualmente',
+        defaultValue: ''
+    }, {
         name: 'intervencion_supervisado',
         defaultValue: ''
     }, {
