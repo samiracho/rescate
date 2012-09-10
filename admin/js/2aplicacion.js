@@ -1281,9 +1281,7 @@ Ext.define('RESCATE.grid.Drop', {
 					dropZone = plugin.dropZone;
 				// reset this since these props were deleted by the 'return false'
 				dropZone.overRecord = model;
-				dropZone.currentPosition = pos;
-
-				console.log(data.records[0]);				
+				dropZone.currentPosition = pos;			
 				
 				// si acepto records repetidos tengo que clonarlos y generarles una id única para no tener problemas
 				if (me.registrosDuplicados)
