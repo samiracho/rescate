@@ -30,7 +30,7 @@
 				'obra_direccion'             => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid name'),'valor'=>'','lectura'=>false),
 				'obra_cordenadas'		     => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid coords'),'valor'=>'','lectura'=>false),
 				'obra_fecha1'                => array('tipo'=>'date','nulo'=>true,'msg'=>t('Invalid date'),'valor'=>'','lectura'=>false),
-				'obra_siglo' 		         => array('tipo'=>'int','nulo'=>true,'msg'=>t('Invalid century'),'valor'=>'','lectura'=>false),
+				'obra_siglo' 		         => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid century'),'valor'=>'','lectura'=>false),
 				'obra_acdc'                  => array('tipo'=>'string','nulo'=>true,'msg'=>t('Invalid ac-dc'),'valor'=>'','lectura'=>false),
 				'obra_detalles'              => array('tipo'=>'html','nulo'=>true,'msg'=>t('Invalid details'),'valor'=>'','lectura'=>false),
 				'obra_supervisado'           => array('tipo'=>'checkbox','nulo'=>false,'msg'=>t('Invalid supervised'),'valor'=>null,'lectura'=>false),

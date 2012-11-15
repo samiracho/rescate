@@ -54,6 +54,12 @@ else if(isset($_REQUEST['action']))
 			
 		break;
 		
+		case 'deleteFile':
+			$profesional_id = isset($_REQUEST["id"])?$_REQUEST["id"]:"";
+			print_r(Profesional::EliminarArchivo($profesional_id));
+			
+		break;
+		
 		default:
 			$res = new Comunicacion();
 			$res->exito   = false;

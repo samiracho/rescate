@@ -25,10 +25,10 @@
 		public function Listar($consulta,$cache=false, $filtros = null, $start = null, $limit = null, $sort = null )
 		{
 			$filtroBusqueda = !empty($filtros) ? $this->CrearFiltro($filtros): "";
+			
 			$orderby = (stripos($consulta,"ORDER BY")) ? "" :  " ORDER BY 1 DESC";
 			$sortBusqueda   = !empty($sort) ? $this->CrearSort($sort) :	$orderby;
-			$limite  = ($start!="" && $start!=null) ? " LIMIT ".$start : "";
-			$limite .= ($limit!="" && $limit!=null)  ? ",".$limit : "";
+			$limite  = ($start!="" && $start!=null && $limit!="" && $limit!=null) ? " LIMIT ".$start.",".$limit : "";
 			
 			// le aplicamos lo filtros, los criterios de ordenación y los límites a las consultas
 			$consulta .= " ".$filtroBusqueda." ".$sortBusqueda." ".$limite;
@@ -71,6 +71,9 @@
 				while($fila = $bd->ObtenerFila($datos))
 				{
 					foreach ($fila as $campo => $valor) {
+						
+						$temp[$campo] = stripslashes($valor);
+						
 						// para ignorar las fechas vacías
 						if ($valor == "0000-00-00" || $valor =="00/00/0000")$valor="";
 						$temp[$campo] = $valor;
@@ -297,10 +300,183 @@
 				$paginacion.= "</ul>\n";		
 			}
 		
-		
 			return $paginacion;
-    } 
+		} 
 		
+		private static function CrearMiniatura($nombreArchivo, $ruta = "", $rutaMiniaturas = "")
+		{
+			require_once 'thumbnailer/ThumbLib.inc.php';
+			
+			$extension    =  ObjetoBD::ObtenerExtension($nombreArchivo);
+			
+			if($extension == 'gif' || $extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'bmp')
+			{
+				
+				// crear la miniatura
+				$thumb = PhpThumbFactory::create($ruta.DIRECTORY_SEPARATOR.$nombreArchivo);
+				$thumb->adaptiveResize(TAM_MINIATURAS, TAM_MINIATURAS);
+				$thumb->save($rutaMiniaturas.DIRECTORY_SEPARATOR.$nombreArchivo);
+				return $nombreArchivo;
+			}
+			else return "";
+		}
+		
+		public static function ObtenerMiniatura($nombreArchivo, $ruta = "", $rutaMiniaturas = "")
+		{
+			$extension    =  ObjetoBD::ObtenerExtension($nombreArchivo);
+			$thumb = $extension.".png";
+			$miniatura = "";
+			
+			if ( file_exists($rutaMiniaturas.DIRECTORY_SEPARATOR.$nombreArchivo) ) $miniatura = $nombreArchivo;
+			else if ( file_exists($rutaMiniaturas.DIRECTORY_SEPARATOR.'extensiones'.DIRECTORY_SEPARATOR.$thumb) ) $miniatura = '/extensiones/'.$thumb;
+			else $miniatura = '/extensiones/desconocido.png';
+			
+			$result = $miniatura != "" ? $miniatura : "";
+			return $result;
+		}
+	
+		public static function EliminarArchivo($nombreArchivo = "", $ruta = RUTA_ARCHIVOS)
+		{
+			if ($nombreArchivo == "") return false;
+			
+			$rutaArchivoAntiguo = $ruta.DIRECTORY_SEPARATOR.$nombreArchivo;
+			$rutaMiniaturaAntigua = RUTA_MINIATURAS.DIRECTORY_SEPARATOR.$nombreArchivo;
+			
+			if(!is_writeable($rutaArchivoAntiguo) || !is_file($rutaArchivoAntiguo))
+			{		
+				return false;		
+			}
+			else 
+			{
+				// destruimos el archivo antiguo
+				unlink($rutaArchivoAntiguo);
+				
+				if(is_writeable($rutaMiniaturaAntigua) && is_file($rutaMiniaturaAntigua))
+				{		
+					// destruimos la miniatura antigua si la hubiera
+					unlink($rutaMiniaturaAntigua);		
+				}
+				
+				return true;
+			}
+		}
+		
+		// convierte un archivo temporal en uno vitalicio
+		// devuelve un string con el nombre del archivo final
+		public static function AlmacenarArchivo($nombreArchivo = "",$crearMiniatura = true, $ruta = RUTA_ARCHIVOS)
+		{	
+			$rutaArchivoAntiguo = $ruta.DIRECTORY_SEPARATOR.$nombreArchivo;		
+			if(is_writeable($rutaArchivoAntiguo) && is_file($rutaArchivoAntiguo))
+			{		
+				$nombreArchivo =  preg_replace('/temp_/','',$nombreArchivo,1);
+				rename($rutaArchivoAntiguo, $ruta.DIRECTORY_SEPARATOR.$nombreArchivo );
+				
+				// creamos la miniatura
+				if($crearMiniatura) ObjetoBD::CrearMiniatura($nombreArchivo, $ruta);
+			}
+			return $nombreArchivo;
+		}
+		
+		public static function EliminarTemporales($ruta = RUTA_ARCHIVOS)
+		{
+			$expire_time = TTL_SESION*2;
+			foreach (glob($ruta.DIRECTORY_SEPARATOR."temp_*") as $Filename) {
+ 
+				// Read file creation time
+				$FileCreationTime = filectime($Filename);
+			 
+				// Calculate file age in seconds
+				$FileAge = time() - $FileCreationTime; 
+			 
+				// Is the file older than the given time span?
+				if ($FileAge > ($expire_time)){
+					unlink($Filename);
+				}
+			}	
+		}
+		
+		public static function ObtenerExtension($nombreArchivo)
+		{
+			if( strlen($nombreArchivo) < 2) return "";
+			else return strtolower ( substr($nombreArchivo, strpos($nombreArchivo,'.')+1, strlen($nombreArchivo)-1) );
+		}
+		
+		
+		public static function SubirArchivo($nombreArchivo = "", $eliminarTemporales = true, $temporal = true, $extensiones = IMAGENES_PERMITIDAS, $tamMax = TAM_MAX, $ruta = RUTA_ARCHIVOS, $urlRelativa = null )
+		{
+			global $_FILES;
+			
+			$bd            = BD::Instancia();
+			$res           = new Comunicacion();
+			$directorio    = "";
+			$tipo          = "";
+			
+			// si hay un archivo antiguo lo eliminamos
+			ObjetoBD::EliminarArchivo($nombreArchivo, $ruta);
+			
+			// eliminamos los temporales
+			if($eliminarTemporales)ObjetoBD::EliminarTemporales($ruta);
+			
+			// quitamos caracteres extraños
+			$nombreArchivo = preg_replace('/[^(\x20-\x7F)]*/','', $_FILES['file_path']['name']);
+			
+			// extensión del archivo
+			$ext           =  ObjetoBD::ObtenerExtension($nombreArchivo);
+			
+			if( !in_array($ext,explode(' ', $extensiones)) )
+			{
+				$res->exito   = false;
+				$res->mensaje = t('Error');
+				$res->errores = t('The file you attempted to upload is not allowed.');
+				return $res;
+			}
+
+			$rutaAbsoluta  = $ruta.DIRECTORY_SEPARATOR;
+			
+			// creamos un nombre único para el archivo
+			do
+			{
+				$prefijo = substr(md5(uniqid(rand())),0,6);
+				if($temporal) $prefijo = 'temp_'.$prefijo;
+				$nombreArchivo = $prefijo.'_'.$nombreArchivo;
+			} 
+			while ( file_exists($rutaAbsoluta.$nombreArchivo) );
+			
+
+			if(filesize($_FILES['file_path']['tmp_name']) > $tamMax)
+			{
+				$res->exito   = false;
+				$res->mensaje = t('Error');
+				$res->errores = t('The file you attempted to upload is too large.');
+				return $res;
+			}
+			
+			// Check if we can upload to the specified path, if not DIE and inform the user.
+			if(!is_writable($rutaAbsoluta))
+			{
+				$res->exito   = false;
+				$res->mensaje = t('Error');
+				$res->errores = t('You cannot upload to the specified directory, please CHMOD it to 777.');
+				return $res;
+			}
+
+			if(move_uploaded_file($_FILES['file_path']['tmp_name'],$rutaAbsoluta.$nombreArchivo))
+			{				
+				$res->exito   = true;
+				$res->mensaje = t("File uploaded");
+				$res->errores = "";
+				$res->datos = array('ruta' => $rutaAbsoluta, 'nombre' => $nombreArchivo, 'urlrel' =>$urlRelativa);
+			}
+			else
+			{
+				$res->exito   = false;
+				$res->mensaje = t('Error');
+				$res->errores = t('Error.');
+			}
+			return $res;
+		}
+	
+	
 		public function ObtenerArray($consulta)
 		{
 			$bd 		= BD::Instancia();
@@ -325,7 +501,7 @@
 			
 			return $listado;
 		}
-		
+	
 		// comprueba que el valor sea único
 		public static function ComprobarUnico($idComprobar, $valorComprobar, $tabla,$id = '',$valorId='')
 		{
@@ -370,7 +546,7 @@
 			$res = new Comunicacion();			
 			$res->LeerJson();
 			
-			if(is_array($res->datos))$datos = $res->datos[sizeof($res->datos)-1];
+			if(is_array($res->datos) && sizeof($res->datos) > 0 )$datos = $res->datos[sizeof($res->datos)-1];
 			else $datos = $res->datos;
 			
 			foreach ($datos as $campo => $valor) {
@@ -457,7 +633,6 @@
 			
 			if(!empty($listaFiltros))
 			{
-			
 				$filtros = Comunicacion::DecodificarJson($listaFiltros,true);
 			
 				foreach($filtros->filtros as $campo => $valor)
@@ -486,7 +661,7 @@
 							
 							if(isset($this->campos[$valor->nombre]) )
 							{					
-								$busq = ($this->campos[$valor->nombre]['tipo'] == 'int' || $this->campos[$valor->nombre]['tipo'] == 'id') ? "'".intval($valor->valor)."'" : "'".mysql_real_escape_string($valor->valor)."'";					
+								$busq = ($this->campos[$valor->nombre]['tipo'] == 'int') ? "'".intval($valor->valor)."'" : "'".mysql_real_escape_string($valor->valor)."'";					
 								$filtroSQL .= " ".$operador." ".$valor->nombre;
 								$filtroSQL .= ($numcomparador === 3 || $numcomparador === 4) ? " ".$comparador." '%".mysql_real_escape_string($valor->valor)."%' " : $comparador.$busq;	
 							}
@@ -509,30 +684,68 @@
 			$errores	= array();
 			$correcto   = true;
 
-			if($camposComprobar == null)$camposComprobar =  & $this->campos;
+			if($camposComprobar == null)$camposComprobar = &$this->campos;
 			
 			foreach( $camposComprobar as $campo => $valor )
 			{		
 				$correcto = true;
 				
-				if(!$valor['nulo'] && (is_null($valor['valor']) || $valor['valor'] === '') )
+				// si no se ha especificado usuario será el usuario actual
+				if($valor['tipo'] == 'user_id' )
+				{	
+					 $camposComprobar[$campo]['valor'] = intval(Usuario::IdUsuario()); 		 
+				}		
+				
+				if(!$valor['nulo'] && $valor['valor'] === ""  )
 				{
 					$correcto = false;
 				}
 				
-				if($correcto && !empty($valor['valor']) && !is_null($valor['valor']) )
+				if($correcto && $valor['valor']!="")
 				{
-					if ( $valor['tipo'] == 'int')
-					{
-						if(!is_int(intval($valor['valor']))) $correcto = false;
-					}
-					else if ( $valor['tipo'] == 'string' )
-					{
-						if(!is_string($valor['valor'])) $correcto = false;
-					}
-					else if ( $valor['tipo'] == 'email')
-					{
-						if (filter_var($valor['valor'],FILTER_VALIDATE_EMAIL) ) $correcto = false; 
+					switch($valor['tipo']){
+					
+						case 'int':
+						case 'user_id':
+							if( strval(intval($valor['valor'])) != strval($valor['valor']) ) $correcto = false;
+						break;
+						
+						case 'id':
+							if( intval($valor['valor']) < 1 ) $correcto = false;
+						break;
+						
+						case 'string':
+						case 'file':
+						case 'html':
+						case 'date':
+							if(!$valor['nulo'] && strlen(trim($valor['valor'])) == 0) $correcto = false;
+							if(!is_string($valor['valor'])) $correcto = false;
+						break;
+						
+						case 'checkbox':
+						break;
+						
+						case 'commasint':
+							if(!is_string($valor['valor'])) $correcto = false;
+							else{
+								$intarray = explode(',',$valor['valor']);
+								foreach ($intarray as $item)
+								{
+									if(  strval(intval($item)) != strval($item) ){
+										$correcto = false;
+										break;
+									}
+								}	
+							}
+						break;
+						
+						case 'email':
+							if (filter_var($valor['valor'],FILTER_VALIDATE_EMAIL) ) $correcto = false; 
+						break;
+						
+						default:
+							$correcto = false;
+						break;
 					}
 				}
 			
@@ -540,56 +753,66 @@
 				if(!$correcto)
 				{
 					$errores[] = array('id'=>$campo,'msg'=> $valor['msg']);
-				}
-				
-				// si es html lo limpiamos
-				if( $valor['tipo'] == 'html')
+				}		
+				else
 				{
-					if($valor['valor'] == "u200b" )$camposComprobar[$campo]['valor'] = "";
-					
-					if(LIMPIAR_HTML)
+					// si es html lo limpiamos
+					if( $valor['tipo'] == 'html')
 					{
-						require_once '../lib/htmlpurifier/HTMLPurifier.auto.php';
-						$config = HTMLPurifier_Config::createDefault();
-						$config->set('Core.Encoding', 'UTF-8');
-						$config->set('HTML.Doctype', FORMATO_HTML);
-						$purifier = new HTMLPurifier($config);
+						if($valor['valor'] == "u200b" )$camposComprobar[$campo]['valor'] = "";
+						
+						if(LIMPIAR_HTML)
+						{
+							require_once '../lib/htmlpurifier/HTMLPurifier.auto.php';
+							$config = HTMLPurifier_Config::createDefault();
+							$config->set('Core.Encoding', 'UTF-8');
+							$config->set('HTML.Doctype', FORMATO_HTML);
+							$purifier = new HTMLPurifier($config);
 
-						// limpiamos el html
-						$camposComprobar[$campo]['valor'] = $purifier->purify($camposComprobar[$campo]['valor']);
+							// limpiamos el html
+							$camposComprobar[$campo]['valor'] = $purifier->purify($camposComprobar[$campo]['valor']);
+						}
 					}
-				}
-				
-				// limpiamos los posibles caracteres extraños
-				$camposComprobar[$campo]['valor'] = mysql_real_escape_string($valor['valor']);
-				
-				// si es de tipo fecha la convertimos en el formato que necesita mysql
-				if( $valor['tipo'] == 'date')
-				{
-					$camposComprobar[$campo]['valor'] = mysqlDate($camposComprobar[$campo]['valor']);
-				}	
-				
-				// si es de tipo checkbox
-				if( $valor['tipo'] == 'checkbox')
-				{
-					if($valor['valor'] == "1" || $camposComprobar[$campo]['valor'] == "on")
+					
+					// si es de tipo fecha la convertimos en el formato que necesita mysql
+					if( $valor['tipo'] == 'date')
 					{
-						$camposComprobar[$campo]['valor'] = 1;
+						$camposComprobar[$campo]['valor'] = mysqlDate($camposComprobar[$campo]['valor']);
 					}
-					else $camposComprobar[$campo]['valor'] = 0;
-				}	
+					
+					if( $valor['tipo'] == 'commasint' || $valor['tipo'] == 'string')
+					{
+						$camposComprobar[$campo]['valor'] = trim($camposComprobar[$campo]['valor']);
+					}
+					
+					// si es de tipo checkbox
+					if( $valor['tipo'] == 'checkbox')
+					{
+						if($valor['valor'] == "1" || $valor['valor'] === "on")
+						{
+							$camposComprobar[$campo]['valor'] = "1";
+						}
+						else $camposComprobar[$campo]['valor'] = "0";
+					}
+					
+					// limpiamos los posibles caracteres extraños
+					$camposComprobar[$campo]['valor'] = mysql_real_escape_string($camposComprobar[$campo]['valor']);
+				}				
 			}	
 			
 			return $errores;			
 		}
 		
-		public function EliminarDato($id)
+		public function EliminarDato($leerDatos = true)
 		{
 			$bd = BD::Instancia();
 			$consulta = "";
 			$res = new Comunicacion();
 			
 			
+			if($leerDatos)$this->Leer();				
+			$id = $this->campos[$this->id]['valor'];
+
 			if($id=="")
 			{
 				$res->exito = false;
@@ -598,9 +821,16 @@
 				return $res;
 			}
 			
+			// eliminamos los archivos
+			foreach( $this->campos as $campo => $valor )
+			{
+				if($valor['tipo'] == 'file'){ObjetoBD::EliminarArchivo($valor['valor'], $valor['ruta']);}
+			}
+			
+			// eliminamos los datos de la bd
 			$consulta = "DELETE FROM ".$this->tabla." WHERE ".$this->id."= '". intval($id) ."'";
 			$bd->Ejecutar($consulta);
-				
+			
 			if( $bd->ObtenerErrores() == "" )
 			{
 				$res->exito = true;
@@ -668,7 +898,7 @@
 		}
 		
 		// Guarda una relacion de 1 a muchos o de muchos a muchos
-		public function GuardarRelacion($nombreRelacion,$idRelacion="")
+		public function GuardarRelacion($nombreRelacion,$idAjena1="",$idAjena2 = "")
 		{
 			$bd 		= BD::Instancia();
 			$consulta 	= "";
@@ -689,12 +919,21 @@
 			// leemos los datos json
 			$this->Leer();
 			
-
-			
 			// le asignamos la id a la clave ajena
 			if($this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor'] == "")
-			$this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor'] = $idRelacion =="" ? $this->campos[$this->id]['valor'] : intval($idRelacion);
+			$this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor'] = $this->campos[$this->id]['valor'];
 			
+			if ($idAjena1 !="") 
+			{			
+				// le asignamos la id a la clave ajena
+				$this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena1']]['valor'] = intval($idAjena1);
+			}
+			
+			if ($idAjena2 !="") 
+			{			
+				// le asignamos la id a la clave ajena
+				$this->relaciones[$nombreRelacion]['campos'][$this->relaciones[$nombreRelacion]['claveAjena2']]['valor'] = intval($idAjena2);
+			}
 			// limpiamos los datos recibidos del formulario (comillas, caracteres extraños e.t.c) 
 			$errores  = $this->ValidarCampos($this->relaciones[$nombreRelacion]['campos']);
 			
@@ -808,7 +1047,6 @@
 
 		// $autoConsultas: si es true construirá las consultas INSERT y UPDATE automáticamente, sinó las leerá de los parámetros $this->consultaInsertar y $this->consultaActualizar
 		// $leerDatos: si es true, llamará a la función para leer los datos enviados por el cliente.
-		// $devolverJson: si es true devolverá directamente un mensaje en formato json
 		public function Guardar($autoConsultas=true,$leerDatos=true)
 		{	
 			$bd 		   = BD::Instancia();
@@ -824,7 +1062,7 @@
 			
 			// limpiamos los datos recibidos del formulario (comillas, caracteres extraños e.t.c) 
 			$errores = $this->ValidarCampos();
-			
+
 			// si algún campo tiene un valor inválido no continuamos
 			if(sizeof($errores) > 0)
 			{
@@ -835,7 +1073,7 @@
 			}
 
 			// si su id no está definida entonces es un registro nuevo
-			if($this->campos[$this->id]['valor']== '')
+			if($this->campos[$this->id]['valor']== '' || $this->campos[$this->id]['valor']< 1)
 			{	
 				// si autoConsultas = true entonces construimos el INSERT automáticamente
 				if($autoConsultas)
@@ -844,8 +1082,13 @@
 					{
 						if(!$valor['lectura'])
 						{
+							$texto = $valor['valor'];
+
+							// al guardar convertimos el archivo temporal en vitalicio							
+							if($valor['tipo']=='file') $texto = ObjetoBD::AlmacenarArchivo($valor['valor'],true, $valor['ruta']);
+							
 							$campos        .= $campo.",";
-							$valores       .= "'".$valor['valor']."',";
+							$valores       .= "'".$texto."',";
 						}
 					}
 			
@@ -869,7 +1112,12 @@
 					{
 						if(!$valor['lectura'])
 						{
-							$camposValores .= $campo."='".$valor['valor']."',";
+							$texto = $valor['valor'];
+
+							// al guardar convertimos el archivo temporal en vitalicio							
+							if($valor['tipo']=='file') $texto = ObjetoBD::AlmacenarArchivo($valor['valor'],true, $valor['ruta']);
+							
+							$camposValores .= $campo."='".$texto."',";
 						}
 					}
 				
@@ -904,12 +1152,29 @@
 				
 				foreach($this->campos as $campo => $valor )
 				{
-						//if(!$valor['lectura'])
-						//{
+						if($valor['tipo'] == 'date'){
+							
+							// compatibilidad php 5.1
+							//$d = date_parse($valor['valor']);
+							//$temp[$campo] = str_pad($d['day'],2,"0",STR_PAD_LEFT).'/'.str_pad($d['month'],2,"0",STR_PAD_LEFT).'/'.$d['year'];
+							
+							$temp[$campo] =date("d/m/Y", strtotime($valor['valor']));
+						}
+						else if($valor['tipo'] == 'file')
+						{
+
+							$temp[$campo]  = preg_replace('/temp_/','',$valor['valor'],1);
+
+						}
+						else{
 							$temp[$campo] = (string)$valor['valor'];
-						//}
+						}
+						
+						$temp[$campo] = stripslashes($temp[$campo]);
 				}
-				$res->datos = $temp;			
+				
+				$res->datos = $temp;
+				
 			}
 			else
 			{

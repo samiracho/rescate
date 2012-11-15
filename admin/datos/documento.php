@@ -108,6 +108,12 @@ else if(isset($_REQUEST['action']))
 			
 		break;
 		
+		case 'deleteFile':
+			$documento_id = isset($_REQUEST["id"])?$_REQUEST["id"]:"";
+			print_r(Documento::EliminarArchivo($documento_id));
+			
+		break;
+		
 		case 'webcam':
 			$documento_id = isset($_REQUEST["documento_id"])?$_REQUEST["documento_id"]:"";
 			$res = Documento::SubirImagenWebCam($documento_id);

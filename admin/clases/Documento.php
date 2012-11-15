@@ -327,7 +327,7 @@
 			return $res;
 		}
 		
-		private static function ObtenerMiniatura($ruta,$nombreArchivo, $extension)
+		public static function ObtenerMiniatura($ruta,$nombreArchivo, $extension)
 		{
 			require_once '../lib/thumbnailer/ThumbLib.inc.php';
 			
@@ -348,28 +348,48 @@
 		}
 		
 		// elimina un archivo y su miniatura si la hubiera
-		private static function EliminarArchivo($documentoId)
+		public static function EliminarArchivo($documentoId)
 		{
-			$bd       = BD::Instancia();
+			if(!$documentoId)return 0;
 			
+			$bd       = BD::Instancia();
+			$res = new Comunicacion();
 			$consulta = "SELECT documento_miniatura, documento_archivo, documento_directorio FROM documento WHERE documento_id = '".intval($documentoId)."' LIMIT 1";		
 			$datos    = $bd->Ejecutar($consulta);
 			$fila     = $bd->ObtenerFila($datos);
-				
+			
+			if( $bd->ObtenerErrores() != "" )
+			{
+				return 0;
+			}
+			
 			// borramos el archivo antiguo si lo hubiera
 			if( $bd->ObtenerNumFilas($datos) > 0 )
 			{
 				$rutaArchivoAntiguo   = RUTA_ARCHIVOS.DIRECTORY_SEPARATOR.$fila['documento_directorio'].DIRECTORY_SEPARATOR.$fila['documento_archivo'];
 				$rutaMiniaturaAntigua = RUTA_ARCHIVOS.DIRECTORY_SEPARATOR.$fila['documento_directorio'].DIRECTORY_SEPARATOR.'miniaturas'.DIRECTORY_SEPARATOR.$fila['documento_archivo'];
 				
-				if( $fila['documento_archivo']!='' && file_exists($rutaArchivoAntiguo) )
-				{								
-					unlink($rutaArchivoAntiguo);
-					$consulta = "UPDATE documento SET documento_archivo='', documento_miniatura='', documento_directorio='' WHERE documento_id= '". $documentoId ."'";				
-					$bd->Ejecutar($consulta);
+				if( $fila['documento_archivo']!='' && file_exists($rutaArchivoAntiguo) && is_writeable($rutaArchivoAntiguo) )
+				{												
+					if(!is_writeable($rutaArchivoAntiguo) || !is_file($rutaArchivoAntiguo))
+					{		
+						return 0;		
+					}
+					else 
+					{
+						unlink($rutaArchivoAntiguo);
+						$consulta = "UPDATE documento SET documento_archivo='', documento_miniatura='', documento_directorio='' WHERE documento_id= '". $documentoId ."'";				
+						$bd->Ejecutar($consulta);
+					}
 				}
-				if($fila['documento_miniatura'] && $fila['documento_directorio'] == 'imagen' && file_exists($rutaMiniaturaAntigua))unlink($rutaMiniaturaAntigua);
+				if($fila['documento_miniatura'] && $fila['documento_directorio'] == 'imagen' && file_exists($rutaMiniaturaAntigua) && is_writeable($rutaMiniaturaAntigua))unlink($rutaMiniaturaAntigua);
 			}
+			if( $bd->ObtenerErrores() == "" )
+			{
+				return 1;
+			}
+			
+			return 0;
 		}
 		
 		public function EliminarDato($idDocumento, $esAdmin, $editarRegistrosAjenos )

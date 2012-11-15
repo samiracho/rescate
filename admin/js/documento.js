@@ -131,7 +131,7 @@ Ext.define('RESCATE.form.editarDocumento', {
                                 itemId: 'botonAdjuntar',
                                 text: 'Adjuntar...',
                                 tooltip: t('Attach File'),
-                                width: 102,
+                                width: 76,
                                 scope: me,
                                 handler: me.onAttachClick
                             }, {
@@ -142,6 +142,14 @@ Ext.define('RESCATE.form.editarDocumento', {
                                 tooltip: t('Capture image from Webcam'),
                                 scope: me,
                                 iconCls: 'iconoWebcam'
+                            }, {
+                                margin: '0 0 0 4',
+                                xtype: 'button',
+                                itemId: 'botonEliminar',
+                                handler: me.onDeleteFileClick,
+                                tooltip: t('Delete'),
+                                scope: me,
+                                iconCls: 'iconoBorrar'
                             }]
                         }, {
                             xtype: 'container',
@@ -290,21 +298,25 @@ Ext.define('RESCATE.form.editarDocumento', {
         }
         var documentoId = me.down('[name=documento_id]').getValue();
         var botonAdjuntar = me.down('#botonAdjuntar');
+		var botonEliminar = me.down('#botonEliminar');
         var botonWebcam = me.down('#botonWebcam');
         var tabTipos = me.down('#panelTipos');
 		var tabAutor = me.down('#panelAutor');
         var bloq = (documentoId == '') ? true : false;
         this.BloqDebloqTab(tabTipos, bloq);
 		this.BloqDebloqTab(tabAutor, bloq);
+		
         if (documentoId == '')
         {
             botonAdjuntar.setDisabled(true);
             botonWebcam.setDisabled(true);
+			botonEliminar.setDisabled(true);
         }
         else
         {
             botonAdjuntar.setDisabled(false);
             botonWebcam.setDisabled(false);
+			botonEliminar.setDisabled(false);
         }
     },
     comprobarNombreUnico: function (field, options)
@@ -367,6 +379,44 @@ Ext.define('RESCATE.form.editarDocumento', {
         this.subirArchivo.vistaPrevia = this.down('#vistaPrevia');
         this.subirArchivo.show();
     },
+	onDeleteFileClick: function (button)
+	{
+		var me = this;
+		var documentoId = me.down('[name=documento_id]').getValue();
+        if (documentoId == '') return;
+		
+		Ext.MessageBox.confirm(t('Confirmation'), t('Do you want to delete the file?'), function (btn)
+        {
+            if (btn == 'yes')
+            {          
+				Ext.Ajax.request(
+				{
+					url: 'datos/documento.php?action=deleteFile',
+					method: 'POST',
+					params: {id: documentoId},
+					success: function (o)
+					{
+						if (o.responseText == 1)
+						{
+							RESCATE.confirmacion();
+							me.down('#vistaPrevia').setSrc('');
+						}
+						else
+						{
+							Ext.MessageBox.alert(
+							{
+								title: t('Warning'),
+								msg: t('Error Deleting File'),
+								buttons: Ext.MessageBox.OK
+							});
+							return false;
+						}
+					}
+				});
+				return true;			
+            }
+        });	
+	},
     //override del metodo que se ejecuta después de sincronizar
     SyncCallBack: function ()
     {

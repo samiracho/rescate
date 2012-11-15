@@ -60,7 +60,10 @@ else if(isset($_REQUEST['action']))
 		
 			$procedimiento = new Procedimiento();
 			$procedimiento->Leer();
-			$procedimiento->GuardarRelacion('intervencion')->ImprimirJson();
+			
+			$id  = isset($_REQUEST["id"])?$_REQUEST["id"]:"";		
+			
+			$procedimiento->GuardarRelacion('intervencion',"",$id)->ImprimirJson();
 			
 		break;
 		

@@ -115,8 +115,6 @@
 						"idParent" => $row["material_padre_id"],
 						"text" => $row["material_nombre"],
 						"expanded" => true,
-					
-						"materialintervencion_intervencion_id" => $row["materialintervencion_intervencion_id"],
 						"material_id" => $row["material_id"],
 						"material_nombre" => $row["material_nombre"],
 						"material_padre_id" => $row["material_padre_id"]

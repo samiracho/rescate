@@ -390,9 +390,17 @@ Ext.define('RESCATE.form.editarProfesional', {
                                 itemId: 'botonAdjuntar',
                                 text: t('Attach...'),
                                 tooltip: t('Attach File'),
-                                width: 124,
+                                width: 98,
                                 scope: me,
                                 handler: me.onAttachClick
+                            }, {
+                                margin: '0 0 0 4',
+                                xtype: 'button',
+                                itemId: 'botonEliminar',
+                                handler: me.onDeleteFileClick,
+                                tooltip: t('Delete'),
+                                scope: me,
+                                iconCls: 'iconoBorrar'
                             }]	
 						},{
                             items: [
@@ -544,8 +552,16 @@ Ext.define('RESCATE.form.editarProfesional', {
         this.BloqDebloqTab(tabDetalles, bloq);
 			
         var botonAdjuntar = me.down('#botonAdjuntar');
-        if (idProfesional == '')botonAdjuntar.setDisabled(true);
-        else botonAdjuntar.setDisabled(false);	
+		var botonEliminar = me.down('#botonEliminar');
+        if (idProfesional == ''){
+			botonAdjuntar.setDisabled(true);
+			botonEliminar.setDisabled(true)
+		}
+        else{
+			botonAdjuntar.setDisabled(false);
+			botonEliminar.setDisabled(false);
+		
+		}
     },
     // al hacer click sobre el botón adjuntar
     onAttachClick: function (button, toggle)
@@ -560,6 +576,44 @@ Ext.define('RESCATE.form.editarProfesional', {
         this.subirArchivo.vistaPrevia = this.down('#vistaPrevia');
         this.subirArchivo.show();
     },
+	onDeleteFileClick: function (button)
+	{
+		var me = this;
+		var profesionalId = me.down('[name=profesional_id]').getValue();
+        if (profesionalId == '') return;
+		
+		Ext.MessageBox.confirm(t('Confirmation'), t('Do you want to delete the file?'), function (btn)
+        {
+            if (btn == 'yes')
+            {          
+				Ext.Ajax.request(
+				{
+					url: 'datos/profesional.php?action=deleteFile',
+					method: 'POST',
+					params: {id: profesionalId},
+					success: function (o)
+					{
+						if (o.responseText == 1)
+						{
+							RESCATE.confirmacion();
+							me.down('#vistaPrevia').setSrc('');
+						}
+						else
+						{
+							Ext.MessageBox.alert(
+							{
+								title: t('Warning'),
+								msg: t('Error Deleting File'),
+								buttons: Ext.MessageBox.OK
+							});
+							return false;
+						}
+					}
+				});
+				return true;			
+            }
+        });	
+	},
     //override del metodo que se ejecuta después de sincronizar
     SyncCallBack: function (batch, options)
     {

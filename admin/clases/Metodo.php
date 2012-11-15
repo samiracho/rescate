@@ -39,7 +39,7 @@
 				)
 			);	
 		}
-		
+
 		public function Guardar($metodoId,$metodoPadreId, $metodoNombre, $metodoDetalles)
 		{			
 			// leemos los datos json
@@ -120,8 +120,6 @@
 						"idParent" => $row["metodo_padre_id"],
 						"text" => $row["metodo_nombre"],
 						"expanded" => true,
-					
-						"metodoobra_obra_id" => $row["metodoobra_obra_id"],
 						"metodo_id" => $row["metodo_id"],
 						"metodo_nombre" => $row["metodo_nombre"],
 						"metodo_padre_id" => $row["metodo_padre_id"]

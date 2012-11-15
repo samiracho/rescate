@@ -120,8 +120,6 @@
 						"idParent" => $row["procedimiento_padre_id"],
 						"text" => $row["procedimiento_nombre"],
 						"expanded" => true,
-					
-						"procedimientointervencion_intervencion_id" => $row["procedimientointervencion_intervencion_id"],
 						"procedimiento_id" => $row["procedimiento_id"],
 						"procedimiento_nombre" => $row["procedimiento_nombre"],
 						"procedimiento_padre_id" => $row["procedimiento_padre_id"]

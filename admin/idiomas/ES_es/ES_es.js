@@ -265,5 +265,6 @@
   'Show as front Image' : 'Mostrar como imagen de portada',
   'Equipping' : 'Equipamiento',
   'Equipping Details' : 'Detalles Equipamiento',
-  'Nowadays' : 'Actualmente'
+  'Nowadays' : 'Actualmente',
+  'Do you want to delete the file?' : '¿Desea eliminar el archivo?'
 };

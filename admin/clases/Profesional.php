@@ -303,7 +303,7 @@
 			return $res;
 		}
 		
-		private static function ObtenerMiniatura($ruta,$nombreArchivo, $extension)
+		public static function ObtenerMiniatura($ruta,$nombreArchivo, $extension)
 		{
 			require_once '../lib/thumbnailer/ThumbLib.inc.php';
 			
@@ -324,28 +324,48 @@
 		}
 		
 		// elimina un archivo y su miniatura si la hubiera
-		private static function EliminarArchivo($profesionalId)
+		public static function EliminarArchivo($profesionalId)
 		{
-			$bd       = BD::Instancia();
+			if(!$profesionalId)return 0;
 			
+			$bd       = BD::Instancia();
+			$res = new Comunicacion();
 			$consulta = "SELECT profesional_miniatura, profesional_archivo, profesional_directorio FROM profesional WHERE profesional_id = '".intval($profesionalId)."' LIMIT 1";		
 			$datos    = $bd->Ejecutar($consulta);
 			$fila     = $bd->ObtenerFila($datos);
-				
+			
+			if( $bd->ObtenerErrores() != "" )
+			{
+				return 0;
+			}
+			
 			// borramos el archivo antiguo si lo hubiera
 			if( $bd->ObtenerNumFilas($datos) > 0 )
 			{
 				$rutaArchivoAntiguo   = RUTA_ARCHIVOS.DIRECTORY_SEPARATOR.$fila['profesional_directorio'].DIRECTORY_SEPARATOR.$fila['profesional_archivo'];
 				$rutaMiniaturaAntigua = RUTA_ARCHIVOS.DIRECTORY_SEPARATOR.$fila['profesional_directorio'].DIRECTORY_SEPARATOR.'miniaturas'.DIRECTORY_SEPARATOR.$fila['profesional_archivo'];
 				
-				if( $fila['profesional_archivo']!='' && file_exists($rutaArchivoAntiguo) )
-				{								
-					unlink($rutaArchivoAntiguo);
-					$consulta = "UPDATE profesional SET profesional_archivo='', profesional_miniatura='', profesional_directorio='' WHERE profesional_id= '". $profesionalId ."'";				
-					$bd->Ejecutar($consulta);
+				if( $fila['profesional_archivo']!='' && file_exists($rutaArchivoAntiguo) && is_writeable($rutaArchivoAntiguo) )
+				{												
+					if(!is_writeable($rutaArchivoAntiguo) || !is_file($rutaArchivoAntiguo))
+					{		
+						return 0;		
+					}
+					else 
+					{
+						unlink($rutaArchivoAntiguo);
+						$consulta = "UPDATE profesional SET profesional_archivo='', profesional_miniatura='', profesional_directorio='' WHERE profesional_id= '". $profesionalId ."'";				
+						$bd->Ejecutar($consulta);
+					}
 				}
-				if($fila['profesional_miniatura'] && $fila['profesional_directorio'] == 'imagen' && file_exists($rutaMiniaturaAntigua))unlink($rutaMiniaturaAntigua);
+				if($fila['profesional_miniatura'] && $fila['profesional_directorio'] == 'imagen' && file_exists($rutaMiniaturaAntigua) && is_writeable($rutaMiniaturaAntigua))unlink($rutaMiniaturaAntigua);
 			}
+			if( $bd->ObtenerErrores() == "" )
+			{
+				return 1;
+			}
+			
+			return 0;
 		}
 		
 		

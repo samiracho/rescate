@@ -61,7 +61,10 @@ else if(isset($_REQUEST['action']))
 		
 			$material = new Material();
 			$material->Leer();
-			$material->GuardarRelacion('intervencion')->ImprimirJson();
+			
+			$id  = isset($_REQUEST["id"])?$_REQUEST["id"]:"";		
+			
+			$material->GuardarRelacion('intervencion','',$id)->ImprimirJson();
 			
 		break;
 		

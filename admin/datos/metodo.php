@@ -61,7 +61,9 @@ else if(isset($_REQUEST['action']))
 		case 'addMetodoObra':
 			$metodo = new Metodo();
 			$metodo->Leer();
-			$metodo->GuardarRelacion('obra')->ImprimirJson();
+			
+			$id  = isset($_REQUEST["id"])?$_REQUEST["id"]:"";
+			$metodo->GuardarRelacion('obra',"",$id)->ImprimirJson();
 			
 		break;
 		
